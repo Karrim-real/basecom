@@ -30,6 +30,8 @@ Route::post('/register', [UserAuthController::class, 'store'])->name('register-f
 Route::get('/login', [UserAuthController::class, 'show'])->name('login');
 Route::post('/login', [UserAuthController::class, 'create'])->name('login-post');
 
+Route::get('/logout', [UserAuthController::class, 'destroySession'])->name('logout');
+
 Route::get('/forget-password', [UserAuthController::class, 'forgetPass'])->name('forget-password');
 Route::post('/forget-password', [UserAuthController::class, 'forgetPassCreate'])->name('forgetPost');
 

@@ -12,10 +12,16 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="top_right text-right">
                             <ul>
-                               <li><a href="{{ url('my-account') }}">Account</a></li>
-                               <li><a href="{{ url('checkout') }}">Checkout</a></li>
-                               <li><a href="{{ url('login') }}">Login</a></li>
+                                @if (Auth::user())
+                                {{-- {{ dd(Auth::user()) }} --}}
+                                <li><a href="{{ url('my-account') }}">Account</a></li>
+                                <li><a href="{{ url('checkout') }}">Checkout</a></li>
+                                <li><a href="{{ url('logout') }}">Logout</a></li>
+                                @else
+                                <li><a href="{{ url('login') }}">Login</a></li>
                                <li><a href="{{ url('register') }}">Register</a></li>
+                                @endif
+
                             </ul>
                         </div>
                     </div>
@@ -29,7 +35,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-6">
                         <div class="logo">
-                            <a href="index-2.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                            <a href="{{ url('/') }}"><img src="assets/img/logo/logo.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-6">
@@ -43,9 +49,16 @@
                                 </form>
                             </div>
                             <div class="middel_right_info">
+                                @if (Auth::user())
+                                <div class="header_wishlist">
+                                    <a href="{{ url('my-account/'.Auth::user()->id.'/'.Auth::user()->name) }}"><img src="assets/img/user.png" alt=""></a>
+                                </div>
+                                @else
                                 <div class="header_wishlist">
                                     <a href="#"><img src="assets/img/user.png" alt=""></a>
                                 </div>
+                                @endif
+
                                 <div class="mini_cart_wrapper">
                                     <a href="javascript:void(0)"><img src="assets/img/shopping-bag.png" alt=""></a>
                                     <span class="cart_quantity">2</span>

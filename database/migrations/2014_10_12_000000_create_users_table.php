@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('zipcode')->nullable();
             $table->string('email')->unique();
+            $table->bigInteger('role_as')->default('0');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

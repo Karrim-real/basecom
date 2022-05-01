@@ -1,9 +1,9 @@
 <?php
 
 namespace App\ProductService;
-use App\Interfaces\ProductRepository;
+use App\Interfaces\ProductInterface;
 use App\Models\Product;
-use ProductInterface;
+
 
 class ProductService implements ProductInterface {
 

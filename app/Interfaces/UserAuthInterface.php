@@ -1,6 +1,7 @@
 <?php
+namespace App\Interfaces;
 
-interface AuthRepository
+interface UserAuthInterface
 {
 
     /**
@@ -34,7 +35,7 @@ interface AuthRepository
       * @param  mixed $newUserInfo
       * @return void
       */
-     public function updateAccount(array $newUserInfo);
+     public function updateAccount($userID, array $newUserInfo);
 
      /**
       * deactivate
@@ -42,7 +43,9 @@ interface AuthRepository
       * @param  mixed $userID
       * @return void
       */
-     public function deactivate($userID);
+     public function deactivateAccount($userID);
+
+     public function logout();
 
 
 }
