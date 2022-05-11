@@ -179,6 +179,7 @@ return [
         App\Providers\CategoryServiceProvider::class,
         App\Providers\ProductServiceProvider::class,
         App\Providers\UserAuthServiceProvider::class,
+        App\Providers\AdminAuthServiceProvider::class,
 
     ],
 

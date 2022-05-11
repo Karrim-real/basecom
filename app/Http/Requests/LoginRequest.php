@@ -39,7 +39,7 @@ class LoginRequest extends FormRequest
     public function attributes()
     {
         return [
-            'email' => 'Pleae providem valid email address'
+            'email' => 'Pleae provide valid email address'
         ];
     }
 }

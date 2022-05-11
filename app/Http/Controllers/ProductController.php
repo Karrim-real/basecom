@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
@@ -48,6 +49,18 @@ class ProductController extends Controller
      */
     public function contact()
     {
+        return view('frontend.contact');
+    }
+
+        /**
+     * contact
+     *
+     * @return void
+     */
+    public function contactstore(ContactRequest $request)
+    {
+        $message = $request->validated();
+        dd($message);
         return view('frontend.contact');
     }
 
