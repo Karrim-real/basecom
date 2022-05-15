@@ -12,6 +12,15 @@ interface ProductInterface{
     public function getAllProducts();
 
     /**
+     * prodFilter
+     *
+     * @param  mixed $range
+     * @return void
+     */
+    public function prodFilter(int $range);
+
+
+    /**
      * getAProduct
      *
      * @param  mixed $prodID
@@ -35,6 +44,15 @@ interface ProductInterface{
      * @return void
      */
     public function updateProduct($prodID, array $newprod_details);
+
+    /**
+     * updateProdwithOutImage
+     *
+     * @param  mixed $prodID
+     * @param  mixed $newprod_details
+     * @return void
+     */
+    public function updateProdwithOutImage($prodID, array $newprod_details);
 
     /**
      * deletProduct

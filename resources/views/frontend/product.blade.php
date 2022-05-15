@@ -10,8 +10,9 @@
                 <div class="col-12">
                     <div class="breadcrumb_content">
                         <ul>
-                            <li><a href="index-2.html">home</a></li>
-                            <li>Product details</li>
+                            <li><a href="{{url('/')}}">home</a></li>
+                            <li><a href="{{url('category/'.$products->categorys->id)}}">{{$products->categorys->title}}</a></li>
+                            <li><a href="{{url('/')}}">{{$products->title}}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -61,11 +62,12 @@
                         </div>
                     </div>
                 </div>
+                @include('frontend.layout.errors')
                 <div class="col-lg-6 col-md-6">
                     <div class="product_d_right">
-                       <form action="#">
-
-                            <h1>Fancy Chair for astron floor</h1>
+                       <form action="{{route('add-to-cart', $products->id)}}" method="POST">
+                        {{ @csrf_field() }}
+                            <h1>{{$products->title}}</h1>
                             <div class=" product_ratting">
                                 <ul>
                                     <li><a href="#"><i class="fa fa-star"></i></a></li>
@@ -78,19 +80,18 @@
 
                             </div>
                             <div class="price_box">
-                                <span class="current_price">$70.00</span>
-                                <span class="old_price">$80.00</span>
+                                <span class="current_price">${{$products->selling_price}}</span>
+                                <span class="old_price">${{$products->selling_price}}</span>
 
                             </div>
                             <div class="product_desc">
                                 <ul>
                                     <li>In Stock</li>
-                                    <li>Free delivery available*</li>
-                                    <li>Sale 30% Off Use Code : 'Drophut'</li>
+                                    <li>Instant delivery available*</li>
                                 </ul>
-                                <p>eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in </p>
+                                <p>{{ $products->desc}} </p>
                             </div>
-							<div class="product_timing">
+							{{-- <div class="product_timing">
                                 <div data-countdown="2023/12/15"></div>
                             </div>
                             <div class="product_variant color">
@@ -102,10 +103,12 @@
                                     <li class="color3"><a href="#"></a></li>
                                     <li class="color4"><a href="#"></a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
+<input type="hidden" name="prod_id", value="{{$products->id}}">
+<input type="hidden" name="user_id", value="{{Auth::user()? Auth::user()->id : '' }}">
                             <div class="product_variant quantity">
                                 <label>quantity</label>
-                                <input min="1" max="100" value="1" type="number">
+                                <input min="1" max="100" name="prod_qty" value="1" type="number">
                                 <button class="button" type="submit">add to cart</button>
 
                             </div>
@@ -116,19 +119,11 @@
                                </ul>
                             </div>
                             <div class="product_meta">
-                                <span>Category: <a href="#">Clothing</a></span>
+                                <span>Category: <a href="{{url('category/'.$products->categorys->id)}}">{{$products->categorys->title}}</a></span>
                             </div>
 
                         </form>
-                        <div class="priduct_social">
-                            <ul>
-                                <li><a class="facebook" href="#" title="facebook"><i class="fa fa-facebook"></i> Like</a></li>
-                                <li><a class="twitter" href="#" title="twitter"><i class="fa fa-twitter"></i> tweet</a></li>
-                                <li><a class="pinterest" href="#" title="pinterest"><i class="fa fa-pinterest"></i> save</a></li>
-                                <li><a class="google-plus" href="#" title="google +"><i class="fa fa-google-plus"></i> share</a></li>
-                                <li><a class="linkedin" href="#" title="linkedin"><i class="fa fa-linkedin"></i> linked</a></li>
-                            </ul>
-                        </div>
+
 
                     </div>
                 </div>

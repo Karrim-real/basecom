@@ -80,14 +80,20 @@ class UserAuthController extends Controller
     public function create(LoginRequest $request)
     {
         $userInfo = $request->validated();
+        $checkrole =  User::where('email', $userInfo['email'])->first();
+        // dd($checkrole->role_as);
         $loginAttempt = $this->authService->login($userInfo);
-        if($loginAttempt){
+        if($loginAttempt && $checkrole->role_as  === 1){
+            return redirect()->route('admin.dashboard')
+            ->with('message', 'You have Login Successfully');
+        }elseif($loginAttempt){
             return redirect()->route('home')
             ->with('message', 'You have Register Successfully');
         }else{
             return redirect()->back()
             ->with('error', 'Incorrect Credential Supply, Please check your info and try agian');
         }
+
         // dd($loginDetails);
     }
 

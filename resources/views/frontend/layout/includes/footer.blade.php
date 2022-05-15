@@ -7,7 +7,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="widgets_container contact_us">
                         <div class="footer_logo">
-                            <a href="#"><img src="assets/img/logo/logo.png" alt=""></a>
+                            <a href="#"><img src="{{asset('assets/img/logo/logo.png')}}" alt=""></a>
                         </div>
                         <div class="footer_contact">
                             <p>John draw real poor on call my from. May she mrs furnished discourse extremely. Ask doubt noisy shade guest Lose away off why half led have near bed. At engage simple father of period others except</p>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="footer_payment text-right">
-                            <a href="#"><img src="assets/img/icon/payment.png" alt=""></a>
+                            <a href="#"><img src="{{asset('assets/img/icon/payment.png')}}" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
 ============================================ -->
 
 
-<script src="{{ asset('assets/js/jquey.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.js') }}"></script>
 <!-- Plugins JS -->
 <script src="{{ asset('assets/js/plugins.js') }}"></script>
 

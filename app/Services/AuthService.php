@@ -25,6 +25,7 @@ class AuthService implements UserAuthInterface{
      */
     public function login(array $userInfo)
     {
+
          if(auth()->attempt($userInfo)){
              return true;
          }else{
@@ -42,7 +43,7 @@ class AuthService implements UserAuthInterface{
     public function forgetPassword($userEmail)
     {
         if(User::where('email', $userEmail)->first()){
-            
+
            return true;
         }else{
             return false;

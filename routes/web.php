@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\Auth\AdministraviceController;
 use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\FrontendController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,49 +25,78 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/register', [UserAuthController::class, 'index'])->name('register');
-Route::post('/register', [UserAuthController::class, 'store'])->name('register-form');
-Route::get('/login', [UserAuthController::class, 'show'])->name('login');
-Route::post('/login', [UserAuthController::class, 'create'])->name('login-post');
-Route::get('/logout', [UserAuthController::class, 'destroySession'])->name('logout');
+Route::controller(FrontendController::class)->group(function(){
+    Route::get('/', 'index')->name('home');
+    Route::get('/products', 'show')->name('products');
+    Route::get('/product/{product}/{title}', 'singleProd')->name('single.prod');
+    Route::post('/add-to-cart/{product}', 'addToCart')->name('add-to-cart');
+    Route::get('/about', 'about')->name('about');
+    Route::get('/contact', 'contact')->name('contact-us');
+    Route::post('/contact', 'contactstore')->name('contact-send');
+    Route::get('/privacy', 'privacy')->name('privacy-policy');
+    Route::get('/error', 'myerror')->name('error-page');
+    Route::get('/faq', 'faq')->name('faq-page');
+    Route::get('/tracking', 'tracking')->name('tracking-page');
+    Route::post('/tracking', 'trackingCreate')->name('tracking-create');
 
-Route::get('/forget-password', [UserAuthController::class, 'forgetPass'])->name('forget-password');
-Route::post('/forget-password', [UserAuthController::class, 'forgetPassCreate'])->name('forgetPost');
+});
 
-Route::get('/about', [ProductController::class, 'about'])->name('about');
-Route::get('/contact', [ProductController::class, 'contact'])->name('contact-us');
-Route::post('/contact', [ProductController::class, 'contactstore'])->name('contact-send');
-Route::get('/privacy', [ProductController::class, 'privacy'])->name('privacy-policy');
-Route::get('/404', [ProductController::class, 'error'])->name('error-page');
-Route::get('/faq', [ProductController::class, 'faq'])->name('faq-page');
+Route::controller(UserAuthController::class)->group(function(){
 
-Route::get('/tracking', [ProductController::class, 'tracking'])->name('tracking-page');
-Route::post('/tracking', [ProductController::class, 'trackingCreate'])->name('tracking-create');
+    Route::get('/register',  'index')->name('register');
+    Route::post('/register',  'store')->name('register-form');
+    Route::get('/login',  'show')->name('login');
+    Route::post('/login',  'create')->name('login-post');
+    Route::get('/logout',  'destroySession')->name('logout');
+    Route::get('/forget-password',  'forgetPass')->name('forget-password');
+    Route::post('/forget-password',  'forgetPassCreate')->name('forgetPost');
+
+});
 
 
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-Route::post('/checkout', [CheckoutController::class, 'show'])->name('checkout-post');
+Route::controller(CheckoutController::class)->group(function(){
+    Route::get('/checkout',  'index')->name('checkout')->middleware('auth');
+    Route::post('/checkout', 'show')->name('checkout-post')->middleware('auth');
+});
 
-Route::get('/cart', [CartController::class, 'index'])->name('cart-page');
+Route::controller(CartController::class)->group(function(){
+    Route::get('/cart', 'index')->name('cart-page')->middleware('auth');
+});
 
 
 Route::group(['prefix' => 'admin'], function(){
-    Route::get('/login', [AdministraviceController::class, 'index'])->name('admin.login');
-    Route::post('/login', [AdministraviceController::class, 'show'])->name('admin.loginpost');
-    Route::get('/logout', [AdministraviceController::class, 'destroy'])->name('admin.logout');
-    Route::get('/forgetpassword', [AdministraviceController::class, 'forgetPass'])->name('admin.forget');
-    Route::post('/forgetpassword', [AdministraviceController::class, 'forgetPassPost'])->name('admin.forgetpost');
-
-    Route::get('/dashboard', [ProductControllerController::class, ''])->name('admin.dashboard');
-    Route::get('/add-product', [ProductControllerController::class, 'show'])->name('admin.addproduct');
-    Route::post('/add-product', [ProductControllerController::class, 'store'])->name('admin.addproduct');
-    Route::get('/product/{product}', [ProductControllerController::class, 'show'])->name('admin.product');
-    Route::get('/edit-product/{product}', [ProductControllerController::class, 'show'])->name('admin.editproduct');
-    Route::put('/edit-product/{product}', [ProductControllerController::class, 'store'])->name('admin.editproduct');
-    Route::delete('/deleteproduct/{product}', [ProductControllerController::class, 'show'])->name('admin.producdelete');
-    Route::get('/logout', [ProductControllerController::class, 'show'])->name('admin.loginpost');
+    Route::controller(AdministraviceController::class)->group(function(){
+        Route::get('/login', 'index')->name('admin.login');
+        Route::post('/login',  'show')->name('admin.loginpost');
+        Route::get('/logout',  'destroySession')->name('admin.logout');
+        Route::get('/forgetpassword',  'forgetPass')->name('admin.forget');
+        Route::post('/forgetpassword',  'forgetPassPost')->name('admin.forgetpost');
+    });
 
 
+    Route::controller(ProductController::class)->group(function(){
+        Route::get('/dashboard',  'index')->name('admin.dashboard')->middleware('auth');
+        Route::get('/add-product',  'create')->name('admin.addproduct')->middleware('auth');
+        Route::post('/add-product',  'store')->name('admin.addproduct')->middleware('auth');
+        Route::get('/edit-product/{product}',  'show')->name('admin.editproduct')->middleware('auth');
+        Route::put('/edit-product/{product}',  'update')->name('admin.updateproduct')->middleware('auth');
+        Route::get('/deleteproduct/{product}',  'destroy')->name('admin.producdelete')->middleware('auth');
+    });
+
+    Route::controller(CategoryController::class)->group(function(){
+
+        Route::get('/categorys',  'index')->name('admin.categorys')->middleware('auth');
+        Route::get('/add-category',  'create')->name('admin.addcategory')->middleware('auth');
+        Route::post('/add-category',  'store')->name('admin.addcategory')->middleware('auth');
+        Route::get('/edit-category/{category}',  'show')->name('admin.editcategory')->middleware('auth');
+        Route::put('/edit-category/{category}',  'update')->name('admin.updatecategory')->middleware('auth');
+        Route::get('/delete-category/{category}',  'destroy')->name('admin.deletecategory')->middleware('auth');
+    });
+
+});
+
+Route::any('*', function(){
+    return view('frontend.404');
 });
 
 

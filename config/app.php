@@ -180,6 +180,7 @@ return [
         App\Providers\ProductServiceProvider::class,
         App\Providers\UserAuthServiceProvider::class,
         App\Providers\AdminAuthServiceProvider::class,
+        App\Providers\CartServiceProvider::class,
 
     ],
 

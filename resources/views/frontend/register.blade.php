@@ -38,7 +38,7 @@
                             <form action="{{ route('register-form') }}" method="POST" id="registerSubmit">
                                 {{ @csrf_field() }}
                                 @include('frontend.layout.errors')
-                                
+
                                         <div class="single-acc-field">
                                             <label for="name">Name</label>
                                             <input type="text" id="name" name="name" placeholder="Enter Your Name">
@@ -54,7 +54,7 @@
 
                                         <div class="single-acc-field">
                                             <label for="password">Password</label>
-                                            <input type="password" id="password" name="password" placeholder="At least 6 Charecter">
+                                            <input type="password" id="password" name="password" placeholder="At least 8 Charecter">
                                         </div>
                                         <div class="single-acc-field boxes">
                                             <input type="checkbox" id="checkbox" name="remember">

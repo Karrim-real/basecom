@@ -32,16 +32,15 @@
           <tbody>
               {{-- {{ dd($prods) }} --}}
               @foreach ($prods as $prod )
-                  <input type="hidden" name="prodID" id="prodID">
+            <input type="hidden" name="prodID" id="prodID">
             <tr>
               <td>{{ $prod->id }}</td>
-              <td>{{ $prod->name }}</td>
-              <td>{{ $prod->short_desc }}</td>
+              <td>{{ $prod->title }}</td>
+              <td>{{ $prod->desc }}</td>
               <td>{{ $prod->selling_price }}</td>
-              <td>{{ $prod->brand_id }}</td>
-              <td><a href="{{ url('edit-product/'. $prod->id) }}"><button class="btn btn-primary btn-md">Edit</button> </a></td>
-              <td><a href="{{ url('delete-product/'.$prod->id) }}" ><button class="btn btn-danger btn-md" id="deleteBtn">Delete</button> </a></td>
-
+              <td>{{ $prod->category_id }}</td>
+              <td><a href="{{ url('admin/edit-product/'. $prod->id) }}"><button class="btn btn-primary btn-md">Edit</button> </a></td>
+              <td><a href="{{ url('admin/deleteproduct/'.$prod->id) }}" ><button class="btn btn-danger btn-md" id="delete">Delete</button> </a></td>
             </tr>
             @endforeach
           </tbody>

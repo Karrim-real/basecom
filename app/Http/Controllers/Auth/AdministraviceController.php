@@ -28,17 +28,15 @@ class AdministraviceController extends Controller
 
     public function show(AdminRequest $request)
     {
-
         // return 'login page';
-
         $userInfo = $request->validated();
         $loginAttempt = $this->authService->login($userInfo);
         if($loginAttempt){
-            return redirect()->route('home')
-            ->with('message', 'You have Register Successfully');
+            return redirect()->route('admin.dashboard')
+            ->with('message', 'You have Login Successfully');
         }else{
             return redirect()->back()
-            ->with('error', 'Incorrect Credential Supply, Please check your info and try agian');
+            ->with('error', 'Incorrect Credential Supply or your email does not have admin access, Please check your info and try agian');
         }
     }
 
@@ -85,7 +83,12 @@ class AdministraviceController extends Controller
              ->with('message', 'An Error Occur');
          }
 
+    }
 
+    public function destroySession()
+    {
+        $this->authService->logout();
+        return redirect()->route('admin.login');
     }
 
 }

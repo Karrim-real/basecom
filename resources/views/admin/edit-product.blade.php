@@ -1,5 +1,5 @@
-@include('backend.layout.head')
-@include('backend.layout.nav')
+@include('admin.layout.head')
+@include('admin.layout.nav')
 
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -13,33 +13,31 @@
 
       </div>
     </div>
-    <h4>Add Product</h4>
+    <h4>Edit Category</h4>
     {{-- @include('layouts.error') --}}
     <div class="col-md-6">
-      <form   method="POST" action="{{ url('edit-product/'.$product->id) }}" id="editProduct" enctype="multipart/form-data">
-          {{csrf_field()}}
+      <form   method="POST" action="{{ route('admin.updateproduct',$product->id )}}"  enctype="multipart/form-data">
+          @csrf
+          @method('put')
 
-      {{-- @include('error') --}}
+      @include('admin.layout.errors')
           <div class="mb-3">
             <label for="name" class="form-label">Product name</label>
-            <input type="text" class="form-control" value="{{ $product->name }}" name="name" id="name" aria-describedby="emailHelp">
+            <input type="text" class="form-control" value="{{ $product->title }}" name="title" id="title" aria-describedby="emailHelp">
           </div>
-<input type="hidden" name="prodID" id="prodID" value="{{ $product->id }}">
+    <input type="hidden" name="user_id" value="{{ Auth::user()->id}}" id="user_id">
+    {{-- <input type="hidden" name="prodID" id="prodID" value="{{ $product->id }}"> --}}
           <div class="mb-3">
-              <select class="form-control" name="brand_id" id="brand_id">
-                  {{-- @foreach ($cate as $catItems )
-                  <option value=" {{ $catItems->id }} ">{{ $catItems->name }}</option>
-                  @endforeach --}}
-                
-                  <option value="{{ $product->brand_id }}">{{ $product->brand_id }}</option>
-                  <option value="3">Chevorlote</option>
-                  <option value="4">Toyota</option>
+              <select class="form-control" name="category_id" id="category_id">
+                  @foreach ($categorys as $catItems )
+                  <option value=" {{ $catItems->id }} ">{{ $catItems->title }}</option>
+                  @endforeach
               </select>
           </div>
 
           <div class="mb-3">
-              <label for="description" class="form-label">Small Description</label>
-              <textarea class="form-control" id="small_desc"  name="small_desc" rows="2">{{ $product->short_desc }}</textarea>
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" id="small_desc"  name="desc" rows="2">{{ $product->desc }}</textarea>
           </div>
 
           <div class="mb-3">
@@ -52,28 +50,25 @@
           </div>
           <div class="mb-3">
             <label for="discount_price" class="form-label">Product Quantity</label>
-            <input type="number" class="form-control" value="{{ $product->qty }}" name="qty" id="qty" aria-describedby="emailHelp">
+            <input type="number" class="form-control" value="{{ $product->prod_qty }}" name="prod_qty" id="prod_qty" aria-describedby="emailHelp">
         </div>
-          <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label">Product Description</label>
-              <textarea class="form-control" name="desc" id="desc" rows="2">{{ $product->desc }}"</textarea>
-          </div>
+
           <div class="mb-6">
               <label for="status" class="form-label">Status</label>
-              <input type="checkbox" class="form-check-input" name="status" id="status" >
+              {{-- {{dd($product->status)}} --}}
+              <input type="checkbox" class="form-check-input" {{($product->status == 1 ? "checked" : '')}} name="status" id="status" >
           </div>
           <div class="mb-3">
               <label for="meta_keywords" class="form-label">Slug</label>
               <input type="text" class="form-control" value="{{ $product->slug }}" name="slug" id="slug" >
           </div>
           <div class="mb-3">
-            <label for="meta_keywords" class="form-label">Image Url</label>
-            <input type="text" class="form-control" name="image" value="{{ $product->image }}" id="image" >
+            <img class="product-img" src="{{ asset('uploads/products/images/'.$product->image)}}" alt="{{ $product->title}}" srcset="">
         </div>
-          {{-- <div class="mb-3">
+          <div class="mb-3">
               <label for="image" class="form-label">Product Image</label>
               <input type="file" class="form-control" name="image" id="image"  accept="image/*" id="image" >
-          </div> --}}
+          </div>
         <button type="submit" class="btn btn-primary" id="addBtn">Update Product</button>
       </form>
       </div>
@@ -85,4 +80,4 @@
 <br>
 <br>
 <br>
- @include('backend.layout.footer')
+ @include('admin.layout.footer')

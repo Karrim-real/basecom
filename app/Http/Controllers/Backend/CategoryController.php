@@ -3,10 +3,20 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+    protected $categoryService;
+
+    public function __construct(CategoryService $categoryService)
+    {
+        return $this->categoryService = $categoryService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categorys = $this->categoryService->getAllcategorys();
+        return view('admin.category.index', compact('categorys'));
     }
 
     /**
@@ -24,7 +35,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.add-category');
     }
 
     /**
@@ -33,9 +44,16 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $cat_details = $request->validated();
+        $cat_details['status'] = $request->status == TRUE ? 1 : 0;
+        $categorys = $this->categoryService->createcategorys($cat_details);
+        return redirect()->route('admin.categorys')->with([
+            'message' => 'Category Added Successfully',
+            'prods' => $categorys
+        ]);
+        // dd($cat_details);
     }
 
     /**
@@ -44,9 +62,15 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($catID)
     {
-        //
+        $category = $this->categoryService->getAcategory($catID);
+        if(!$category){
+            return back()->with([
+                'message' => 'No product with this identity'
+            ]);
+        }
+        return view('admin.category.edit-category', compact('category'));
     }
 
     /**
@@ -67,9 +91,23 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, $catID)
     {
-        //
+        $newcat_details = $request->validated();
+        $newcat_details['status'] = $request->status == TRUE ? 1 : 0;
+        if(!$request->hasFile('images')){
+            $categorys = $this->categoryService->updateCatwithOutImage($catID, $newcat_details);
+            return redirect()->route('admin.categorys')->with([
+                'message' => 'Category Updated Successfully',
+                'prods' => $categorys
+            ]);
+        }else{
+        $categorys = $this->categoryService->updatecategory($catID, $newcat_details);
+        return redirect()->route('admin.categorys')->with([
+            'message' => 'Category Updated Successfully',
+            'prods' => $categorys
+        ]);
+        }
     }
 
     /**
@@ -78,8 +116,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($catID)
     {
-        //
+        // return 'Delter page';
+        $categorys = $this->categoryService->deletcategory($catID);
+        return redirect()->route('admin.categorys')->with([
+            'message' => 'Category Deleted!',
+            'prods' => $categorys
+        ]);
     }
 }

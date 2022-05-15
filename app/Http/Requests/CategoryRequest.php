@@ -13,7 +13,7 @@ class CategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,20 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required',
+            'desc' => 'required',
+            'slug' => 'required',
+            'images' => 'required|image|mimes:png,jpg,jpeg|max:2028',
+            'status' => 'nullable',
+            ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Please enter your category name',
+            'desc.required' => 'Please enter your categor Description name',
+            'images.required' => 'Please upload categor image',
         ];
     }
 }
