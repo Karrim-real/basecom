@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\CartServices;
 use App\Http\Requests\AddToCartRequest;
 use App\Http\Requests\ContactRequest;
+use App\Models\Cart;
 use App\Models\Product;
 use App\Models\User;
 use App\Services\ProductService;
@@ -12,11 +14,12 @@ use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
 {
-    protected $ProductService;
+    protected $ProductService, $CartService;
 
-    public function __construct(ProductService $ProductService)
+    public function __construct(ProductService $ProductService, CartServices $CartService)
     {
         $this->ProductService = $ProductService;
+        $this->CartService = $CartService;
     }
         /**
      * Display a listing of the resource.
@@ -50,20 +53,11 @@ class FrontendController extends Controller
         return view('frontend.product', compact('products'));
     }
 
-    public function addToCart(AddToCartRequest $request, int $product)
+    public function addToCart(AddToCartRequest $request)
     {
         $prod_detail = $request->validated();
         // dd(Auth::user()->id);
-            if(!Auth::user()){
-                return response()->json([
-                    'status' => 400,
-                'message' => 'Please Login to add product to cart'
-                ]);
-            }else{
-            $user_id = User::where('id', Auth::user()->id)->first();
-            $prod_detail['user_id'] = $user_id->id;
-            dd($prod_detail);
-            }
+        return $this->CartService->AddProduct($prod_detail);
 
         // if(!$user_id){
         //     return "User Not Login";
@@ -74,7 +68,14 @@ class FrontendController extends Controller
         // }else{
         //     $prod_detail['user_id'] = $user_id->id;
         // }
-        return $product;
+
+    }
+
+    public function addToCartAjax(AddToCartRequest $request)
+    {
+        $prod_detail = $request->validated();
+        // dd(Auth::user()->id);
+        return $this->CartService->AddProduct($prod_detail);
     }
     /**
      * about

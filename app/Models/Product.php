@@ -21,10 +21,10 @@ class Product extends Model
         'status'
     ];
 
-    // public function users()
-    // {
-    //     return $this->hasMany(User::class, 'user_id');
-    // }
+    public function users()
+    {
+        return $this->hasMany(User::class, 'user_id');
+    }
 
     public function categorys()
     {

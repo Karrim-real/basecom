@@ -10,7 +10,7 @@
                 <div class="col-12">
                     <div class="breadcrumb_content">
                         <ul>
-                            <li><a href="index-2.html">home</a></li>
+                            <li><a href="{{url('/')}}">home</a></li>
                             <li>Cart</li>
                         </ul>
                     </div>
@@ -19,11 +19,20 @@
         </div>
     </div>
     <!--breadcrumbs area end-->
+    @if (!count($cartProds))
+    <div class="col-md-6 text-center">
+        <div class="">
+            <h3 class="alert alert-primary">
+                Cart is Empty
+            </h3>
+        </div>
+    </div>
+    @else
 
     <!--shopping cart area start -->
     <div class="shopping_cart_area mt-60">
         <div class="container">
-            <form action="#">
+            <form action="" method="POST" id="checkoutBtn">
                 <div class="row">
                     <div class="col-12">
                         <div class="table_desc">
@@ -40,29 +49,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="product_thumb"><a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a></td>
-                                    <td class="product_name"><a href="#">Handbag fringilla</a></td>
-                                    <td class="product-price">$65.00</td>
-                                    <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" value="1" type="number"></td>
-                                    <td class="product_total">$130.00</td>
-									<td class="product_remove"><a href="#"><i class="ion-android-close"></i></a></td>
-                                </tr>
+                                @php
+                                    $total_qty = 0;
+                                    $total_price = 0;
+                                @endphp
+                                @foreach ($cartProds as $cart)
 
                                 <tr>
-                                    <td class="product_thumb"><a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a></td>
-                                    <td class="product_name"><a href="#">Handbags justo</a></td>
-                                    <td class="product-price">$90.00</td>
-                                    <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" value="1" type="number"></td>
-                                    <td class="product_total">$180.00</td>
-									<td class="product_remove"><a href="#"><i class="ion-android-close"></i></a></td>
+                                    <td class="product_thumb"><a href="{{url('product/'.$cart->products->id.'/'.$cart->products->title)}}"><img src="uploads/products/images/{{$cart->products->image}}" alt="{{$cart->products->title}}"></a></td>
+                                    <td class="product_name"><a href="{{url('product/'.$cart->products->id.'/'.$cart->products->title)}}">{{$cart->products->title}}</a></td>
+                                    <td class="product-price">${{ $cart->products->discount_price }}</td>
+                                    <td class="product_quantity"><label>Quantity</label> <input min="1" max="10" value="{{$cart->prod_qty}}" type="number" disabled></td>
+                                    <td class="product_total">${{$cart->products->discount_price * $cart->prod_qty }}</td>
+									<td class="product_remove"><a href="{{ route('removeproduct',$cart->id)}}"><i class="ion-android-close"></i></a></td>
                                 </tr>
 
+                                @php
+                                    $total_qty += $cart->prod_qty;
+                                    $total_price += $cart->products->discount_price * $cart->prod_qty;
+                                @endphp
+                                @endforeach
                             </tbody>
                         </table>
                             </div>
                             <div class="cart_submit">
-                                <button type="submit">update cart</button>
+                                {{-- <button type="button">update cart</button> --}}
                             </div>
                         </div>
                     </div>
@@ -75,8 +86,8 @@
                                 <h3>Coupon</h3>
                                 <div class="coupon_inner">
                                     <p>Enter your coupon code if you have one.</p>
-                                    <input placeholder="Coupon code" type="text">
-                                    <button type="submit">Apply coupon</button>
+                                    <input placeholder="Coupon code" type="text" disabled>
+                                    <button type="submit" disabled>Apply coupon</button>
                                 </div>
                             </div>
                         </div>
@@ -86,20 +97,20 @@
                                 <div class="coupon_inner">
                                 <div class="cart_subtotal">
                                     <p>Subtotal</p>
-                                    <p class="cart_amount">$215.00</p>
+                                    <p class="cart_amount">${{$total_price}}</p>
                                 </div>
                                 <div class="cart_subtotal ">
-                                    <p>Shipping</p>
-                                    <p class="cart_amount"><span>Flat Rate:</span> $255.00</p>
+                                    <p>Total Quantity</p>
+                                    <p class="cart_amount"><span>Weight:</span> {{ $total_qty}} pieces </p>
                                 </div>
                                 <a href="#">Calculate shipping</a>
 
                                 <div class="cart_subtotal">
                                     <p>Total</p>
-                                    <p class="cart_amount">$215.00</p>
+                                    <p class="cart_amount">${{$total_price}}</p>
                                 </div>
                                 <div class="checkout_btn">
-                                    <a href="#">Proceed to Checkout</a>
+                                    <a href="{{route('checkout')}}">Proceed to Checkout</a>
                                 </div>
                                 </div>
                             </div>
@@ -110,6 +121,7 @@
             </form>
         </div>
     </div>
+    @endif
     <!--shopping cart area end -->
 
     @include('frontend.layout.includes.footer')

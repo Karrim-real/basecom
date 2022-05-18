@@ -1,10 +1,10 @@
 <?php
 namespace App\Services;
 
-use App\Interfaces\OrderInteface;
+use App\Interfaces\OrderInterface;
 use App\Models\Order;
 
-class OrderService implements OrderInteface{
+class OrderService implements OrderInterface{
 
     public function getAllOrders()
     {
@@ -16,7 +16,7 @@ class OrderService implements OrderInteface{
         return Order::find($OrderID);
     }
 
-    public function createOrder($OrderDetails)
+    public function createOrder(array $OrderDetails)
     {
        return Order::create($OrderDetails);
     }

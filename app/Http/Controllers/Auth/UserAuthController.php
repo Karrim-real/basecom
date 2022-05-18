@@ -61,6 +61,8 @@ class UserAuthController extends Controller
 
     }
 
+
+    //Login Page
     /**
      * show
      *
@@ -91,7 +93,12 @@ class UserAuthController extends Controller
             ->with('message', 'You have Register Successfully');
         }else{
             return redirect()->back()
-            ->with('error', 'Incorrect Credential Supply, Please check your info and try agian');
+            ->with(
+                [
+                    'email' => $userInfo['email']
+                ],
+                'error', 'Incorrect Credential Supply, Please check your info and try agian'
+            );
         }
 
         // dd($loginDetails);

@@ -181,6 +181,7 @@ return [
         App\Providers\UserAuthServiceProvider::class,
         App\Providers\AdminAuthServiceProvider::class,
         App\Providers\CartServiceProvider::class,
+        App\Providers\OrderServiceProvider::class,
 
     ],
 

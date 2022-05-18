@@ -109,6 +109,7 @@
 
 <!-- Addons JS -->
 <script src="{{ asset('assets/js/addons.js') }}"></script>
+<script src="{{ asset('assets/js/sweetalert2.js') }}"></script>
 
 
 

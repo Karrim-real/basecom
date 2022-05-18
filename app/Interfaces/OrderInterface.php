@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-interface OrderInteface{
+interface OrderInterface{
 
     public function getAllOrders();
     public function getAOrder($OrderID);

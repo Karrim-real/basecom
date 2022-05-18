@@ -30,6 +30,7 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get('/products', 'show')->name('products');
     Route::get('/product/{product}/{title}', 'singleProd')->name('single.prod');
     Route::post('/add-to-cart/{product}', 'addToCart')->name('add-to-cart');
+    Route::post('/add-to-cart', 'addToCartAjax')->name('add-to-cartajax');
     Route::get('/about', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact-us');
     Route::post('/contact', 'contactstore')->name('contact-send');
@@ -54,15 +55,20 @@ Route::controller(UserAuthController::class)->group(function(){
 });
 
 
-Route::controller(CheckoutController::class)->group(function(){
-    Route::get('/checkout',  'index')->name('checkout')->middleware('auth');
-    Route::post('/checkout', 'show')->name('checkout-post')->middleware('auth');
-});
 
 Route::controller(CartController::class)->group(function(){
     Route::get('/cart', 'index')->name('cart-page')->middleware('auth');
+    Route::get('/removecart/{product}', 'delete')->name('removeproduct')->middleware('auth');
 });
 
+
+Route::controller(CheckoutController::class)->group(function(){
+    Route::get('/checkout',  'index')->name('checkout')->middleware('auth');
+    Route::post('/checkout', 'show')->name('checkout-post')->middleware('auth');
+    Route::post('/place-order', 'create')->name('place-order')->middleware('auth');
+    Route::get('/thank-you', 'thanks')->name('thanks-you')->middleware('auth');
+
+});
 
 Route::group(['prefix' => 'admin'], function(){
     Route::controller(AdministraviceController::class)->group(function(){

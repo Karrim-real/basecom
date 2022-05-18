@@ -29,32 +29,32 @@
                    <div class="product-details-tab">
                         <div id="img-1" class="zoomWrapper single-zoom">
                             <a href="#">
-                                <img id="zoom1" src="assets/img/product/details-1.jpg" data-zoom-image="assets/img/product/details-1.jpg" alt="big-1">
+                                <img id="zoom1" src="{{asset('uploads/products/images/'.$products->image) }}" data-zoom-image="{{asset('uploads/products/images/'.$products->image) }}" alt="{{ $products->title}}">
                             </a>
                         </div>
                         <div class="single-zoom-thumb">
                             <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
                                 <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/details-2.jpg" data-zoom-image="assets/img/product/details-2.jpg">
-                                        <img src="assets/img/product/details-2.jpg" alt="zo-th-1"/>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset('uploads/products/images/'.$products->image) }}" data-zoom-image="{{asset('uploads/products/images/'.$products->image) }}">
+                                        <img src="{{asset('uploads/products/images/'.$products->image) }}" alt="{{ $products->title}}"/>
                                     </a>
 
                                 </li>
                                 <li >
-                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/details-3.jpg" data-zoom-image="assets/img/product/details-3.jpg">
-                                        <img src="assets/img/product/details-3.jpg" alt="zo-th-1"/>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset('uploads/products/images/'.$products->image) }}" data-zoom-image="{{asset('uploads/products/images/'.$products->image) }}">
+                                        <img src="{{asset('uploads/products/images/'.$products->image) }}" alt="{{ $products->title}}"/>
                                     </a>
 
                                 </li>
                                 <li >
-                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/details-4.jpg" data-zoom-image="assets/img/product/details-4.jpg">
-                                        <img src="assets/img/product/details-4.jpg" alt="zo-th-1"/>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset('uploads/products/images/'.$products->image) }}" data-zoom-image="{{asset('uploads/products/images/'.$products->image) }}">
+                                        <img src="{{asset('uploads/products/images/'.$products->image) }}" alt="zo-th-1"/>
                                     </a>
 
                                 </li>
                                 <li >
-                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/details-1.jpg" data-zoom-image="assets/img/product/details-1.jpg">
-                                        <img src="assets/img/product/details-1.jpg" alt="zo-th-1"/>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{asset('uploads/products/images/'.$products->image) }}" data-zoom-image="{{asset('uploads/products/images/'.$products->image) }}">
+                                        <img src="{{asset('uploads/products/images/'.$products->image) }}" alt="zo-th-1"/>
                                     </a>
 
                                 </li>
@@ -65,7 +65,7 @@
                 @include('frontend.layout.errors')
                 <div class="col-lg-6 col-md-6">
                     <div class="product_d_right">
-                       <form action="{{route('add-to-cart', $products->id)}}" method="POST">
+                       <form action="{{route('add-to-cart', $products->id)}}" method="POST" id="addProduct" >
                         {{ @csrf_field() }}
                             <h1>{{$products->title}}</h1>
                             <div class=" product_ratting">
@@ -86,8 +86,13 @@
                             </div>
                             <div class="product_desc">
                                 <ul>
+                                    @if ($products->prod_qty < 1)
+                                    <li style="color:red">Out Stock</li>
+                                    @else
                                     <li>In Stock</li>
                                     <li>Instant delivery available*</li>
+                                    @endif
+
                                 </ul>
                                 <p>{{ $products->desc}} </p>
                             </div>
@@ -104,26 +109,25 @@
                                     <li class="color4"><a href="#"></a></li>
                                 </ul>
                             </div> --}}
-<input type="hidden" name="prod_id", value="{{$products->id}}">
-<input type="hidden" name="user_id", value="{{Auth::user()? Auth::user()->id : '' }}">
+                            <input type="hidden" name="prod_id", id="prod_id" value="{{$products->id}}">
+                                <input type="hidden" name="user_id" id="user_id" value="{{Auth::user()? Auth::user()->id : '' }}">
                             <div class="product_variant quantity">
                                 <label>quantity</label>
-                                <input min="1" max="100" name="prod_qty" value="1" type="number">
-                                <button class="button" type="submit">add to cart</button>
+                                <input min="1" max="10" name="prod_qty" id="prod_qty" value="1" type="number">
+                                <button class="button" type="submit" id="Add-To-Cart">add to cart</button>
 
                             </div>
-                            <div class=" product_d_action">
+                            {{-- <div class=" product_d_action">
                                <ul>
                                    <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
                                    <li><a href="#" title="Add to wishlist">+ Compare</a></li>
                                </ul>
-                            </div>
+                            </div> --}}
                             <div class="product_meta">
                                 <span>Category: <a href="{{url('category/'.$products->categorys->id)}}">{{$products->categorys->title}}</a></span>
                             </div>
 
                         </form>
-
 
                     </div>
                 </div>
@@ -154,13 +158,12 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="info" role="tabpanel" >
                                 <div class="product_info_content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.</p>
-                                    <p>Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi. Cras neque metus, consequat et blandit et, luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget.</p>
+                                    <p>{{$products->desc}}</p>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="sheet" role="tabpanel" >
                                 <div class="product_d_table">
-                                   <form action="#">
+                                   <form action="" method="POST">
                                         <table>
                                             <tbody>
                                                 <tr>

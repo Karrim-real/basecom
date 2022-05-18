@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('prod_id');
             $table->integer('prod_qty');
             $table->integer('total_price');
+            $table->string('message')->nullable();
+            $table->string('reference_id');
             $table->timestamps();
         });
     }
