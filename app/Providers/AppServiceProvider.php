@@ -26,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if(config('app.env') === 'production') {
+            \URL::forceScheme('https');
+        }
+
         $categorys = Category::all();
         view()->share('categorys', $categorys);
             if(Auth::user()){
