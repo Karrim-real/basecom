@@ -85,7 +85,7 @@
                             </div>
                             <div class="col-lg-6 mb-20">
                                 <label> Related Arts </label>
-                                <input type="file" name="image" accept="image/*"  >
+                                {{-- <input type="file" name="image" accept="image/*"  > --}}
                             </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
