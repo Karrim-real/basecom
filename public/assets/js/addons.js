@@ -80,7 +80,7 @@ $(document).ready(function () {
     function loadCount(){
         $.ajax({
             type: "GET",
-            url: "/load-count",
+            url: "{{url(/load-count)}}",
             success: function (response) {
                 // alert(response.cartcount);
                 $('.cart_quantity').html('');
