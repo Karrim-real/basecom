@@ -3,10 +3,21 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Services\OrderService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+
+    protected $OrderServices;
+
+    public function __construct(OrderService $OrderServices)
+    {
+        $this->OrderServices = $OrderServices;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +25,18 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $userID = Auth::user()->id;
+        $userOrders = $this->OrderServices->GetAllOrderByAUser($userID);
+        // dd($userOrders);
+        return view('frontend.myaccount', compact('userOrders'));
+
     }
+
+    // public function allOrders()
+    // {
+    //     $allOrders = $this->OrderServices->getAllOrders();
+    //     return view('backend.orders', compact('allOrders'));
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -44,9 +65,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+
     }
 
     /**

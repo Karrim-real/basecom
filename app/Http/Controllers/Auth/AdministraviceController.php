@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest;
 use App\Http\Requests\ForgetRequest;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use App\Services\AdminAuthService;
 use Illuminate\Http\Request;
@@ -21,45 +22,20 @@ class AdministraviceController extends Controller
          $this->authService = $authService;
     }
 
+
     public function index()
     {
-        return view('admin.login');
+        $allUsers = $this->authService->users();
+        return view('admin.users.index',compact('allUsers'));
     }
 
-    public function show(AdminRequest $request)
+
+    public function create()
     {
-        // return 'login page';
-        $userInfo = $request->validated();
-        $loginAttempt = $this->authService->login($userInfo);
-        if($loginAttempt){
-            return redirect()->route('admin.dashboard')
-            ->with('message', 'You have Login Successfully');
-        }else{
-            return redirect()->back()
-            ->with('error', 'Incorrect Credential Supply or your email does not have admin access, Please check your info and try agian');
-        }
+        # code...
     }
 
-
-    public function forgetPass()
-    {
-        return view('admin.forget-password');
-    }
-
-    public function forgetPassPost(ForgetRequest $request)
-    {
-        $adminEmail = $request->validated();
-        // dd($userEmail['email']);
-        if($this->authService->forgetPassword($adminEmail['email'])){
-            return redirect()->back()
-            ->with('error', 'Email is avalable to validated');
-        }else{
-            return redirect()->back()
-            ->with('error', 'Sorry Your email is not found');
-        }
-    }
-
-    public function addAdmin(UserRequest $request)
+    public function store(UserRequest $request)
     {
         $userInfo = $request->validated();
         $userInfo['role_as'] = 0;
@@ -72,7 +48,7 @@ class AdministraviceController extends Controller
          }
          //Password Hash
          $userInfo['password'] = Hash::make($request->input('password'));
-         $insert = $this->authService->register($userInfo);
+         $insert = $this->authService->addUser($userInfo);
          // dd($insert);
          if($insert){
              return redirect()->route('home')
@@ -85,10 +61,41 @@ class AdministraviceController extends Controller
 
     }
 
-    public function destroySession()
+    public function edit($user)
     {
-        $this->authService->logout();
-        return redirect()->route('admin.login');
+        $user = $this->authService->getUserByID($user);
+        return view('admin.users.edit-user', compact('user'));
     }
+
+    public function update(UserUpdateRequest $request, $user)
+    {
+        $newUserDetails = $request->validated();
+        $this->authService->updateAccount($user, $newUserDetails);
+        return redirect()->route('users')->with('message', 'User Profile Updated');
+    }
+
+    public function destroy($user)
+    {
+        # code...
+    }
+
+
+    // public function forgetPass()
+    // {
+    //     return view('admin.forget-password');
+    // }
+//    public function forgetPassPost(ForgetRequest $request)
+//     {
+//         $adminEmail = $request->validated();
+//         // dd($userEmail['email']);
+//         if($this->authService->forgetPassword($adminEmail['email'])){
+//             return redirect()->back()
+//             ->with('error', 'Email is avalable to validated');
+//         }else{
+//             return redirect()->back()
+//             ->with('error', 'Sorry Your email is not found');
+//         }
+//     }
+
 
 }

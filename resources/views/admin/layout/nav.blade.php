@@ -40,6 +40,7 @@
                 Categorys
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="{{ url('admin/add-category') }}">
                 <span data-feather="bar-chart-2"></span>
@@ -47,6 +48,19 @@
               </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('admin/users') }}">
+                  <span data-feather="bar-chart-2"></span>
+                  Users
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('orders') }}">
+                  <span data-feather="bar-chart-2"></span>
+                  Orders
+                </a>
+              </li>
           </ul>
 
         </div>

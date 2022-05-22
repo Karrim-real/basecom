@@ -34,7 +34,7 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class="account-content">
-                                    <form action="{{ route('login-post') }}" method="POST" id="loginPost">
+                                    <form action="{{ route('login-post') }}" method="POST" >
                                         {{ @csrf_field() }}
                                         @include('frontend.layout.errors')
                                         <div class="single-acc-field">

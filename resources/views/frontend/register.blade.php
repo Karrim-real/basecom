@@ -57,7 +57,7 @@
                                             <input type="password" id="password" name="password" placeholder="At least 8 Charecter">
                                         </div>
                                         <div class="single-acc-field boxes">
-                                            <input type="checkbox" id="checkbox" name="remember">
+                                            <input type="checkbox" id="checkbox" name="remember" required >
                                             <label for="checkbox">I'm not a robot</label>
                                         </div>
                                         <div class="single-acc-field">

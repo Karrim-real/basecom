@@ -5,21 +5,20 @@ namespace App\Http\Controllers;
 use App\Services\CartServices;
 use App\Http\Requests\AddToCartRequest;
 use App\Http\Requests\ContactRequest;
-use App\Models\Cart;
-use App\Models\Product;
-use App\Models\User;
+use App\Models\Category;
+use App\Services\CategoryService;
 use App\Services\ProductService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
 
 class FrontendController extends Controller
 {
-    protected $ProductService, $CartService;
+    protected $ProductService, $CartService, $categoryServices;
 
-    public function __construct(ProductService $ProductService, CartServices $CartService)
+    public function __construct(ProductService $ProductService, CartServices $CartService, CategoryService $categoryServices)
     {
         $this->ProductService = $ProductService;
         $this->CartService = $CartService;
+        $this->categoryServices = $categoryServices;
     }
         /**
      * Display a listing of the resource.
@@ -28,11 +27,17 @@ class FrontendController extends Controller
      */
     public function index()
     {
+
         $products = $this->ProductService->prodFilter(3);
         $recentProds = $this->ProductService->prodFilter(6);
+    //    $categorys = $this->categoryServices->getAllcategorys();
         return view('index', compact('products', 'recentProds'));
     }
 
+    public function pay()
+    {
+        return view('frontend.payments');
+    }
 
     /**
      * show
@@ -41,8 +46,9 @@ class FrontendController extends Controller
      */
     public function show()
     {
+        $recentProds = $this->ProductService->prodFilter(6);
         $products = $this->ProductService->getAllProducts();
-        return view('frontend.products', compact('products'));
+        return view('frontend.products', compact('products', 'recentProds'));
     }
 
     public function singleProd(int $product)
@@ -77,6 +83,26 @@ class FrontendController extends Controller
         // dd(Auth::user()->id);
         return $this->CartService->AddProduct($prod_detail);
     }
+
+   /**
+    * allCates
+    *
+    * @return void
+    */
+   public function allCates()
+   {
+        $recentProds = $this->ProductService->prodFilter(6);
+       $categorys = $this->categoryServices->getAllcategorys();
+        return view('frontend.categorys', compact('categorys', 'recentProds'));
+   }
+   public function cateProds(Category $category)
+   {
+       $categoryID = $category->id;
+       $category = $this->categoryServices->getAcategory($categoryID);
+    //    dd($category);
+       return view('frontend.categproducts', compact('category'));
+   }
+
     /**
      * about
      *

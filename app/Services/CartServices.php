@@ -59,9 +59,14 @@ class CartServices implements CartInterface
      * @param  mixed $prod_details
      * @return void
      */
-    public function EditProduct(int $ProdID, array $prod_details)
+    public function cartCounter()
     {
-        return ;
+        return Cart::where('user_id', Auth::user()->id)->count();
+    }
+
+    public function navAjaxProd()
+    {
+        return Cart::where('user_id', Auth::user()->id)->get();
     }
 
     /**
@@ -73,5 +78,10 @@ class CartServices implements CartInterface
     public function deleteCartProduct(int $ProdID)
     {
         return Cart::destroy($ProdID);
+    }
+
+    public function DelCartAfterPay(int $userID)
+    {
+        return Cart::destroy($userID);
     }
 }

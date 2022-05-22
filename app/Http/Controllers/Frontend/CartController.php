@@ -29,4 +29,26 @@ class CartController extends Controller
         $deletedProd =$this->cartServices->deleteCartProduct($prodID);
         return redirect()->back();
     }
+
+    public function countCart()
+    {
+        $count = $this->cartServices->cartCounter();
+            return response()->json([
+                'cartcount' => $count,
+            ]);
+
+    }
+
+    public function AjaxNavProd()
+    {
+        $ajaxProds = $this->cartServices->navAjaxProd();
+            foreach($ajaxProds as $ajaprods){
+                dd($ajaprods->products());
+            }
+
+            return response()->json([
+                'cartcount' => $ajaxProds,
+            ]);
+
+    }
 }

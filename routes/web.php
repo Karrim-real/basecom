@@ -3,9 +3,12 @@
 use App\Http\Controllers\Auth\AdministraviceController;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\OrderController as BackendOrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +28,14 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::controller(PaymentController::class)->group(function(){
+    Route::get('/payment', 'pay')->name('pay-page');
+    Route::get('/verify-payment/{reference}', 'index');
+
+
+
+});
+
 Route::controller(FrontendController::class)->group(function(){
     Route::get('/', 'index')->name('home');
     Route::get('/products', 'show')->name('products');
@@ -39,6 +50,9 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get('/faq', 'faq')->name('faq-page');
     Route::get('/tracking', 'tracking')->name('tracking-page');
     Route::post('/tracking', 'trackingCreate')->name('tracking-create');
+    Route::get('/categorys', 'allCates')->name('categorys');
+    Route::get('/category/{category}', 'cateProds')->name('category.id');
+
 
 });
 
@@ -54,9 +68,17 @@ Route::controller(UserAuthController::class)->group(function(){
 
 });
 
+Route::controller(OrderController::class)->group(function(){
+
+    Route::get('/my-account/{user}/{name}',  'index')->name('myaccount')->middleware('auth');
+
+});
 
 
 Route::controller(CartController::class)->group(function(){
+    Route::get('/load-count', 'countCart')->name('count.cart')->middleware('auth');
+    Route::get('/load-nav-prods', 'AjaxNavProd')->name('ajaxnav')->middleware('auth');
+
     Route::get('/cart', 'index')->name('cart-page')->middleware('auth');
     Route::get('/removecart/{product}', 'delete')->name('removeproduct')->middleware('auth');
 });
@@ -66,17 +88,18 @@ Route::controller(CheckoutController::class)->group(function(){
     Route::get('/checkout',  'index')->name('checkout')->middleware('auth');
     Route::post('/checkout', 'show')->name('checkout-post')->middleware('auth');
     Route::post('/place-order', 'create')->name('place-order')->middleware('auth');
-    Route::get('/thank-you', 'thanks')->name('thanks-you')->middleware('auth');
+    Route::get('/thanks-you/{reference}', 'thanks')->name('thanks-you/')->middleware('auth');
 
 });
 
 Route::group(['prefix' => 'admin'], function(){
     Route::controller(AdministraviceController::class)->group(function(){
-        Route::get('/login', 'index')->name('admin.login');
-        Route::post('/login',  'show')->name('admin.loginpost');
-        Route::get('/logout',  'destroySession')->name('admin.logout');
-        Route::get('/forgetpassword',  'forgetPass')->name('admin.forget');
-        Route::post('/forgetpassword',  'forgetPassPost')->name('admin.forgetpost');
+        Route::get('/users', 'index')->name('users');
+        Route::get('/users/create', 'create')->name('users.createuser');
+        Route::post('/user',  'store')->name('admin.storeuser');
+        Route::get('/useredit/{user}',  'edit')->name('admin.edituser');
+        Route::put('/userupdate/{user}',  'update')->name('admin.updateuser');
+        Route::get('/deleteuser/{user}',  'destroy')->name('admin.destroyuser');
     });
 
 
@@ -98,6 +121,16 @@ Route::group(['prefix' => 'admin'], function(){
         Route::put('/edit-category/{category}',  'update')->name('admin.updatecategory')->middleware('auth');
         Route::get('/delete-category/{category}',  'destroy')->name('admin.deletecategory')->middleware('auth');
     });
+
+    Route::controller(BackendOrderController::class)->group(function(){
+
+        Route::get('/orders',  'index')->name('orders')->middleware('auth');
+        Route::get('/edit-order/{order}',  'edit')->name('admin.showorder')->middleware('auth');
+        Route::put('/edit-order/{order}',  'update')->name('admin.updateorder')->middleware('auth');
+        Route::get('/delete-order/{order}',  'destroy')->name('admin.deleteorder')->middleware('auth');
+
+    });
+
 
 });
 

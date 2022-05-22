@@ -182,6 +182,8 @@ return [
         App\Providers\AdminAuthServiceProvider::class,
         App\Providers\CartServiceProvider::class,
         App\Providers\OrderServiceProvider::class,
+        App\Providers\ReviewServiceProvider::class,
+
 
     ],
 
@@ -197,6 +199,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 

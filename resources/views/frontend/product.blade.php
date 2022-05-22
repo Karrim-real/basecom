@@ -94,7 +94,7 @@
                                     @endif
 
                                 </ul>
-                                <p>{{ $products->desc}} </p>
+                                <p>{{  $products->desc}} </p>
                             </div>
 							{{-- <div class="product_timing">
                                 <div data-countdown="2023/12/15"></div>

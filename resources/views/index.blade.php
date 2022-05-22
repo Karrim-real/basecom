@@ -25,7 +25,7 @@
                     @foreach ($products as $product)
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="single-tranding">
-                        <a href="{{ url('product/'.$product->id.'/'.$product->title) }}">
+                        <a href="{{ url('product/'.$product->id.'/'.$product->slug) }}">
                             <div class="tranding-pro-img">
                                 <img src="{{asset('uploads/products/images/'.$product->image) }}" alt="{{$product->title}}">
                             </div>
@@ -109,10 +109,9 @@
             </div>
             <div class="row justify-content-center">
                 @foreach ($recentProds as $recentProd)
-
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="single-tranding mb-30">
-                        <a href="{{ url('product/'.$recentProd->id.'/'.$recentProd->title) }}">
+                        <a href="{{ url('product/'.$recentProd->id.'/'.$recentProd->slug) }}">
                             <div class="tranding-pro-img">
                                 <img src="{{asset('uploads/products/images/'.$recentProd->image) }}" alt="{{ $recentProd->title}}">
                             </div>

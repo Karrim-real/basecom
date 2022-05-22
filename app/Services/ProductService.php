@@ -19,6 +19,12 @@ class ProductService implements ProductInterface {
         return Product::all();
     }
 
+    /**
+     * prodFilter
+     *
+     * @param  mixed $range
+     * @return void
+     */
     public function prodFilter(int $range)
     {
         return Product::latest()->take($range)->get();

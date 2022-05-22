@@ -28,6 +28,10 @@ class CheckoutRequest extends FormRequest
             'email' => 'required',
             'phone' => 'required',
             'amount' => 'required',
+            'twitter' => 'required',
+            'discord' => 'required',
+            'instagram' => 'nullable',
+            'image' => 'nullable',
             'message' => 'nullable',
             'payoption' => 'required',
 
@@ -41,7 +45,10 @@ class CheckoutRequest extends FormRequest
            'email.required' => 'You must have email',
            'phone.required' => 'You must have phone number',
            'amount.required' => 'You must have amount and it must be digit',
-           'payType.required' => 'Please select a type',
+           'twitter.required' => 'You must provide twitter handle url',
+           'discord.required' => 'You must provide discord handle url',
+           'image.required' => 'You must provide related art image',
+           'payType.required' => 'Please select a payment method',
        ];
     }
 }

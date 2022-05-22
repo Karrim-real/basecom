@@ -10,10 +10,10 @@
         <div class="alert alert-warning">
             <h1 class="h2">No Product Available</h1>
         </div>
-
         @endif
 
       </div>
+@include('admin.layout.message')
 
       {{-- <h2>Section title</h2> --}}
       <div class="table-responsive">

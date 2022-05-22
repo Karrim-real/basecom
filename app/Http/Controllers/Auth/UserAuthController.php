@@ -82,8 +82,9 @@ class UserAuthController extends Controller
     public function create(LoginRequest $request)
     {
         $userInfo = $request->validated();
+        // dd($userInfo);
         $checkrole =  User::where('email', $userInfo['email'])->first();
-        // dd($checkrole->role_as);
+        // dd($checkrole);
         $loginAttempt = $this->authService->login($userInfo);
         if($loginAttempt && $checkrole->role_as  === 1){
             return redirect()->route('admin.dashboard')
@@ -94,14 +95,16 @@ class UserAuthController extends Controller
         }else{
             return redirect()->back()
             ->with(
-                [
-                    'email' => $userInfo['email']
-                ],
                 'error', 'Incorrect Credential Supply, Please check your info and try agian'
             );
         }
 
         // dd($loginDetails);
+    }
+
+    public function showAccount()
+    {
+        return view('frontend.myaccount');
     }
 
     public function forgetPass()
@@ -115,7 +118,7 @@ class UserAuthController extends Controller
         // dd($userEmail['email']);
         if($this->authService->forgetPassword($userEmail['email'])){
             return redirect()->back()
-            ->with('error', 'Email is avalable to vlaideated');
+            ->with('error', 'Email is avalable to validated');
         }else{
             return redirect()->back()
             ->with('error', 'Sorry Your email is not found, kindly click on register');

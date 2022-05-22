@@ -114,7 +114,7 @@ class ProductController extends Controller
         }else{
         $prods = $this->productService->updateProduct($ProdID, $newprod_details);
         return redirect()->route('admin.dashboard')->with([
-            'message' => 'Product Added Successfully',
+            'message' => 'Product Updated Successfully',
             'prods' => $prods
         ]);
         }
@@ -130,7 +130,7 @@ class ProductController extends Controller
     {
         $prods = $this->productService->deletProduct($ProdID);
         return redirect()->route('admin.dashboard')->with([
-            'message' => 'Product Added Successfully',
+            'error' => 'Product Deleted Successfully',
             'prods' => $prods
         ]);
     }

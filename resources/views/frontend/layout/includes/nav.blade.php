@@ -14,7 +14,7 @@
                             <ul>
                                 @if (Auth::user())
                                 {{-- {{ dd(Auth::user()) }} --}}
-                                <li><a href="{{ url('my-account') }}">Account</a></li>
+                                <li><a href="{{ url('my-account/'.Auth::user()->id.'/'.Auth::user()->name) }}"">Account</a></li>
                                 <li><a href="{{ url('checkout') }}">Checkout</a></li>
                                 <li><a href="{{ url('logout') }}">Logout</a></li>
                                 @else
@@ -53,16 +53,14 @@
                                 <div class="header_wishlist">
                                     <a href="{{ url('my-account/'.Auth::user()->id.'/'.Auth::user()->name) }}"><img src="{{asset('assets/img/user.png')}}" alt=""></a>
                                 </div>
-                                @else
-                                <div class="header_wishlist">
-                                    <a href="#"><img src="{{asset('assets/img/user.png')}}" alt=""></a>
-                                </div>
-                                @endif
-
                                 <div class="mini_cart_wrapper">
                                     <a href="javascript:void(0)"><img src="{{asset('assets/img/shopping-bag.png')}}" alt=""></a>
-                                    <span class="cart_quantity">2</span>
+                                    <span class="cart_quantity">0</span>
+
                                     <!--mini cart-->
+                                    {{-- @foreach ($carts as $cartProds)
+
+                                    @endforeach --}}
                                      <div class="mini_cart">
                                         <div class="cart_item">
                                            <div class="cart_img">
@@ -74,28 +72,6 @@
                                             </div>
                                             <div class="cart_remove">
                                                 <a href="#"><i class="ion-android-close"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="cart_item">
-                                           <div class="cart_img">
-                                               <a href="#"><img src="{{asset('assets/img/s-product/product2.jpg')}}" alt=""></a>
-                                           </div>
-                                            <div class="cart_info">
-                                                <a href="#">Natus erro at congue massa commodo</a>
-                                                <p>Qty: 1 X <span> $60.00 </span></p>
-                                            </div>
-                                            <div class="cart_remove">
-                                                <a href="#"><i class="ion-android-close"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="mini_cart_table">
-                                            <div class="cart_total">
-                                                <span>Sub total:</span>
-                                                <span class="price">$138.00</span>
-                                            </div>
-                                            <div class="cart_total mt-10">
-                                                <span>total:</span>
-                                                <span class="price">$138.00</span>
                                             </div>
                                         </div>
 
@@ -112,6 +88,13 @@
                                     </div>
                                     <!--mini cart end-->
                                 </div>
+                                @else
+                                <div class="header_wishlist">
+                                    <a href="{{ url('my-account')}}"><img src="{{asset('assets/img/user.png')}}" alt=""></a>
+                                </div>
+
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -143,6 +126,14 @@
                                             <li><a href="{{ url('cart') }}">cart</a></li>
                                             <li><a href="{{ url('tracking') }}">tracking</a></li>
                                             <li><a href="{{ url('checkout') }}">checkout</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{{route('categorys')}}">Categorys<i class="fa fa-angle-down"></i></a>
+                                        <ul class="sub_menu pages">
+                                            @foreach ($categorys as $category)
+                                            <li><a href="{{ route('category.id', $category->id)}}">{{ $category->title}} </a></li>
+                                            @endforeach
+                                            {{-- <li><a href="blog-details.html"></a></li> --}}
                                         </ul>
                                     </li>
                                     <li><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>

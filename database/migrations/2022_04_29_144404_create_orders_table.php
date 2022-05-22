@@ -18,9 +18,13 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('prod_id');
             $table->integer('prod_qty');
-            $table->integer('total_price');
+            $table->string('twitter');
+            $table->string('discord');
+            $table->string('instagram')->nullable();
+            $table->string('image')->nullable();
             $table->string('message')->nullable();
             $table->string('reference_id');
+            $table->boolean('status')->default('0');
             $table->timestamps();
         });
     }

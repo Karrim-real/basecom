@@ -12,8 +12,25 @@ class Order extends Model
         'user_id',
         'prod_id',
         'prod_qty',
-        'total_price',
         'message',
-        'reference_id'
+        'twitter',
+        'discord',
+        'instagram',
+        'image',
+        'reference_id',
+        'status'
     ];
+
+
+    public function Products()
+    {
+        return $this->belongsTo(Product::class, 'prod_id');
+    }
+
+    public function Users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+
 }

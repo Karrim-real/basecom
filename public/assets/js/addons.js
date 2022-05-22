@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    loadCount()
     // $('#Add-To-Cart').on('click', function (e) {
     //     e.preventDefault();
     //     console.log('buttoj clivk');
@@ -73,6 +73,52 @@ $(document).ready(function () {
                 })
                 },
             });
+
+    });
+
+    //Count Cart
+    function loadCount(){
+        $.ajax({
+            type: "GET",
+            url: "/load-count",
+            success: function (response) {
+                // alert(response.cartcount);
+                $('.cart_quantity').html('');
+                $('.cart_quantity').html(response.cartcount);
+
+            }
+        });
+    }
+
+    function loadNavProds(){
+        $.ajax({
+            type: "GET",
+            url: "/load-nav-prods",
+            success: function (response) {
+
+            }
+        });
+    }
+
+    $('#submit').click(function (e) {
+        e.preventDefault();
+        let reference = $('#reference').val();
+        console.log(reference);
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                ),
+            },
+        });
+        $.ajax({
+            type: "POST",
+            url: "/verify-payment",
+            data: reference,
+            success: function (response) {
+                console.log(response);
+            }
+        });
 
     });
 });

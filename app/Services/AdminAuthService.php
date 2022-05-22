@@ -13,27 +13,20 @@ class AdminAuthService implements AdminAuthInterface{
      * @param  mixed $userInfo
      * @return void
      */
-    public function register(array $userInfo)
+    public function addUser(array $userInfo)
     {
         return User::create($userInfo);
     }
 
     /**
-     * login
+     * users
      *
-     * @param  mixed $userInfo
-     * @return void
+     *
+     * @return void array users
      */
-    public function login(array $userInfo)
+    public function users()
     {
-        $checkrole =  User::where('email', $userInfo['email'])->first();
-        // dd($checkrole->role_as);
-         if(auth()->attempt($userInfo) && $checkrole->role_as === 1){
-            return true;
-         }else{
-             return false;
-         }
-
+      return User::all();
     }
 
     /**
@@ -42,14 +35,9 @@ class AdminAuthService implements AdminAuthInterface{
      * @param  mixed $userEmail
      * @return void
      */
-    public function forgetPassword($userEmail)
+    public function getUserByID($user)
     {
-        if(User::where('email', $userEmail)->first()){
-
-           return true;
-        }else{
-            return false;
-        }
+        return User::find($user);
     }
 
     /**
@@ -59,8 +47,9 @@ class AdminAuthService implements AdminAuthInterface{
      * @param  mixed $newUserInfo
      * @return void
      */
-    public function updateAccount($userID, array $newUserInfo)
+    public function updateAccount($user, array $newUserInfo)
     {
+        return User::whereId($user)->update($newUserInfo);
 
     }
 
@@ -70,19 +59,9 @@ class AdminAuthService implements AdminAuthInterface{
      * @param  mixed $userID
      * @return void
      */
-    public function deactivateAccount($userID)
+    public function deletetUser($user)
     {
-
+        return User::destroy($user);
     }
 
-    /**
-     * logout
-     *
-     * @return void
-     */
-    public function logout()
-    {
-        return auth()->logout();
-
-    }
 }

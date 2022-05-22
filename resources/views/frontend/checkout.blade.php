@@ -57,35 +57,36 @@
             <div class="checkout_form">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
-                        <form action="#">
-                            <h3>Billing Details</h3>
+                        <form action="{{route('place-order')}}" method="POST" enctype="multipart/form-data">
+                            {{@csrf_field()}}
+                            <h3>Social Media Handle</h3>
                             <div class="row">
 
                                 <div class="col-lg-6 mb-20">
-                                    <label>First Name <span>*</span></label>
-                                    <input type="text" name="name" value="{{Auth::user()->name}}" disabled>
+                                    <label>Twitter link <span>*</span></label>
+                                    <input type="text" name="twitter" placeholder="Please enter your twitter handle link" required>
                                 </div>
 
                                 <div class="col-lg-6 mb-20">
-                                    <label>Phone<span>*</span></label>
-                                    <input type="text" name="phone" value="{{Auth::user()->phone}}" disabled>
-
+                                    <label>Discord Link<span>*</span></label>
+                                    <input type="text" name="discord" placeholder="Please enter your discord handle link" required>
                                 </div>
                                 <div class="col-lg-6 mb-20">
-                                    <label> Email Address   <span>*</span></label>
-                                    <input type="text" name="email" value="{{Auth::user()->email}}" disabled>
-                                </form>
+                                    <label> Instagram Link <span>(optional)</span></label>
+                                    <input type="text" name="instagram" placeholder="Please enter your instagram handle link">
                                 </div>
-                                <form action="{{route('place-order')}}" method="POST" >
-                                    {{@csrf_field()}}
+
                                 <div class="col-12">
                                     <div class="order-notes">
-                                        <label for="order_note">Order Notes, Please provide your neccessary Details here</label>
-                                        <textarea id="order_note" name="message" rows="2" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                        <label for="order_note">Description about your order</label>
+                                        <textarea id="order_note" name="message" rows="2" placeholder="Min:100 words, Max: 800 words"></textarea>
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-lg-6 mb-20">
+                                <label> Related Arts </label>
+                                <input type="file" name="image" accept="image/*"  >
+                            </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
 @php
@@ -159,6 +160,7 @@
                                 <input type="hidden" name="email" value="{{Auth::user()->email}}">
                                 <input type="hidden" name="name" value="{{Auth::user()->name}}">
                                 <input type="hidden" name="phone" value="{{Auth::user()->phone}}">
+
                                 <input type="hidden" name="amount" value="{{$total_price * 100}}">
                                 <input type="hidden" name="total_qty" value=" {{$total_qty }}">
 

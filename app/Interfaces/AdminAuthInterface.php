@@ -10,7 +10,7 @@ interface AdminAuthInterface
      * @param  array $userInfo
      * @return void
      */
-    public function register(array $userInfo);
+    public function addUser(array $userInfo);
 
     /**
      * login
@@ -18,7 +18,7 @@ interface AdminAuthInterface
      * @param  array $userInfo
      * @return void
      */
-    public function login(array $userInfo);
+    public function users();
 
     /**
      * forgetPassword
@@ -26,7 +26,7 @@ interface AdminAuthInterface
      * @param  mixed $userEmail
      * @return void
      */
-    public function forgetPassword($userEmail);
+    public function getUserByID($user);
 
 
      /**
@@ -35,17 +35,17 @@ interface AdminAuthInterface
       * @param  mixed $newUserInfo
       * @return void
       */
-     public function updateAccount($userID, array $newUserInfo);
+     public function updateAccount($user, array $newUserInfo);
 
      /**
-      * deactivate
+      * deleteUser
       *
-      * @param  mixed $userID
+      * @param  mixed $user
       * @return void
       */
-     public function deactivateAccount($userID);
+     public function deletetUser($user);
 
-     public function logout();
+
 
 
 }
