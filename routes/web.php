@@ -88,6 +88,7 @@ Route::controller(CheckoutController::class)->group(function(){
     Route::get('/checkout',  'index')->name('checkout')->middleware('auth');
     Route::post('/checkout', 'show')->name('checkout-post')->middleware('auth');
     Route::post('/place-order', 'create')->name('place-order')->middleware('auth');
+    Route::get('/preview-order', 'previews')->name('preview-order')->middleware('auth');
     Route::get('/thanks-you/{reference}', 'thanks')->name('thanks-you/')->middleware('auth');
 
 });

@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
             \URL::forceScheme('https');
         }
 
-        $categorys = Category::all();
+        $categorys = Category::latest()->take(3)->get();
         view()->share('categorys', $categorys);
             if(Auth::user()){
                 $carts =  Cart::where('user_id', Auth::user()->id);

@@ -45,8 +45,8 @@ class CheckoutController extends Controller
     {
 
         $orderDetails = $request->validated();
-        // dd($orderDetails);
-        // session(['datas' => $orderDetails]);
+        dd($orderDetails);
+        session(['datas' => $orderDetails]);
         // dd($datas);
 
         // dd($userID);
@@ -85,50 +85,14 @@ class CheckoutController extends Controller
         );
         // dd($datas);
 
-        // if($payType === 'paystack') {
-
-            // dd($payType, $name, $email, $phone, $payAmount);
-            // $paystack = new \Yabacon\Paystack(config('paystack.secret_key'));
-            // $reference = time().'drof'.rand(1000, 9999);
-
-            // try
-            // {
-            //   $tranx = $paystack->transaction->initialize([
-            //     'amount'=>$payAmount,       // in kobo
-            //     'email'=>$email,         // unique to customers
-            //     'reference'=>$reference, // unique to transactions
-            //   ]);
-            // //   dd($tranx->data);
-            // } catch(\Yabacon\Paystack\Exception\ApiException $e){
-            //   print_r($e->getResponseObject());
-            //   die($e->getMessage());
-            // }
-            // dd($tranx->status);
-
-
-            // redirect to page so User can pay
-            // header('Location: ' . $tranx->data->authorization_url);
-
-        //     $tranx = $paystack->transaction->initialize([
-        //         'reference'=>$reference,
-        //         'amount'=>$payAmount, // in kobo
-        //         'email'=>$email,
-
-        //       ]);
-
-        //         $res = $paystack->transaction->charge([
-        //         'reference'=>$reference,
-        //         'authorization_code'=>$tranx->data->access_code ,
-        //         'email'=>$email,
-        //         'amount'=>$payAmount // in kobo
-        //       ]);
-        //       dd($res);
-        // }else{
-        //    dd($payType);
-        // }
-
-    // }
 }
+
+    public function previews()
+    {
+        $cartProds = $this->cartServices->AllCartProducts();
+        // dd(session('datas'));
+        return view('frontend.previewcheckout', compact('cartProds'));
+    }
 
 
     public function thanks($reference)
