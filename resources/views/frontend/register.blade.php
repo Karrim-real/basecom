@@ -1,3 +1,4 @@
+@section('title', 'Register')
 @include('frontend.layout.includes.head')
 @include('frontend.layout.includes.minicart')
 @include('frontend.layout.includes.nav')
@@ -10,7 +11,7 @@
                 <div class="col-12">
                     <div class="breadcrumb_content">
                         <ul>
-                            <li><a href="index-2.html">home</a></li>
+                            <li><a href="{{ url('/')}}">home</a></li>
                             <li>Register</li>
                         </ul>
                     </div>
@@ -49,7 +50,7 @@
                                         </div>
                                         <div class="single-acc-field">
                                             <label for="phone">Phone</label>
-                                            <input type="phone" id="phone" name="phone" placeholder="Enter your Email">
+                                            <input type="phone" id="phone" name="phone" placeholder="Enter your Phone Number">
                                         </div>
 
                                         <div class="single-acc-field">
@@ -57,7 +58,7 @@
                                             <input type="password" id="password" name="password" placeholder="At least 8 Charecter">
                                         </div>
                                         <div class="single-acc-field boxes">
-                                            <input type="checkbox" id="checkbox" name="remember" required >
+                                            <input type="checkbox" id="checkbox" name="remember" >
                                             <label for="checkbox">I'm not a robot</label>
                                         </div>
                                         <div class="single-acc-field">

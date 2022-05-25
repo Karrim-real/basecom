@@ -18,6 +18,14 @@
      */
     public function getAcategory($catID);
 
+     /**
+     * liveSearch
+     *
+     * @param  mixed $searchText
+     * @return void
+     */
+    public function liveSearch($searchText);
+
     /**
      * createcategorys
      *

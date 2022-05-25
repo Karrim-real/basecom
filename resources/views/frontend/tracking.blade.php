@@ -1,3 +1,4 @@
+@section('title', 'Tracking')
 @include('frontend.layout.includes.head')
 @include('frontend.layout.includes.minicart')
 @include('frontend.layout.includes.nav')

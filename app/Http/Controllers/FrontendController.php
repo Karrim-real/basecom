@@ -34,10 +34,7 @@ class FrontendController extends Controller
         return view('index', compact('products', 'recentProds'));
     }
 
-    public function pay()
-    {
-        return view('frontend.payments');
-    }
+
 
     /**
      * show

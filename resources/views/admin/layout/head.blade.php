@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>
-  Admin Section
+      Admin - @yield('title')
     </title>
 
 

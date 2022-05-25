@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Product;
+use App\Models\User;
 use App\Services\CategoryService;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
@@ -89,10 +91,12 @@ class ProductController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function edit($id)
-    // {
-    //     //
-    // }
+    public function search(Request $request)
+    {
+        $searchText = $request->get('searchname');
+        // dd($search);
+         return $this->productService->liveSearch($searchText);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -108,7 +112,7 @@ class ProductController extends Controller
         if(!$request->hasFile('image')){
             $prods = $this->productService->updateProdwithOutImage($ProdID, $newprod_details);
             return redirect()->route('admin.dashboard')->with([
-                'message' => 'Product Added Successfully',
+                'message' => 'Product Updateded Successfully',
                 'prods' => $prods
             ]);
         }else{

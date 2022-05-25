@@ -11,4 +11,5 @@ interface OrderInterface{
     public function DeleteOrder($OrderID);
     public function UpdateOrder($orderID, array $OrderDetails);
     public function GetAllOrderByAUser($userID);
+    public function liveSearch($searchText);
 }

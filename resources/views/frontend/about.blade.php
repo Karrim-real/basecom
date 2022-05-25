@@ -1,5 +1,4 @@
-
-
+@section('title', 'About Us')
 @include('frontend.layout.includes.head')
 @include('frontend.layout.includes.minicart')
 @include('frontend.layout.includes.nav')
@@ -191,5 +190,5 @@
    </div>
    <!--team area end-->
 
-
    @include('frontend.layout.includes.footer')
+   @include('frontend.layout.includes.alert-message')

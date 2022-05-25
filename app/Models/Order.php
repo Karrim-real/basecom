@@ -18,6 +18,8 @@ class Order extends Model
         'instagram',
         'image',
         'reference_id',
+        'payment_type',
+        'payment_ref',
         'status'
     ];
 

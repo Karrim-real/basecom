@@ -1,3 +1,4 @@
+@section('title', 'My Orders')
 @include('frontend.layout.includes.head')
 @include('frontend.layout.includes.minicart')
 @include('frontend.layout.includes.nav')
@@ -11,7 +12,7 @@
                     <div class="breadcrumb_content">
                         <ul>
                             <li><a href="{{url('/')}}">home</a></li>
-                            <li>Thank You</li>
+                            <li>My Orders</li>
                         </ul>
                     </div>
                 </div>

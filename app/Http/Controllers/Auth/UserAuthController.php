@@ -88,10 +88,10 @@ class UserAuthController extends Controller
         $loginAttempt = $this->authService->login($userInfo);
         if($loginAttempt && $checkrole->role_as  === 1){
             return redirect()->route('admin.dashboard')
-            ->with('message', 'You have Login Successfully');
+            ->with('message', 'You have Login as Admin Successfully');
         }elseif($loginAttempt){
             return redirect()->route('home')
-            ->with('message', 'You have Register Successfully');
+            ->with('message', 'You have Login Successfully');
         }else{
             return redirect()->back()
             ->with(
@@ -101,6 +101,14 @@ class UserAuthController extends Controller
 
         // dd($loginDetails);
     }
+
+    public function search(Request $request)
+    {
+        $searchText = $request->get('searchname');
+        // dd($search);
+         return $this->authService->liveSearch($searchText);
+    }
+
 
     public function showAccount()
     {

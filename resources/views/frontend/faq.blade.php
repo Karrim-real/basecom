@@ -1,3 +1,4 @@
+@section('title', 'Frequent Ask Questions, FAQ')
 @include('frontend.layout.includes.head')
 @include('frontend.layout.includes.minicart')
 @include('frontend.layout.includes.nav')

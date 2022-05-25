@@ -9,7 +9,7 @@ class ReviewService implements ReviewInterface
 {
     public function getAllReviews()
     {
-        return Review::all();
+        return Review::paginate(10);
     }
 
     public function getAReview($reviewID)

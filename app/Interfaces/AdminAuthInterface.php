@@ -13,6 +13,14 @@ interface AdminAuthInterface
     public function addUser(array $userInfo);
 
     /**
+     * liveSearch
+     *
+     * @param  mixed $searchText
+     * @return void
+     */
+    // public function liveSearch($searchText);
+
+    /**
      * login
      *
      * @param  array $userInfo

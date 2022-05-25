@@ -1,11 +1,11 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" {{ str_replace('_', '-', app()->getLocale()) }}>
 
 <!-- index.html  03:25:08 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Drophut - Single Product eCommerce Template</title>
+    <title>Drophut - @yield('title') </title>
     <meta name="description" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">

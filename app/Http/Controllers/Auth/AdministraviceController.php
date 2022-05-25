@@ -30,9 +30,12 @@ class AdministraviceController extends Controller
     }
 
 
-    public function create()
+
+    public function searchuser(Request $request)
     {
-        # code...
+        $searchText = $request->get('searchname');
+        // dd($search);
+         return $this->authService->liveSearch($searchText);
     }
 
     public function store(UserRequest $request)

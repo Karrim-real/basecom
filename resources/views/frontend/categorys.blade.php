@@ -1,4 +1,4 @@
-
+@section('title', 'Category')
 @include('frontend.layout.includes.head')
 @include('frontend.layout.includes.minicart')
 @include('frontend.layout.includes.nav')

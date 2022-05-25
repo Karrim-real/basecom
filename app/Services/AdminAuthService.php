@@ -26,7 +26,7 @@ class AdminAuthService implements AdminAuthInterface{
      */
     public function users()
     {
-      return User::all();
+      return User::paginate(10);
     }
 
     /**
@@ -38,6 +38,36 @@ class AdminAuthService implements AdminAuthInterface{
     public function getUserByID($user)
     {
         return User::find($user);
+    }
+
+    public function liveSearch($searchText)
+    {
+        $result = User::query()->where('name', 'LIKE',"%".$searchText."%")
+         ->orWhere('email', 'LIKE', "%". $searchText. "%")
+         ->get();
+         $output = '';
+         if(!$result){
+            $output .= 'No Product Avaialable';
+         }else{
+
+             foreach ($result as $searchValue) {
+                $output .=
+                '<tr>
+                <td>'.$searchValue->id.'</td>
+                <td>'.$searchValue->name.'</td>
+                <td>'.$searchValue->email.'</td>
+                <td>'.$searchValue->phone.'</td>
+                <td>'.$searchValue->role_as.'</td>
+                <td>'.$searchValue->created_at->diffForHumans().'</td>
+                <td><a href="useredit/'.$searchValue->id.'" class="btn btn-primary">'.'Edit'.'</button></td>
+
+                <tr>';
+
+             }
+
+         }
+         return response($output);
+
     }
 
     /**

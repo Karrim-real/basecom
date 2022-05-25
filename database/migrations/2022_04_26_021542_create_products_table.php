@@ -18,13 +18,14 @@ return new class extends Migration
             $table->string('title');
             $table->longText('desc');
             $table->unsignedInteger('category_id');
-            $table->bigInteger('user_id');
-            $table->bigInteger('prod_qty');
+            $table->foreignId('user_id');
+            $table->foreignId('prod_qty');
             $table->string('selling_price');
             $table->string('discount_price');
             $table->string('slug');
             $table->longText('image');
             $table->bigInteger('status')->default('0');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

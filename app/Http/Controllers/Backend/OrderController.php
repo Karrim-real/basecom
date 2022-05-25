@@ -28,6 +28,18 @@ class OrderController extends Controller
         return view('admin.orders.index', compact('allAdminOrders'));
     }
 
+    /**
+     * search
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function search(Request $request)
+    {
+        $searchText = $request->get('searchname');
+        // dd($search);
+         return $this->orderService->liveSearch($searchText);
+    }
 
 
     /**
@@ -55,7 +67,9 @@ class OrderController extends Controller
     {
         $datas = $request->validated();
         $this->orderService->UpdateOrder($order, $datas);
-        return redirect()->route('orders')->with('message','Order Updated Successfully');
+        return redirect()->route('orders')->with([
+            'message'=>'Order Updated Successfully'
+        ]);
 
     }
 

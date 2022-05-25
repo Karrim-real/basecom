@@ -100,6 +100,8 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/useredit/{user}',  'edit')->name('admin.edituser');
         Route::put('/userupdate/{user}',  'update')->name('admin.updateuser');
         Route::get('/deleteuser/{user}',  'destroy')->name('admin.destroyuser');
+        Route::get('/searchuser',  'searchuser')->name('admin.search.user');
+
     });
 
 
@@ -110,6 +112,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/edit-product/{product}',  'show')->name('admin.editproduct')->middleware('auth');
         Route::put('/edit-product/{product}',  'update')->name('admin.updateproduct')->middleware('auth');
         Route::get('/deleteproduct/{product}',  'destroy')->name('admin.producdelete')->middleware('auth');
+        Route::get('/searchproduct',  'search')->name('admin.search.product');
     });
 
     Route::controller(CategoryController::class)->group(function(){
@@ -120,6 +123,7 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/edit-category/{category}',  'show')->name('admin.editcategory')->middleware('auth');
         Route::put('/edit-category/{category}',  'update')->name('admin.updatecategory')->middleware('auth');
         Route::get('/delete-category/{category}',  'destroy')->name('admin.deletecategory')->middleware('auth');
+        Route::get('/searchcategory',  'search')->name('admin.search.category');
     });
 
     Route::controller(BackendOrderController::class)->group(function(){
@@ -128,6 +132,8 @@ Route::group(['prefix' => 'admin'], function(){
         Route::get('/edit-order/{order}',  'edit')->name('admin.showorder')->middleware('auth');
         Route::put('/edit-order/{order}',  'update')->name('admin.updateorder')->middleware('auth');
         Route::get('/delete-order/{order}',  'destroy')->name('admin.deleteorder')->middleware('auth');
+        Route::get('/searchorders',  'search')->name('admin.search.order');
+
 
     });
 

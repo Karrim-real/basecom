@@ -72,6 +72,12 @@ class CategoryController extends Controller
         }
         return view('admin.category.edit-category', compact('category'));
     }
+    public function search(Request $request)
+    {
+        $searchText = $request->get('searchname');
+        // dd($search);
+         return $this->categoryService->liveSearch($searchText);
+    }
 
     /**
      * Show the form for editing the specified resource.

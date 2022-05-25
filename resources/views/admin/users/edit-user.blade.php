@@ -1,3 +1,4 @@
+@section('title', $user->name)
 @include('admin.layout.head')
 @include('admin.layout.nav')
 

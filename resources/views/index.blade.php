@@ -1,11 +1,15 @@
 
+@section('title', 'Homepage')
 @include('frontend.layout.includes.head')
 @include('frontend.layout.includes.minicart')
 @include('frontend.layout.includes.nav')
 
+
+
     <!--slider area start-->
     @include('frontend.layout.includes.slider')
     <!--Tranding product-->
+
     @if (!count($products))
     <div class="alert alert-warning">
         <h1 class="h2">No Product Available</h1>
@@ -318,3 +322,5 @@
     <!--shipping area end-->
 
     @include('frontend.layout.includes.footer')
+   @include('frontend.layout.includes.alert-message')
+

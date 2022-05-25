@@ -15,7 +15,7 @@ class CategoryService implements CategoryInterface{
      */
     public function getAllcategorys()
     {
-      return Category::all();
+      return Category::paginate(10);
     }
 
     /**
@@ -27,6 +27,40 @@ class CategoryService implements CategoryInterface{
     public function getAcategory($catID)
     {
       return Category::find($catID);
+    }
+
+    /**
+     * liveSearch
+     *
+     * @param  mixed $searchText
+     * @return void
+     */
+    public function liveSearch($searchText)
+    {
+        $result = Category::query()->where('title', 'LIKE',"%".$searchText."%")
+         ->orWhere('id', 'LIKE', "%". $searchText. "%")
+         ->get();
+         $output = '';
+         if(!$result){
+            $output .= 'No Product Avaialable';
+         }else{
+
+             foreach ($result as $searchValue) {
+                $output .=
+                '<tr>
+                <td>'.$searchValue->id.'</td>
+                <td>'.$searchValue->title.'</td>
+                <td>'.$searchValue->desc.'</td>
+                <td><a href="edit-product/'.$searchValue->id.'" class="btn btn-primary">'.'Edit'.'</button></td>
+                <td><a href="deleteproduct/'.$searchValue->id.'" class="btn btn-danger">'.'Delete'.'</button></td>
+
+                <tr>';
+
+             }
+
+         }
+         return response($output);
+
     }
 
     /**

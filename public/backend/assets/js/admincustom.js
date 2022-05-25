@@ -194,4 +194,108 @@ $(function () {
             }
         });
     });
+
+    //Product Live search for Admin Section
+    $('#searchbox').on('keyup', function () {
+        let searchData = '';
+        searchData = $(this).val();
+        if(searchData === ''){
+            console.log('please enter product name or id');
+        }else{
+            $('#allDatas').hide();
+        }
+        $.ajax({
+            type: "GET",
+            url: "searchproduct",
+            data: {
+                searchname: searchData
+            },
+            dataType: "html",
+            success: function (response) {
+            $('#content').show();
+                $('#content').html(response)
+                console.log(response);
+            }
+        });
+
+    });
+
+    //Users Live search for Admin Section
+    $('#searchuser').on('keyup', function () {
+        let searchData = '';
+        searchData = $(this).val();
+        console.log(searchData);
+        if(searchData === ''){
+            console.log('please enter user Email or Name');
+        }else{
+            $('#allUserDatas').hide();
+        }
+        $.ajax({
+            type: "GET",
+            url: "searchuser",
+            data: {
+                searchname: searchData
+            },
+            dataType: "html",
+            success: function (response) {
+            $('#content').show();
+                $('#content-user').html(response)
+                console.log(response);
+            }
+        });
+
+    });
+
+        //Caterory Live search for Admin Section
+        $('#searchcategory').on('keyup', function () {
+            let searchData = '';
+            searchData = $(this).val();
+            console.log(searchData);
+            if(searchData === ''){
+                console.log('please enter category Title or ID No');
+            }else{
+                $('#allCategorys').hide();
+            }
+            $.ajax({
+                type: "GET",
+                url: "searchcategory",
+                data: {
+                    searchname: searchData
+                },
+                dataType: "html",
+                success: function (response) {
+                $('#content').show();
+                    $('#content-category').html(response)
+                    console.log(response);
+                }
+            });
+
+        });
+
+    //Orders Live search for Admin Section
+    $('#searchorders').on('keyup', function () {
+        let searchData = '';
+        searchData = $(this).val();
+        console.log(searchData);
+        if(searchData === ''){
+            console.log('please enter user Email or Name');
+        }else{
+            $('#allOrders').hide();
+        }
+        $.ajax({
+            type: "GET",
+            url: "searchorders",
+            data: {
+                searchname: searchData
+            },
+            dataType: "html",
+            success: function (response) {
+            $('#content-order').show();
+                $('#content-order').html(response)
+                console.log(response);
+            }
+        });
+
+    });
+
 });

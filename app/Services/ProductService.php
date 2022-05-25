@@ -3,7 +3,9 @@
 namespace App\Services;
 use App\Interfaces\ProductInterface;
 use App\Models\Product;
+use Faker\Core\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File as FacadesFile;
 use Illuminate\Support\Facades\Storage;
 
 class ProductService implements ProductInterface {
@@ -16,7 +18,7 @@ class ProductService implements ProductInterface {
 
     public function getAllProducts()
     {
-        return Product::all();
+        return Product::paginate(10);
     }
 
     /**
@@ -28,6 +30,37 @@ class ProductService implements ProductInterface {
     public function prodFilter(int $range)
     {
         return Product::latest()->take($range)->get();
+    }
+
+
+    public function liveSearch($searchText)
+    {
+        $result = Product::query()->where('title', 'LIKE',"%".$searchText."%")
+         ->orWhere('id', 'LIKE', "%". $searchText. "%")
+         ->get();
+         $output = '';
+         if(!$result){
+            $output .= 'No Product Avaialable';
+         }else{
+
+             foreach ($result as $searchValue) {
+                $output .=
+                '<tr>
+                <td>'.$searchValue->id.'</td>
+                <td>'.$searchValue->title.'</td>
+                <td>'.$searchValue->desc.'</td>
+                <td>'.$searchValue->discount_price.'</td>
+                <td>'.$searchValue->Categorys->title.'</td>
+                <td><a href="edit-product/'.$searchValue->id.'" class="btn btn-primary">'.'Edit'.'</button></td>
+                <td><a href="deleteproduct/'.$searchValue->id.'" class="btn btn-danger">'.'Delete'.'</button></td>
+
+                <tr>';
+
+             }
+
+         }
+         return response($output);
+
     }
 
     /**
@@ -72,10 +105,10 @@ class ProductService implements ProductInterface {
         if($newprod_details['image']){
             $file = $newprod_details['image'];
             $checkProd = Product::find($prodID);
-            $destinationPath = 'uploads/products/images';
-            if($checkProd){
-                $path = $destinationPath.$checkProd->image;
-                Storage::delete($path);
+            $destinationPath = 'uploads/products/images/'.$checkProd->image;
+            if(FacadesFile::exists($destinationPath)){
+                // dd($destinationPath);
+                FacadesFile::delete($destinationPath);
                 $fileName = time().'_'.$newprod_details['title'].'.png';
                 $file->move('uploads/products/images', $fileName);
                 $newprod_details['image'] = $fileName;
@@ -97,7 +130,13 @@ class ProductService implements ProductInterface {
      */
     public function deletProduct($prodID)
     {
+        $checkProd = Product::find($prodID);
+        $destinationPath = 'uploads/products/images/'.$checkProd->image;
+        if(FacadesFile::exists($destinationPath)){
+            FacadesFile::delete($destinationPath);
         return Product::destroy($prodID);
+
+        }
     }
 
 

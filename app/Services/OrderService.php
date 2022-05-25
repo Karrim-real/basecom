@@ -10,7 +10,7 @@ class OrderService implements OrderInterface{
 
     public function getAllOrders()
     {
-        return Order::all();
+        return Order::paginate(10);
     }
 
     public function getAOrder($OrderID)
@@ -31,6 +31,38 @@ class OrderService implements OrderInterface{
         // $OrderDetails['image'] = $fileName;
         // dd($OrderDetails);
        return Order::create($OrderDetails);
+    }
+
+    public function liveSearch($searchText)
+    {
+        $result = Order::query()->where('reference_id', 'LIKE',"%".$searchText."%")
+         ->orWhere('id', 'LIKE', "%". $searchText. "%")
+         ->get();
+         $output = '';
+         if(!$result){
+            $output .= 'No Order match Avaialable';
+         }else{
+
+             foreach ($result as $searchValue) {
+                $output .=
+                '<tr>
+                <td>'.$searchValue->id.'</td>
+                <td>'.$searchValue->users->email.'</td>
+                <td>'.$searchValue->users->name.'</td>
+                <td>'.$searchValue->products->title.'</td>
+                <td>'.$searchValue->message.'</td>
+                <td>'.$searchValue->reference_id.'</td>
+                <td>'.$searchValue->created_at->diffForHumans().'</td>
+                <td><button class="btn'. ($searchValue->status === 1 ? 'btn-success': 'btn-warning') .'btn-md">'.($searchValue->status === 1 ? 'Success': 'Pending').'</button></td>
+                <td><a href="edit-order/'.$searchValue->id.'" class="btn btn-primary">'.'Edit'.'</a></td>
+                <td><a href="delete-order/'.$searchValue->id.'" class="btn btn-danger">'.'Delete'.'</a></td>
+
+                <tr>';
+
+             }
+
+         }
+         return response($output);
     }
 
     public function UpdateOrder($orderID, array $OrderDetails)

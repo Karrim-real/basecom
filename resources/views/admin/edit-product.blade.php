@@ -1,3 +1,4 @@
+@section('title', $product->title)
 @include('admin.layout.head')
 @include('admin.layout.nav')
 

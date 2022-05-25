@@ -1,3 +1,4 @@
+@section('title', 'All Orders')
 @include('admin.layout.head')
 @include('admin.layout.nav')
 
@@ -12,7 +13,11 @@
 
         @endif
       </div>
-
+      @include('admin.layout.message')
+      <input class="form-control form-control-dark w-50"
+      name="searchname"
+      type="search" id="searchorders" placeholder="Search order by ID No or Reference No" aria-label="Search">
+      <br>
       {{-- <h2>Section title</h2> --}}
       <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -23,29 +28,35 @@
               <th scope="col">User Name</th>
               <th scope="col">Products Name</th>
               <th scope="col">Message</th>
-              <th scope="col">Image Uploaded</th>
-              {{-- <th scope="col">Category</th> --}}
+              <th scope="col">Reference No</th>
+              <th scope="col">Ordered At</th>
               <th scope="col">Status</th>
               <th scope="col">Check</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="allOrders">
             @foreach ($allAdminOrders as $orders )
             <tr>
             <td>{{ $orders->id}}</td>
             <td>{{ $orders->users->email}}</td>
             <td>{{ $orders->users->name}}</td>
-            <td>{{ $orders->products->title}}</td>
+            <td>{{ $orders->Products->title}}</td>
             <td>{{ $orders->message}}</td>
-            <td> <img src="{{ asset('uploads/orders/images/'.$orders->image)}}" class="image thumbnail" alt="my image" sizes="10px" height="60px" width="50px" srcset=""> </td>
+            <td>{{ $orders->reference_id}}</td>
+            <td>{{ $orders->created_at->diffForHumans()}}</td>
             <td> <button class="btn {{ ($orders->status === 1 ? 'btn-success': 'btn-warning')}} btn-md">{{ ($orders->status === 1 ? 'Success': 'Pending')}}</button></td>
-            <td> <a href="{{ url('admin/edit-order/'.$orders->id) }}"> <button class="btn btn-primary btn-md">Check</button> </a></td>
-            <td><a href="{{ url('admin/delete-order/'.$orders->id) }}"> <button class="btn btn-danger btn-md">Remove Order</button> </a> </td>
+            <td> <a class="btn btn-primary btn-md" href="{{ url('admin/edit-order/'.$orders->id) }}"> Check </a></td>
+            <td><a class="btn btn-danger btn-md" href="{{ url('admin/delete-order/'.$orders->id) }}"> Remove </a></td>
             </tr>
             @endforeach
           </tbody>
+        </tbody>
+        <tbody id="content-order">
+      </tbody>
         </table>
       </div>
-
+      <br>
+      <br>
+      <center>{{ $allAdminOrders->render()}} </center>
  @include('admin.layout.footer')

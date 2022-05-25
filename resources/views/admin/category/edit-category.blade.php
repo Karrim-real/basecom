@@ -1,3 +1,4 @@
+@section('title', 'Edit Category')
 @include('admin.layout.head')
 @include('admin.layout.nav')
 

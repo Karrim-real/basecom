@@ -1,3 +1,4 @@
+@section('title', '404 | Page Not Found')
 @include('frontend.layout.includes.head')
 @include('frontend.layout.includes.minicart')
 @include('frontend.layout.includes.nav')

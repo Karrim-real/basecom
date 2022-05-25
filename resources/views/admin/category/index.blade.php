@@ -1,3 +1,4 @@
+@section('title', 'All Categorys')
 @include('admin.layout.head')
 @include('admin.layout.nav')
 
@@ -12,7 +13,11 @@
 
         @endif
       </div>
-
+      @include('admin.layout.message')
+      <input class="form-control form-control-dark w-50"
+      name="searchname"
+      type="search" id="searchcategory" placeholder="Search a product by Name or product No" aria-label="Search">
+      <br>
       {{-- <h2>Section title</h2> --}}
       <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -27,7 +32,7 @@
               <th scope="col">Delete</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="allCategorys">
             @foreach ($categorys as $category )
             <input type="hidden" name="prodID" id="prodID">
             <tr>
@@ -41,7 +46,13 @@
             </tr>
             @endforeach
           </tbody>
+          <tbody id="content-category">
+        </tbody>
+
         </table>
       </div>
+      <br>
+      <br>
+      <center>{{ $categorys->render()}} </center>
 
  @include('admin.layout.footer')
