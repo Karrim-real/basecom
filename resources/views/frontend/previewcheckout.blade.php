@@ -146,7 +146,7 @@
                                 <input type="hidden" name="total_qty" value=" {{$total_qty }}">
                                 {{-- {{dd($total_price)}} --}}
                                 <div class="order_button">
-                                    <button  type="submit">Proceed to buy Now</button>
+                                    <button  type="submit">Pay Now</button>
                                 </div>
                             </div>
                         </form>

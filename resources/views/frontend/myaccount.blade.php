@@ -56,7 +56,7 @@
             <tr>
                 <td>  {{ $orders->id}}</td>
                 <td> {{ $orders->Products->title}} <strong> × {{ $orders->prod_qty}} </strong></td>
-                <td>{{ $orders->prod_qty * $orders->Products->discount_price}}</td>
+                <td>${{ $orders->prod_qty * $orders->Products->discount_price}}</td>
                 <td>{{ $orders->created_at->diffForHumans()}}</td>
             </tr>
             @php
@@ -82,17 +82,14 @@
                     {{-- <td><strong> ${{$total_price}} </strong></td> --}}
                 </tr>
                 <tr>
-
-
-                    <th></th>
-                    <td><button class="btn btn-primary" id="show-more">Show More</button></td>
-                    {{-- <td>${{number_format($total_price, 2)}}</td> --}}
                 </tr>
             </tfoot>
         </table>
     </div>
 </div>
 </div>
+<center>{{ $userOrders->render()}}</center>
+
 <br>
 <br>
 <br>

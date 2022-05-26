@@ -64,6 +64,7 @@ $(document).ready(function () {
 
     $('#paymentForm').on('submit', function (e) {
         e.preventDefault();
+        $('#buynow').addClass('disabled')
         let email = $('#email').val();
         let amount = $('#amounts').val();
         let amounInt = parseInt(amount);
@@ -88,13 +89,17 @@ $(document).ready(function () {
                 // data: referenceid,
                 dataType: 'json',
                 success: function (responsei) {
+                    console.log(responsei);
                     if(responsei.status === 'success'){
                         Swal.fire({
-                            icon: response.status,
-                            title: response.status,
-                            text: response.message,
+                            icon: responsei.status,
+                            title: responsei.status,
+                            text: responsei.message,
+                            showConfirmButton: true,
+                            timer: 2000,
+                        }).then(result=>{
+                            window.location = responsei.url
                         })
-                        window.location = responsei.url
                     }
                 }
             });

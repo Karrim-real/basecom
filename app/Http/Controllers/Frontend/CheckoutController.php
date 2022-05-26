@@ -122,6 +122,7 @@ class CheckoutController extends Controller
                 }
                 return response()->json([
                     'status' => 'success',
+                    'title' => 'Congratulation, You just order a Service',
                     'message' => 'You order was successfull, Please take a chill while proccess your order, Thanks',
                     'url' => 'thanks-you/'.$orderDetails['reference_id'],
                 ]);
