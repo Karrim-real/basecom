@@ -35,7 +35,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-6">
                         <div class="logo">
-                            <a href="{{ url('/') }}"><img src="{{asset('assets/img/logo/logo.png')}}" alt=""></a>
+                            <a href="{{ url('/') }}"><img src="{{asset('assets/img/logo/logo22.png')}}" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-6">
