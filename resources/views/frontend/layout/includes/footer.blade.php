@@ -96,20 +96,25 @@
 <!-- JS
 ============================================ -->
 
-
+<!--jQuery -->
 <script src="{{ asset('assets/js/jquery.js') }}"></script>
+
+
+<!--Paystack Inline -->
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<!-- Addons JS -->
+
+<script src="{{ asset('assets/js/addons.js') }}"></script>
+
 <!-- Plugins JS -->
 <script src="{{ asset('assets/js/plugins.js') }}"></script>
 
 <!-- Main JS -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
-
-<!--jQuery -->
-
-
-<!-- Addons JS -->
-<script src="{{ asset('assets/js/addons.js') }}"></script>
 <script src="{{ asset('assets/js/sweetalert2.js') }}"></script>
+
+
+
 
 
 

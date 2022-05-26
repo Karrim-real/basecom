@@ -24,10 +24,10 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'password' => 'required'
+            'name' => 'required|min:10|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|min:10|max:255',
+            'password' => 'required|min:7|max:255'
         ];
     }
     public function messages()

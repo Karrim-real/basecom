@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     loadCount()
 
@@ -61,25 +62,45 @@ $(document).ready(function () {
         });
     }
 
-    $('#submit').click(function (e) {
+    $('#paymentForm').on('submit', function (e) {
         e.preventDefault();
-        let reference = $('#reference').val();
-        console.log(reference);
-        $.ajaxSetup({
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                    "content"
-                ),
-            },
-        });
-        $.ajax({
-            type: "POST",
-            url: "/verify-payment",
-            data: reference,
-            success: function (response) {
-                console.log(response);
-            }
-        });
+        let email = $('#email').val();
+        let amount = $('#amounts').val();
+        let amounInt = parseInt(amount);
+        let ref = 'paystack'+Math.floor((Math.random() * 10000000000) + 1);
 
+        // console.log(amounInt, email, ref);
+        let handler = PaystackPop.setup({
+            key: 'pk_test_aad75fe1267330f1c4c3355581891fdf246f4060', // Replace with your public key
+            email: email,
+            amount: amounInt * 100,
+            ref: ref, // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+            // label: "Optional string that replaces customer email"
+            onClose: function(){
+              alert('Window closed.');
+              console.log('You have cance the payment process');
+            },
+            callback: function(response){
+                let referenceid = response.reference;
+            $.ajax({
+                type: "GET",
+                url: "order-payment/"+referenceid,
+                // data: referenceid,
+                dataType: 'json',
+                success: function (responsei) {
+                    if(responsei.status === 'success'){
+                        Swal.fire({
+                            icon: response.status,
+                            title: response.status,
+                            text: response.message,
+                        })
+                        window.location = responsei.url
+                    }
+                }
+            });
+
+            }
+          });
+          handler.openIframe();
     });
 });

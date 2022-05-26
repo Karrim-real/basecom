@@ -11,7 +11,7 @@
                 <div class="col-12">
                     <div class="breadcrumb_content">
                         <ul>
-                            <li><a href="index-2.html">home</a></li>
+                            <li><a href="{{ url('/')}}">home</a></li>
                             <li>Login</li>
                         </ul>
                     </div>
@@ -38,10 +38,14 @@
                                     <form action="{{ route('login-post') }}" method="POST" >
                                         {{ @csrf_field() }}
                                         @include('frontend.layout.errors')
+                                        @error('email')
+                                        {{ $message}}
+                                    @enderror
                                         <div class="single-acc-field">
                                             <label for="email">Email</label>
-                                            <input type="email" id="email" name="email" placeholder="Enter your Email" >
+                                            <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your Email" >
                                         </div>
+
                                         <div class="single-acc-field">
                                             <label for="password">Password</label>
                                             <input type="password" id="password" name="password" placeholder="Enter your password">

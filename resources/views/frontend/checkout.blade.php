@@ -137,26 +137,6 @@
                             </div>
 
                             <div class="payment_method">
-                                <div class="panel-default">
-                                    <input id="payment_defult" name="payoption" id="paystack" value="paystack" type="radio" data-target="createp_account" />
-                                    <label for="payment_defult" data-toggle="collapse" data-target="#collapseFour" aria-controls="collapseFour">Paystack <img src="assets/img/icon/papyel.png" alt=""></label>
-
-                                    <div id="collapseFour" class="collapse" data-parent="#accordionExample">
-                                        <div class="card-body1">
-                                        <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal. <a href="#">What is Paypal?</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel-default">
-                                    <input id="payment_defult" name="payoption" value="btc" id="coin" type="radio" data-target="createp_account" required/>
-                                    <label for="payment_defult" data-toggle="collapse" data-target="#collapseFour" aria-controls="collapseFour">Crypto Payment <img src="assets/img/icon/papyel.png" alt=""></label>
-
-                                    <div id="collapseFour" class="collapse" data-parent="#accordionExample">
-                                        <div class="card-body1">
-                                        <p>Pay via Crytocurrency; you can pay with your Crypto Coin, such as Bitcoin, Etereuim and others.. Read More here. <a href="lazerpay.com">What is Lazerpay Crytocurrency payment ?</a></p>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <input type="hidden" name="email" value="{{Auth::user()->email}}">
                                 <input type="hidden" name="name" value="{{Auth::user()->name}}">

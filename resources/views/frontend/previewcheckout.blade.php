@@ -28,37 +28,42 @@
         </h4>
     </div>
     @else
-
+    @if (session('datas'))
+ @php
+     $sessionData = session('datas');
+    // dd($sessionData)
+ @endphp
+    @endif
     <div class="Checkout_section mt-60">
-
+{{-- {{dd($sessionData)}} --}}
         <div class="container">
 
             <div class="checkout_form">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
-                        <form action="{{route('place-order')}}" method="POST" enctype="multipart/form-data">
+                        <form  method="GET" id="paymentForm">
                             {{@csrf_field()}}
                             <h3>Preview Order</h3>
                             <div class="row">
 
                                 <div class="col-lg-6 mb-20">
                                     <label>Twitter link <span>*</span></label>
-                                    <h6 style="color: blue">Twitter.com/karrim4real</h6>
+                                    <h6 style="color: blue">{{ $sessionData['twitter']}}</h6>
                                 </div>
 
                                 <div class="col-lg-6 mb-20">
                                     <label>Discord Link<span>*</span></label>
-                                    <h6 style="color: blue">discord.com/karrim4real</h6>
+                                    <h6 style="color: blue">{{ $sessionData['discord']}}</h6>
                                 </div>
                                 <div class="col-lg-6 mb-20">
                                     <label> Instagram Link <span>(optional)</span></label>
-                                    <h6 style="color: blue">instagram.com/karrim4real</h6>
+                                    <h6 style="color: blue">{{ $sessionData['instagram']}}</h6>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="order-notes">
                                         <label for="order_note">Description about your order</label>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt expedita pariatur magnam adipisci ipsum eveniet? Provident sequi nesciunt temporibus magnam repellat explicabo minima quo. Non quod iusto suscipit beatae fugiat.</p>
+                                        <p>{{ $sessionData['message']}}.</p>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +97,6 @@
                                         $total_qty += $cartProd->prod_qty;
                                     @endphp
                                     @endforeach
-
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -134,16 +138,15 @@
                                     </div>
                                 </div>
 
-                                <input type="hidden" name="email" value="{{Auth::user()->email}}">
-                                <input type="hidden" name="name" value="{{Auth::user()->name}}">
-                                <input type="hidden" name="phone" value="{{Auth::user()->phone}}">
+                                <input type="hidden" name="email" id="email" value="{{Auth::user()->email}}">
+                                <input type="hidden" name="name" id="name"  value="{{Auth::user()->name}}">
+                                <input type="hidden" name="phone" id="phone" value="{{Auth::user()->phone}}">
 
-                                <input type="hidden" name="amount" value="{{$total_price * 100}}">
+                                <input type="hidden" name="amount" id="amounts" value="{{ $total_price }}">
                                 <input type="hidden" name="total_qty" value=" {{$total_qty }}">
-
-
+                                {{-- {{dd($total_price)}} --}}
                                 <div class="order_button">
-                                    <button  type="submit">Proceed to buy</button>
+                                    <button  type="submit">Proceed to buy Now</button>
                                 </div>
                             </div>
                         </form>

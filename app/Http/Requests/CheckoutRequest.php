@@ -33,7 +33,7 @@ class CheckoutRequest extends FormRequest
             'instagram' => 'nullable',
             'image' => 'nullable',
             'message' => 'nullable',
-            'payoption' => 'required',
+
 
         ];
     }
@@ -48,7 +48,6 @@ class CheckoutRequest extends FormRequest
            'twitter.required' => 'You must provide twitter handle url',
            'discord.required' => 'You must provide discord handle url',
            'image.required' => 'You must provide related art image',
-           'payType.required' => 'Please select a payment method',
        ];
     }
 }

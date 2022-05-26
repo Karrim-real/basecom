@@ -42,15 +42,15 @@
 
                                         <div class="single-acc-field">
                                             <label for="name">Name</label>
-                                            <input type="text" id="name" name="name" placeholder="Enter Your Name">
+                                            <input type="text" id="name" name="name" value="{{ old('name')}}" placeholder="Enter Your Name">
                                         </div>
                                         <div class="single-acc-field">
                                             <label for="email">Email</label>
-                                            <input type="email" id="email" name="email" placeholder="Enter your Email">
+                                            <input type="email" id="email" name="email" value="{{ old('email')}}" placeholder="Enter your Email">
                                         </div>
                                         <div class="single-acc-field">
                                             <label for="phone">Phone</label>
-                                            <input type="phone" id="phone" name="phone" placeholder="Enter your Phone Number">
+                                            <input type="phone" id="phone" name="phone" value="{{ old('phone')}}" placeholder="Enter your Phone Number">
                                         </div>
 
                                         <div class="single-acc-field">
