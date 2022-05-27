@@ -64,6 +64,8 @@ $(document).ready(function () {
 
     $('#paymentForm').on('submit', function (e) {
         e.preventDefault();
+        let pay = $("input[name='payoption']:checked").val();
+        console.log(pay);
         $('#buynow').addClass('disabled')
         let email = $('#email').val();
         let amount = $('#amounts').val();

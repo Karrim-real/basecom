@@ -9,6 +9,7 @@ use App\Http\Requests\ForgetRequest;
 use App\Models\User;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserAuthController extends Controller
@@ -27,6 +28,9 @@ class UserAuthController extends Controller
      */
     public function index()
     {
+        if(Auth::user()){
+        $this->authService->logout();
+        }
         return view('frontend.register');
     }
 
@@ -70,6 +74,9 @@ class UserAuthController extends Controller
      */
     public function show()
     {
+        if(Auth::user()){
+        $this->authService->logout();
+        }
         return view('frontend.login');
     }
 
@@ -102,12 +109,6 @@ class UserAuthController extends Controller
         // dd($loginDetails);
     }
 
-    public function search(Request $request)
-    {
-        $searchText = $request->get('searchname');
-        // dd($search);
-         return $this->authService->liveSearch($searchText);
-    }
 
 
     public function showAccount()
@@ -117,6 +118,9 @@ class UserAuthController extends Controller
 
     public function forgetPass()
     {
+        if(Auth::user()){
+            Auth::logout();
+        }
         return view('frontend.forget-password');
     }
 

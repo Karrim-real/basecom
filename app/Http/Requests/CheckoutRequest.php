@@ -33,6 +33,7 @@ class CheckoutRequest extends FormRequest
             'instagram' => 'nullable',
             'image' => 'nullable',
             'message' => 'nullable',
+            'payment_type' => 'required',
 
 
         ];

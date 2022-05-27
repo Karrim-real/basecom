@@ -117,18 +117,20 @@
                             </div>
 
                             <div class="payment_method">
+                                @if ($sessionData['payment_type'] == 'paystack')
                                 <div class="panel-default">
-                                    <input id="payment_defult" name="payoption" id="paystack" value="paystack" type="radio" data-target="createp_account" />
+                                    <input id="payment_defult" name="payoption" id="paytype" value="paystack" type="radio" checked data-target="createp_account" />
                                     <label for="payment_defult" data-toggle="collapse" data-target="#collapseFour" aria-controls="collapseFour">Paystack <img src="assets/img/icon/papyel.png" alt=""></label>
 
                                     <div id="collapseFour" class="collapse" data-parent="#accordionExample">
                                         <div class="card-body1">
-                                        <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal. <a href="#">What is Paypal?</a></p>
+                                        <p>Pay via Paystack; you can pay with your credit card if you don’t have a PayPal. <a href="#">What is Paypal?</a></p>
                                         </div>
                                     </div>
                                 </div>
+                                @else
                                 <div class="panel-default">
-                                    <input id="payment_defult" name="payoption" value="btc" id="coin" type="radio" data-target="createp_account" required/>
+                                    <input id="payment_defult" name="payoption" value="btc" id="paytype" type="radio" checked data-target="createp_account" required/>
                                     <label for="payment_defult" data-toggle="collapse" data-target="#collapseFour" aria-controls="collapseFour">Crypto Payment <img src="assets/img/icon/papyel.png" alt=""></label>
 
                                     <div id="collapseFour" class="collapse" data-parent="#accordionExample">
@@ -138,6 +140,8 @@
                                     </div>
                                 </div>
 
+                                @endif
+
                                 <input type="hidden" name="email" id="email" value="{{Auth::user()->email}}">
                                 <input type="hidden" name="name" id="name"  value="{{Auth::user()->name}}">
                                 <input type="hidden" name="phone" id="phone" value="{{Auth::user()->phone}}">
@@ -146,7 +150,7 @@
                                 <input type="hidden" name="total_qty" value=" {{$total_qty }}">
                                 {{-- {{dd($total_price)}} --}}
                                 <div class="order_button">
-                                    <button  type="submit">Pay Now</button>
+                                    <button  type="submit" id="buynow">Pay Now</button>
                                 </div>
                             </div>
                         </form>
