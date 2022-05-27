@@ -14,7 +14,7 @@
                             <ul>
                                 @if (Auth::user())
                                 {{-- {{ dd(Auth::user()) }} --}}
-                                <li><a href="{{ url('my-account/'.Auth::user()->id.'/'.Auth::user()->name) }}"">Account</a></li>
+                                <li><a href="{{ url('my-account/'.Auth::user()->id.'/'.Auth::user()->name) }}">Account</a></li>
                                 <li><a href="{{ url('checkout') }}">Checkout</a></li>
                                 <li><a href="{{ url('logout') }}">Logout</a></li>
                                 @else
@@ -90,11 +90,10 @@
                                 </div>
                                 @else
                                 <div class="header_wishlist">
-                                    <a href="{{ url('my-account')}}"><img src="{{asset('assets/img/user.png')}}" alt=""></a>
+                                    <a href="{{ url('login')}}"><img src="{{asset('assets/img/user.png')}}" alt=""></a>
                                 </div>
 
                                 @endif
-
                             </div>
                         </div>
                     </div>

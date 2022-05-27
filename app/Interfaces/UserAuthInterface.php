@@ -28,6 +28,13 @@ interface UserAuthInterface
      */
     public function forgetPassword($userEmail);
 
+    /**
+     * GetUserInfo
+     *
+     * @param  mixed $userEmail
+     * @return void
+     */
+    public function GetUserInfo($userEmail);
 
      /**
       * updateAccount

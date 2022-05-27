@@ -9,7 +9,7 @@
             <div class="col-12">
                 <div class="breadcrumb_content">
                     <ul>
-                        <li><a href="index-2.html">home</a></li>
+                        <li><a href="{{ url('/')}}">home</a></li>
                         <li>Contact</li>
                     </ul>
                 </div>

@@ -6,11 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\ForgetRequest;
+use App\Mail\VerifyAccount;
+use App\Mail\VerifyPassword;
 use App\Models\User;
 use App\Services\AuthService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserAuthController extends Controller
 {
@@ -53,8 +57,11 @@ class UserAuthController extends Controller
         //Password Hash
         $datas['password'] = Hash::make($request->input('password'));
         $insert = $this->authService->register($datas);
-        // dd($insert);
+        // dd($insert->id);
         if($insert){
+        $message = User::where('email', $datas['email'])->first();
+        // dd($user->emai);
+            Mail::to($message->email)->send(new VerifyAccount($message));
             return redirect()->route('home')
             ->with('message', 'You have Register Successfully');
         }
@@ -128,7 +135,11 @@ class UserAuthController extends Controller
     {
         $userEmail = $request->validated();
         // dd($userEmail['email']);
+
         if($this->authService->forgetPassword($userEmail['email'])){
+            $user = User::where('email', $userEmail)->first();
+            // dd($user->name);
+            Mail::to($user->email)->send(new VerifyPassword($user));
             return redirect()->back()
             ->with('error', 'Email is avalable to validated');
         }else{

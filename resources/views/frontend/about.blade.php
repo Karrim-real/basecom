@@ -11,7 +11,7 @@
                 <div class="col-12">
                     <div class="breadcrumb_content">
                         <ul>
-                            <li><a href="index-2.html">home</a></li>
+                            <li><a href="{{ url('/') }}">home</a></li>
                             <li>About</li>
                         </ul>
                     </div>
@@ -191,4 +191,3 @@
    <!--team area end-->
 
    @include('frontend.layout.includes.footer')
-   @include('frontend.layout.includes.alert-message')

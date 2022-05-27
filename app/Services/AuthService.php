@@ -74,12 +74,19 @@ class AuthService implements UserAuthInterface{
     public function forgetPassword($userEmail)
     {
         if(User::where('email', $userEmail)->first()){
-
            return true;
         }else{
             return false;
         }
     }
+
+    public function GetUserInfo($userEmail)
+    {
+        $user = User::where('email', $userEmail)->first();
+        return $user;
+    }
+
+
 
     /**
      * updateAccount

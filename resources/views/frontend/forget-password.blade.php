@@ -40,7 +40,7 @@
                                         @include('frontend.layout.errors')
                                         <div class="single-acc-field">
                                             <label for="email">Email</label>
-                                            <input type="email" id="email" name="email" placeholder="Enter your Email">
+                                            <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your Email">
                                         </div>
                                         <div class="single-acc-field">
                                             <button type="submit">Reset Password</button>
