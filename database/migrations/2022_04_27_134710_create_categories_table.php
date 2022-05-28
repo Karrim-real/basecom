@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('images');
             $table->string('slug');
             $table->bigInteger('status')->default('0');
-            $table->softDeletes();
+            // $table->softDeletes();
             $table->timestamps();
         });
     }
