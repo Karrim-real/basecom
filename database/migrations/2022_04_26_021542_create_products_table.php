@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('slug');
             $table->longText('image');
             $table->bigInteger('status')->default('0');
-            $table->softDeletes();
+
             $table->timestamps();
         });
     }
