@@ -129,9 +129,9 @@
                                     </li>
                                     <li><a href="{{route('categorys')}}">Categorys<i class="fa fa-angle-down"></i></a>
                                         <ul class="sub_menu pages">
-                                            @foreach ($categorys as $category)
+                                            {{-- @foreach ($categorys as $category)
                                             <li><a href="{{ route('category.id', $category->id)}}">{{ $category->title}} </a></li>
-                                            @endforeach
+                                            @endforeach --}}
                                             {{-- <li><a href="blog-details.html"></a></li> --}}
                                         </ul>
                                     </li>
