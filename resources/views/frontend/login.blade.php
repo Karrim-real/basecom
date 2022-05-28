@@ -71,3 +71,5 @@
 
     <!--footer area start-->
     @include('frontend.layout.includes.footer')
+   @include('frontend.layout.includes.alert-message')
+

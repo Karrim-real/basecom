@@ -7,19 +7,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class VerifyPassword extends Mailable
+class ContactUs extends Mailable
 {
     use Queueable, SerializesModels;
-
-    public array $userInfo;
+    public array $messages;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($userInfo)
+    public function __construct($messages)
     {
-        return $this->userInfo = $userInfo;
+        return $this->messages = $messages;
+        // dd($messages);
     }
 
     /**
@@ -29,8 +29,7 @@ class VerifyPassword extends Mailable
      */
     public function build()
     {
-
         return $this->from(env('MAIL_FROM_ADDRESS'))->
-        markdown('emails.verifyPassword');
+        markdown('emails.contact-us');
     }
 }

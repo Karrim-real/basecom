@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\ForgetRequest;
+use App\Http\Requests\PasswordRequest;
 use App\Mail\VerifyAccount;
 use App\Mail\VerifyPassword;
 use App\Models\User;
+use App\Models\VerifyAcc;
 use App\Services\AuthService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -55,13 +57,19 @@ class UserAuthController extends Controller
             ->with('error', 'Email Aleady Exist');
         }
         //Password Hash
+        // dd(Str::random(10));
         $datas['password'] = Hash::make($request->input('password'));
-        $insert = $this->authService->register($datas);
+        $verifyInfo['email'] = $datas['email'];
+        $verifyInfo['token'] = bcrypt($datas['email']);
+        $insert = $this->authService->register($datas)
+        && $this->authService->createVerifyToken($verifyInfo);
         // dd($insert->id);
         if($insert){
-        $message = User::where('email', $datas['email'])->first();
-        // dd($user->emai);
-            Mail::to($message->email)->send(new VerifyAccount($message));
+        $user = User::where('email', $datas['email'])->first();
+        $message['name'] = $user->name;
+        $message['email'] = $user->email;
+        $message['token'] = $verifyInfo['token'];
+            Mail::to($user->email)->send(new VerifyAccount($message));
             return redirect()->route('home')
             ->with('message', 'You have Register Successfully');
         }
@@ -70,6 +78,31 @@ class UserAuthController extends Controller
             ->with('message', 'An Error Occur');
         }
 
+    }
+
+    public function verify($verifytoken)
+    {
+        $checkToken = VerifyAcc::where('token', $verifytoken)->first();
+        if($checkToken){
+            $user = $this->authService->GetUserInfo($checkToken->email);
+            // dd($user['id']);
+            if($user){
+                if($user['email_verified_at'] !== null){
+                    return redirect()->route('login')
+            ->with('autherror', 'You have Already verified your account, please login and start shopping, Thanks!');
+                }
+                $userInfo['email_verified_at'] = Carbon::now();
+                $this->authService->updateAccount($user['id'], $userInfo);
+                return redirect()->route('home')
+            ->with('message', 'You have Verify your Account, Please login and shop');
+
+            }
+            return redirect()->route('login')
+            ->with('autherror', 'User Not Found, please check you email and Try Again');
+            // dd($checkToken->email);
+        }
+        return redirect()->route('login')
+            ->with('autherror', 'Mismatch Token, please check your email and try again');
     }
 
 
@@ -137,17 +170,61 @@ class UserAuthController extends Controller
         // dd($userEmail['email']);
 
         if($this->authService->forgetPassword($userEmail['email'])){
-            $user = User::where('email', $userEmail)->first();
-            // dd($user->name);
-            Mail::to($user->email)->send(new VerifyPassword($user));
-            return redirect()->back()
-            ->with('error', 'Email is avalable to validated');
+            $userInfo = $this->authService->GetUserInfo($userEmail);
+            $checkToken = VerifyAcc::where('email',$userInfo['email'])->first();
+            // dd($checkToken);
+            if(!$checkToken){
+                $verifyInfo['name'] = $userInfo['name'];
+                $verifyInfo['email'] = $userInfo['email'];
+                $verifyInfo['token'] = bcrypt(time());
+                $this->authService->createVerifyToken($verifyInfo);
+                Mail::to($userInfo['email'])->send(new VerifyPassword($verifyInfo));
+                return redirect()->back()
+                ->with('message', 'We have Sent a Verification link to your Email, Kindly check and change your password');
+            }else{
+                $verifyInfo['email'] = $userInfo['email'];
+                $verifyInfo['token'] = bcrypt($userInfo['email'].time());
+                $this->authService->updatePassToken($checkToken['id'],$verifyInfo);
+                Mail::to($userInfo['email'])->send(new VerifyPassword($verifyInfo));
+                return redirect()->back()
+                ->with('message', 'We have Sent a Verification link to your Email, Kindly check and change your password');
+            }
+
         }else{
             return redirect()->back()
             ->with('error', 'Sorry Your email is not found, kindly click on register');
         }
 
-        // return view('frontend.forget-password');
+    }
+
+    public function changePass($verifyToken)
+    {
+        // return $verifyToken;
+        if($verifyToken){
+            return view('frontend.changepassword', compact('verifyToken'));
+        }
+        return redirect()->route('home')
+                ->with('autherror', 'Your token as Expired, Please request for new password');
+    }
+
+    public function changepassPost(PasswordRequest $request, $verifyToken)
+    {
+        $userInfo = $request->validated();
+        $newUserInfo['password'] = bcrypt($userInfo['password']);
+        $checkToken = VerifyAcc::where('token',$verifyToken)->first();
+        if(!$checkToken){
+            return redirect()->back()
+                ->with('autherror', 'Your token as Expired, Please request for new reset link in forget password');
+        }
+            $checkUser = $this->authService->GetUserInfo($checkToken['email']);
+        if($userInfo){
+            $this->authService->updateAccount($checkUser['id'], $newUserInfo);
+            return redirect()->route('login')
+                ->with('message', 'Pasword Change successfully, Please login now with new password');
+        }
+        return redirect()->route('login')
+                ->with('autherror', 'Unable to process request, Please try again later');
+        // dd($userInfo, $verifyToken);
     }
 
     public function destroySession()

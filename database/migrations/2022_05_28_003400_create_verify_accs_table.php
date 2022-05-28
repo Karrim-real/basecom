@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contactuses', function (Blueprint $table) {
+        Schema::create('verify_accs', function (Blueprint $table) {
             $table->id();
             $table->string('email');
-            $table->string('name');
-            $table->string('message');
+            $table->string('token');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contactus');
+        Schema::dropIfExists('verify_accs');
     }
 };

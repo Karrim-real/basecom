@@ -1,5 +1,5 @@
 <?php
-namespace App\interface;
+namespace App\Interfaces;
 
 interface ContactInterface
 {

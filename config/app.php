@@ -183,6 +183,8 @@ return [
         App\Providers\CartServiceProvider::class,
         App\Providers\OrderServiceProvider::class,
         App\Providers\ReviewServiceProvider::class,
+        App\Providers\ContactUsServiceProvider::class,
+
 
 
     ],

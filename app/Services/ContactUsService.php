@@ -1,10 +1,10 @@
 <?php
-namespace App\Service;
+namespace App\Services;
 
-use App\interface\ContactInterface;
+use App\interfaces\ContactInterface;
 use App\Models\Contactus;
 
-class ContactService implements ContactInterface
+class ContactUsService implements ContactInterface
 {
     public function getAllMesages()
     {

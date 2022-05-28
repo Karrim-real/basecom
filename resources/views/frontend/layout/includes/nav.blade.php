@@ -115,7 +115,7 @@
                                     <li><a class="active" href="#">pages <i class="fa fa-angle-down"></i></a>
                                         <ul class="sub_menu pages">
                                             <li><a href="{{ url('about') }}">About Us</a></li>
-                                            <li><a href="{{ url('contact') }}">contact</a></li>
+                                            <li><a href="{{ route('contact-us') }}">contact</a></li>
                                             <li><a href="{{ url('privacy') }}">privacy policy</a></li>
                                             <li><a href="{{ url('faq') }}">Frequently Questions</a></li>
                                             <li><a href="{{ url('login') }}">login</a></li>

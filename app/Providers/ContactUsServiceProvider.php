@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use App\Service\ContactService;
-use App\interface\ContactInterface;
+use App\interfaces\ContactInterface;
+use App\Services\ContactUsService;
 use Illuminate\Support\ServiceProvider;
 
-class ContactUsProvider extends ServiceProvider
+class ContactUsServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -15,8 +15,7 @@ class ContactUsProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(ContactInterface::class, ContactService::class);
-
+        $this->app->bind(ContactInterface::class, ContactUsService::class);
     }
 
     /**

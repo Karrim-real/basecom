@@ -13,6 +13,23 @@ interface UserAuthInterface
     public function register(array $userInfo);
 
     /**
+     * createVerifyToken
+     *
+     * @param  mixed $verifyInfo
+     * @return void
+     */
+    public function createVerifyToken(array $verifyInfo);
+
+    /**
+     * updatePassToken
+     *
+     * @param  mixed $userID
+     * @param  mixed $verifyInfo
+     * @return void
+     */
+    public function updatePassToken($userID, array $verifyInfo);
+
+    /**
      * login
      *
      * @param  array $userInfo

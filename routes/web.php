@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\OrderController as BackendOrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\FrontendController;
@@ -28,13 +29,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::controller(PaymentController::class)->group(function(){
-    Route::get('/payment', 'pay')->name('pay-page');
-    Route::get('/verify-payment/{reference}', 'index');
-
-
-
-});
 
 Route::controller(FrontendController::class)->group(function(){
     Route::get('/', 'index')->name('home');
@@ -43,8 +37,7 @@ Route::controller(FrontendController::class)->group(function(){
     Route::post('/add-to-cart/{product}', 'addToCart')->name('add-to-cart');
     Route::post('/add-to-cart', 'addToCartAjax')->name('add-to-cartajax');
     Route::get('/about', 'about')->name('about');
-    Route::get('/contact', 'contact')->name('contact-us');
-    Route::post('/contact', 'contactstore')->name('contact-send');
+
     Route::get('/privacy', 'privacy')->name('privacy-policy');
     Route::get('/error', 'myerror')->name('error-page');
     Route::get('/faq', 'faq')->name('faq-page');
@@ -56,15 +49,23 @@ Route::controller(FrontendController::class)->group(function(){
 
 });
 
+Route::controller(ContactController::class)->group(function(){
+    Route::get('contact', 'index')->name('contact-us');
+    Route::post('contact', 'store')->name('contact-send');
+});
+
 Route::controller(UserAuthController::class)->group(function(){
 
     Route::get('/register',  'index')->name('register');
     Route::post('/register',  'store')->name('register-form');
+    Route::get('/verifyaccount/{verifytoken}',  'verify')->name('verifyaccount');
     Route::get('/login',  'show')->name('login');
     Route::post('/login',  'create')->name('login-post');
     Route::get('/logout',  'destroySession')->name('logout');
     Route::get('/forget-password',  'forgetPass')->name('forget-password');
     Route::post('/forget-password',  'forgetPassCreate')->name('forgetPost');
+    Route::get('/changepassword/{verifytoken}',  'changePass')->name('chaangepassword');
+    Route::post('/changepassword/{verifytoken}',  'changepassPost')->name('changepasspost');
 
 });
 

@@ -26,9 +26,17 @@ interface ProductInterface{
      * @param  mixed $prodID
      * @return void
      */
-
-     public function liveSearch($search);
     public function getAProduct($prodID);
+
+
+     /**
+      * liveSearch
+      *
+      * @param  mixed $searchText
+      * @return void
+      */
+     public function liveSearch($searchText);
+
 
     /**
      * createProducts

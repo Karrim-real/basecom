@@ -1,4 +1,4 @@
-@section('title', 'Forget Password')
+@section('title', 'Reset Password')
 @include('frontend.layout.includes.head')
 @include('frontend.layout.includes.minicart')
 @include('frontend.layout.includes.nav')
@@ -11,8 +11,8 @@
                 <div class="col-12">
                     <div class="breadcrumb_content">
                         <ul>
-                            <li><a href="index-2.html">home</a></li>
-                            <li>Forget password</li>
+                            <li><a href="{{ url('/')}}">home</a></li>
+                            <li>Reset Password</li>
                         </ul>
                     </div>
                 </div>
@@ -29,18 +29,22 @@
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class="account-thumb">
-                                    <h2>Forgot password?</h2>
+                                    <h2>Reset password?</h2>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consectetur similique deleniti pariatur enim cumque eum</p>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class="account-content">
-                                    <form action="{{  route('forgetPost') }}" method="POST" id="forgetForm">
+                                    <form action="{{  route('changepasspost',$verifyToken) }}" method="POST" id="forgetForm">
                                         {{ @csrf_field() }}
                                         @include('frontend.layout.errors')
                                         <div class="single-acc-field">
-                                            <label for="email">Email</label>
-                                            <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your Email">
+                                            <label for="password">New Password</label>
+                                            <input type="password" id="password" name="password"  placeholder="Enter your New Password">
+                                        </div>
+                                        <div class="single-acc-field">
+                                            <label for="password_confirmation">Confirm Password</label>
+                                            <input type="password" id="password_confirmation" name="password_confirmation"  placeholder="Enter Confirm Password">
                                         </div>
                                         <div class="single-acc-field">
                                             <button type="submit">Reset Password</button>
