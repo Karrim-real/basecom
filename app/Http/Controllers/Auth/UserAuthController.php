@@ -61,8 +61,8 @@ class UserAuthController extends Controller
         $datas['password'] = Hash::make($request->input('password'));
         $verifyInfo['email'] = $datas['email'];
         $verifyInfo['token'] = bcrypt($datas['email']);
-        $insert = $this->authService->register($datas)
-        && $this->authService->createVerifyToken($verifyInfo);
+        $insert = $this->authService->register($datas);
+        $this->authService->createVerifyToken($verifyInfo);
         // dd($insert->id);
         if($insert){
         $user = User::where('email', $datas['email'])->first();
