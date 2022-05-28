@@ -104,6 +104,9 @@
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <!-- Addons JS -->
 
+<script src="https://cdn.jsdelivr.net/gh/LazerPay-Finance/checkout-build@main/checkout@1.0.1/dist/index.min.js"></script>
+
+
 <script src="{{ asset('assets/js/addons.js') }}"></script>
 
 <!-- Plugins JS -->

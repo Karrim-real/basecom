@@ -65,11 +65,15 @@ $(document).ready(function () {
     $('#paymentForm').on('submit', function (e) {
         e.preventDefault();
         let pay = $("input[name='payoption']:checked").val();
+
         console.log(pay);
         $('#buynow').addClass('disabled')
+        let name = $('#name').val();
         let email = $('#email').val();
         let amount = $('#amounts').val();
         let amounInt = parseInt(amount);
+        if(pay === 'paystack'){
+
         let ref = 'paystack'+Math.floor((Math.random() * 10000000000) + 1);
 
         // console.log(amounInt, email, ref);
@@ -81,7 +85,7 @@ $(document).ready(function () {
             // label: "Optional string that replaces customer email"
             onClose: function(){
               alert('Window closed.');
-              console.log('You have cance the payment process');
+              console.log('You have cancel the payment process');
             },
             callback: function(response){
                 let referenceid = response.reference;
@@ -109,5 +113,30 @@ $(document).ready(function () {
             }
           });
           handler.openIframe();
+        }else{
+            console.log('btc choose');
+        let ref = 'lazerpay'+Math.floor((Math.random() * 10000000000) + 1);
+
+            LazerCheckout({
+                reference: ref,
+                name: name,
+                email: email,
+                amount: amounInt,
+                key: "pk_test_y48NtxNZiHPvA4rST60Km5huvIKnrDy4m0Jy3HbxpS7dOta29U",
+                currency: "USD",
+                acceptPartialPayment: false, // By default it's false
+                onClose: (data)=>{
+                    alert('Payment Cancel');
+                    console.log('You have cancel your payment');
+                },
+                onSuccess: (data)=>{
+                    console.log('Payment was made successfull');
+                },
+                onError: (data)=>{
+                    console.log('An Error Occur while initialize your payment');
+
+                }
+             })
+        }
     });
 });

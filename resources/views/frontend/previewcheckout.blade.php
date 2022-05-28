@@ -145,7 +145,6 @@
                                 <input type="hidden" name="email" id="email" value="{{Auth::user()->email}}">
                                 <input type="hidden" name="name" id="name"  value="{{Auth::user()->name}}">
                                 <input type="hidden" name="phone" id="phone" value="{{Auth::user()->phone}}">
-
                                 <input type="hidden" name="amount" id="amounts" value="{{ $total_price }}">
                                 <input type="hidden" name="total_qty" value=" {{$total_qty }}">
                                 {{-- {{dd($total_price)}} --}}
