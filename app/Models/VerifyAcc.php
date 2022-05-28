@@ -14,8 +14,4 @@ class VerifyAcc extends Model
         'token'
     ];
 
-    // public function users()
-    // {
-    //     return $this->belongsTo('App\Models\User');
-    // }
 }
