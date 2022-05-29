@@ -60,8 +60,9 @@ class UserAuthController extends Controller
         // dd(Str::random(10));
         $datas['password'] = Hash::make($request->input('password'));
         $insert = $this->authService->register($datas);
-        $verifyInfo['email'] = $datas['email'];
-        $verifyInfo['token'] = bcrypt($datas['email']);
+        // dd($insert->email);
+        $verifyInfo['email'] = $insert->email;
+        $verifyInfo['token'] = bcrypt($insert->email);
         $this->authService->createVerifyToken($verifyInfo);
         // dd($insert->id);
         if($insert){
