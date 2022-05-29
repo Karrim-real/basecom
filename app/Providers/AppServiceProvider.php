@@ -30,11 +30,8 @@ class AppServiceProvider extends ServiceProvider
             \URL::forceScheme('https');
         }
 
-        // $categorys = Category::latest()->take(3)->get();
-        // view()->share('categorys', $categorys);
-
-
-
+        $categorys = Category::latest()->take(3)->get();
+        view()->share('categorys', $categorys);
 
     }
 }
