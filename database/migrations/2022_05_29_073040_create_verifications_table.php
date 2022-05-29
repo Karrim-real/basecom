@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('verify_accs', function (Blueprint $table) {
+        Schema::create('verifications', function (Blueprint $table) {
             $table->id();
             $table->string('email');
             $table->string('token');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('verify_accs');
+        Schema::dropIfExists('verifications');
     }
 };

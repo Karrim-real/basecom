@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Interfaces\UserAuthInterface;
+use App\Models\Verification;
 use App\Models\VerifyAcc;
 
 class AuthService implements UserAuthInterface{
@@ -20,12 +21,12 @@ class AuthService implements UserAuthInterface{
 
     public function createVerifyToken(array $verifyInfo)
     {
-        return VerifyAcc::create($verifyInfo);
+        return Verification::create($verifyInfo);
     }
 
     public function updatePassToken($userID, array $verifyInfo)
     {
-        return VerifyAcc::whereId($userID)->update($verifyInfo);
+        return Verification::whereId($userID)->update($verifyInfo);
     }
     /**
      * login
