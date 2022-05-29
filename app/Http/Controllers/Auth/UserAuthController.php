@@ -10,6 +10,7 @@ use App\Http\Requests\PasswordRequest;
 use App\Mail\VerifyAccount;
 use App\Mail\VerifyPassword;
 use App\Models\User;
+use App\Models\Verification;
 use App\Models\VerifyAcc;
 use App\Services\AuthService;
 use Carbon\Carbon;
@@ -60,9 +61,9 @@ class UserAuthController extends Controller
         // dd(Str::random(10));
         $datas['password'] = Hash::make($request->input('password'));
         $insert = $this->authService->register($datas);
-        // dd($insert->email);
-        $verifyInfo['email'] = $insert->email;
-        $verifyInfo['token'] = bcrypt($insert->email);
+
+        $verifyInfo['email'] = $datas['email'];
+        $verifyInfo['token'] = bcrypt($datas['email']);
         $this->authService->createVerifyToken($verifyInfo);
         // dd($insert->id);
         if($insert){
@@ -83,7 +84,7 @@ class UserAuthController extends Controller
 
     public function verify($verifytoken)
     {
-        $checkToken = VerifyAcc::where('token', $verifytoken)->first();
+        $checkToken = Verification::where('token', $verifytoken)->first();
         if($checkToken){
             $user = $this->authService->GetUserInfo($checkToken->email);
             // dd($user['id']);
@@ -172,7 +173,7 @@ class UserAuthController extends Controller
 
         if($this->authService->forgetPassword($userEmail['email'])){
             $userInfo = $this->authService->GetUserInfo($userEmail);
-            $checkToken = VerifyAcc::where('email',$userInfo['email'])->first();
+            $checkToken = Verification::where('email',$userInfo['email'])->first();
             // dd($checkToken);
             if(!$checkToken){
                 $verifyInfo['name'] = $userInfo['name'];
@@ -212,7 +213,7 @@ class UserAuthController extends Controller
     {
         $userInfo = $request->validated();
         $newUserInfo['password'] = bcrypt($userInfo['password']);
-        $checkToken = VerifyAcc::where('token',$verifyToken)->first();
+        $checkToken = Verification::where('token',$verifyToken)->first();
         if(!$checkToken){
             return redirect()->back()
                 ->with('autherror', 'Your token as Expired, Please request for new reset link in forget password');
