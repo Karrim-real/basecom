@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class VerifyAcc extends Model
 {
     use HasFactory;
-
+protected $table = 'verify_accs';
     protected $fillable = [
         'email',
         'token'
