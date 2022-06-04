@@ -30,7 +30,7 @@ class FrontendController extends Controller
 
         $products = $this->ProductService->prodFilter(3);
         $recentProds = $this->ProductService->prodFilter(6);
-    //    $categorys = $this->categoryServices->getAllcategorys();
+
         return view('index', compact('products', 'recentProds'));
     }
 
@@ -111,27 +111,6 @@ class FrontendController extends Controller
     }
 
 
-    /**
-     * contact
-     *
-     * @return void
-     */
-    public function contact()
-    {
-        return view('frontend.contact');
-    }
-
-        /**
-     * contact
-     *
-     * @return void
-     */
-    public function contactstore(ContactRequest $request)
-    {
-        $message = $request->validated();
-        dd($message);
-        return view('frontend.contact');
-    }
 
 
     /**

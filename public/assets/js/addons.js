@@ -1,6 +1,7 @@
 
 $(document).ready(function () {
     loadCount()
+    loadNavProds()
 
     $("#addProduct").on("submit", function (e) {
         e.preventDefault();
@@ -53,14 +54,25 @@ $(document).ready(function () {
     }
 
     function loadNavProds(){
+        $('#prodname').html('loading');
+        // console.log(link);
+
         $.ajax({
             type: "GET",
-            url: "/load-nav-prods",
+            url: "load-nav-prods",
+            dataType: 'json',
             success: function (response) {
+                $('#prodname').html(response.cartprods.title);
+                $('#prodprice').html(response.cartprods.discount_price);
+                $('#prodimage').attr('src','assets/img/shopping-bag.png');
+                $('#prodlink').attr('href','product/'+response.cartprods.id+'/'+response.cartprods.slug);
+                $('#prodqty').html(response.prod_qty);
 
+                // console.log(response.prod_qty);
             }
         });
     }
+
 
     $('#paymentForm').on('submit', function (e) {
         e.preventDefault();

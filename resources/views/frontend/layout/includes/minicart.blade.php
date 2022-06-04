@@ -47,8 +47,8 @@
                                            <a href="#"><img src="{{asset('assets/img/s-product/product.jpg')}}" alt=""></a>
                                        </div>
                                         <div class="cart_info">
-                                            <a href="#">Sit voluptatem rhoncus sem lectus</a>
-                                            <p>Qty: 1 X <span> $60.00 </span></p>
+                                            <a href="#">Sit voluptatemrhoncus sem lectus</a>
+                                            <p>Qty: 1 X <span> $600.00 </span></p>
                                         </div>
                                         <div class="cart_remove">
                                             <a href="#"><i class="ion-android-close"></i></a>
@@ -118,8 +118,8 @@
                                 <li class="menu-item-has-children">
                                     <a href="#">blog</a>
                                     <ul class="sub-menu">
-                                        <li><a href="blog.html">blog</a></li>
-                                        <li><a href="blog-details.html">blog details</a></li>
+                                        <li><a href="{{ url('checkout') }}">blog</a></li>
+                                        <li><a href="{{ url('checkout') }}">blog details</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">

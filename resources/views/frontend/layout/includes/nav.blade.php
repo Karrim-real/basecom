@@ -35,7 +35,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-6">
                         <div class="logo">
-                            <a href="{{ url('/') }}"><img src="{{asset('assets/img/logo/logo22.png')}}" alt=""></a>
+                            <a href="{{ url('/') }}"><img src="{{asset('assets/img/logo/logo.png')}}" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-6">
@@ -58,20 +58,20 @@
                                     <span class="cart_quantity">0</span>
 
                                     <!--mini cart-->
-                                    {{-- @foreach ($carts as $cartProds)
-
+                                    {{-- @foreach ($minicarts as $cartProds)
+                                    {{ dd($cartsProds)}}
                                     @endforeach --}}
                                      <div class="mini_cart">
                                         <div class="cart_item">
                                            <div class="cart_img">
-                                               <a href="#"><img src="{{asset('assets/img/s-product/product.jpg')}}" alt=""></a>
+                                               <a href="localjjo" id="" ><img id="prodimage" src="myimgades" alt=""></a>
                                            </div>
                                             <div class="cart_info">
-                                                <a href="#">Sit voluptatem rhoncus sem lectus</a>
-                                                <p>Qty: 1 X <span> $60.00 </span></p>
+                                                <a href="product" id="prodlink"><span id="prodname"></span></a>
+                                                <p>Qty: <span id="prodqty"></span> X $<span id="prodprice">  </span></p>
                                             </div>
                                             <div class="cart_remove">
-                                                <a href="#"><i class="ion-android-close"></i></a>
+                                                <a href="product"><i class="ion-android-close"></i></a>
                                             </div>
                                         </div>
 

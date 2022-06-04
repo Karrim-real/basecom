@@ -5,9 +5,9 @@
                 <div class="row">
                     <div class="col-xl-6 col-md-6">
                         <div class="slider_content">
-                            <h1>Next level of Drone</h1>
-                            <h2>Insane Quality for use</h2>
-                            <p>Special offer <span> 20% off </span> this week</p>
+                            <h1>Grow your NFT, Discord Server With just A Click</h1>
+                            <h2>Best Nft discord promotion service</h2>
+                            <p>Special offer <span>Get 10% off </span> on your second Order</p>
                             <a class="button" href="{{url('/products')}}">Buy now</a>
                         </div>
                     </div>
@@ -25,9 +25,9 @@
                 <div class="row">
                     <div class="col-xl-6 col-md-6">
                         <div class="slider_content">
-                            <h1>Best Camera Included</h1>
+                            <h1>Grow your NFT with just a Tap</h1>
                             <h2>100% Flexible</h2>
-                            <p>exclusive offer <span> 20% off </span> this week</p>
+                            <p>exclusive offer <span> for NFT promotion </span> this week</p>
                             <a class="button" href="{{url('/products')}}">Shop now</a>
                         </div>
                     </div>
@@ -45,8 +45,8 @@
                     <div class="col-xl-6 col-md-6">
                         <div class="slider_content">
                             <h1>With some gifts</h1>
-                            <h2>Special one for you</h2>
-                            <p>exclusive offer <span> 20% off </span> this week</p>
+                            <h2>Increase your Discord Server</h2>
+                            <p>Premiun offer <span> for only Discord</span> promotions this week</p>
                             <a class="button" href="{{url('/products')}}">shopping now</a>
                         </div>
                     </div>

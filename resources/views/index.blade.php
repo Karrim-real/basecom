@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col text-center">
                     <div class="section-title">
-                        <h2>Trending Products</h2>
+                        <h2>Trending Services</h2>
                     </div>
                 </div>
             </div>

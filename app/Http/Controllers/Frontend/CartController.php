@@ -43,12 +43,13 @@ class CartController extends Controller
     {
         $ajaxProds = $this->cartServices->navAjaxProd();
             foreach($ajaxProds as $ajaprods){
-                dd($ajaprods->products());
+                return response()->json([
+                    'cartprods' => $ajaprods->products,
+                    'prod_qty' => $ajaprods->prod_qty
+                ]);
             }
 
-            return response()->json([
-                'cartcount' => $ajaxProds,
-            ]);
+
 
     }
 }

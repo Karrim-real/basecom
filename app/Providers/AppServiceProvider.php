@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,6 +33,10 @@ class AppServiceProvider extends ServiceProvider
 
         $categorys = Category::latest()->take(3)->get();
         view()->share('categorys', $categorys);
+
+        // $products = Cart::all();
+        // // dd(Auth::user());
+        // view()->share('products', $products);
 
     }
 }

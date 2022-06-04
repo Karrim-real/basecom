@@ -11,7 +11,7 @@ use App\Mail\VerifyAccount;
 use App\Mail\VerifyPassword;
 use App\Models\User;
 use App\Models\Verification;
-
+use App\Models\VerifyAcc;
 use App\Services\AuthService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -75,17 +75,19 @@ class UserAuthController extends Controller
             return redirect()->route('home')
             ->with('message', 'You have Register Successfully');
         }
-        else{
+
             return redirect()->back()
             ->with('message', 'An Error Occur');
-        }
 
     }
 
     public function verify($verifytoken)
     {
         $checkToken = Verification::where('token', $verifytoken)->first();
-        if($checkToken){
+        if(!$checkToken){
+            return redirect()->route('login')
+            ->with('autherror', 'Mismatch Token, please check your email and try again');
+        }
             $user = $this->authService->GetUserInfo($checkToken->email);
             // dd($user['id']);
             if($user){
@@ -102,9 +104,8 @@ class UserAuthController extends Controller
             return redirect()->route('login')
             ->with('autherror', 'User Not Found, please check you email and Try Again');
             // dd($checkToken->email);
-        }
-        return redirect()->route('login')
-            ->with('autherror', 'Mismatch Token, please check your email and try again');
+
+
     }
 
 
