@@ -11,7 +11,7 @@ use App\Mail\VerifyAccount;
 use App\Mail\VerifyPassword;
 use App\Models\User;
 use App\Models\Verification;
-use App\Models\VerifyAcc;
+
 use App\Services\AuthService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;

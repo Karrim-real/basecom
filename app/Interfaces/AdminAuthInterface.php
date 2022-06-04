@@ -18,7 +18,7 @@ interface AdminAuthInterface
      * @param  mixed $searchText
      * @return void
      */
-    // public function liveSearch($searchText);
+    public function liveSearch($searchText);
 
     /**
      * login
