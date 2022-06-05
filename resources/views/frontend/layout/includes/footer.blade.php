@@ -20,12 +20,12 @@
                         <h3>Information</h3>
                         <div class="footer_menu">
                             <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="blog.html">Delivery Information</a></li>
-                                <li><a href="contact.html">Privacy Policy</a></li>
-                                <li><a href="services.html">Terms & Conditions</a></li>
-                                <li><a href="#">Returns</a></li>
-                                <li><a href="#">Gift Certificates</a></li>
+                                <li><a href=" {{url('about')}} ">About Us</a></li>
+                                <li><a href="{{url('delivery')}}">Delivery Information</a></li>
+                                <li><a href="{{url('privacy')}}">Privacy Policy</a></li>
+                                <li><a href="{{url('terms')}}">Terms & Conditions</a></li>
+                                <li><a href="{{url('return')}}">Returns</a></li>
+                                <li><a href="{{url('giftcert')}}">Gift Certificates</a></li>
                             </ul>
                         </div>
                     </div>
@@ -35,12 +35,12 @@
                         <h3>My Account</h3>
                         <div class="footer_menu">
                             <ul>
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">Order History</a></li>
-                                <li><a href="wishlist.html">Wish List</a></li>
-                                <li><a href="#">Newsletter</a></li>
-                                <li><a href="#">Affiliate</a></li>
-                                <li><a href="faq.html">International Orders</a></li>
+                                <li><a href="{{url('login')}}">My Account</a></li>
+                                <li><a href="{{url('about')}}">Order History</a></li>
+                                <li><a href="{{url('#')}}">Wish List</a></li>
+                                <li><a href="{{url('blog')}}">Newsletter</a></li>
+                                <li><a href="{{url('about')}}">Affiliate</a></li>
+                                <li><a href="{{url('faq')}}">International Orders</a></li>
                             </ul>
                         </div>
                     </div>
@@ -50,11 +50,11 @@
                         <h3>Follow Us</h3>
                         <div class="footer_social_link">
                             <ul>
-                                <li><a class="facebook" href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                <li><a class="twitter" href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                <li><a class="instagram" href="#" title="instagram"><i class="fa fa-instagram"></i></a></li>
-                                <li><a class="linkedin" href="#" title="linkedin"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a class="rss" href="#" title="rss"><i class="fa fa-rss"></i></a></li>
+                                <li><a class="facebook" href="http://www.facebook.com" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                <li><a class="twitter" href="http://www.twitter.com"  target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                <li><a class="instagram" href="http://www.instagram.com" target="_blank"  title="instagram"><i class="fa fa-instagram"></i></a></li>
+                                <li><a class="linkedin" href="http://www.linkedin.com"  target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a class="rss" href="http://www.google.com"  target="_blank" title="rss"><i class="fa fa-rss"></i></a></li>
                             </ul>
                         </div>
                         <div class="subscribe_form">
@@ -80,7 +80,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6">
                         <div class="copyright_area">
-                            <p> <a href="karrim4real@gmail.com">Dryo Strore</a></p>
+                            <p> <a href="karrim4real@gmail.com">Fityo Strore</a></p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
