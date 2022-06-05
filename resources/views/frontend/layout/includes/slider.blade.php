@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-xl-6 col-md-6">
                         <div class="slider_content">
-                            <img src="assets/img/product/1.png" alt="">
+                            <img src="assets/img/product/gold.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-xl-6 col-md-6">
                         <div class="slider_content">
-                            <img src="assets/img/product/2.png" alt="">
+                            <img src="assets/img/product/silver.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-xl-6 col-md-6">
                         <div class="slider_content">
-                            <img src="assets/img/product/3.png" alt="">
+                            <img src="assets/img/product/platinum.png" alt="">
                         </div>
                     </div>
                 </div>

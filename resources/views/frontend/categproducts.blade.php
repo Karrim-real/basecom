@@ -1,4 +1,4 @@
-@section('title', 'Product Category')
+@section('title', 'Product Categorys')
 @include('frontend.layout.includes.head')
 @include('frontend.layout.includes.minicart')
 @include('frontend.layout.includes.nav')
@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col text-center">
                     <div class="section-title">
-                        <h2>Category Products</h2>
+                        <h2>Categorys</h2>
                     </div>
                 </div>
             </div>

@@ -179,7 +179,7 @@ class UserAuthController extends Controller
             if(!$checkToken){
                 $verifyInfo['name'] = $userInfo['name'];
                 $verifyInfo['email'] = $userInfo['email'];
-                $verifyInfo['token'] = bcrypt(time());
+                $verifyInfo['token'] = md5($userInfo['email']);
                 $this->authService->createVerifyToken($verifyInfo);
                 Mail::to($userInfo['email'])->send(new VerifyPassword($verifyInfo));
                 return redirect()->back()
