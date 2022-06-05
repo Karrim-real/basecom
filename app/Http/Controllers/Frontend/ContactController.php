@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
 use App\Mail\ContactUs;
-use App\Services\ContactUsService;
+use App\Services\ContactService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
     protected $contactServices;
-    public function __construct(ContactUsService $contactService)
+    public function __construct(ContactService $contactService)
     {
        return $this->contactServices = $contactService;
     }

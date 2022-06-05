@@ -4,7 +4,7 @@ namespace App\Services;
 use App\interfaces\ContactInterface;
 use App\Models\Contactus;
 
-class ContactUsService implements ContactInterface
+class ContactService implements ContactInterface
 {
     public function getAllMesages()
     {
