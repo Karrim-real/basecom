@@ -34,6 +34,7 @@ class CartServices implements CartInterface
                 'status' => 'error',
             'message' => 'Product Alread Exists in your cart'
             ]);
+
         }else{
             $insertCart = Cart::create($prod_details);
             // dd($insertCart);

@@ -8,7 +8,7 @@ We are plead to save you best of ouir service. <br>
 Please Kindly verify your account by clicking the verify button below <br>
 
 
-@component('mail::button', ['url' => 'http://www.localhost:8000/verifyaccount/'.$message['token']])
+@component('mail::button', ['url' => 'http://www.localhost:8000/verifyaccount/'.trim($message['token'])])
 Verify your Account
 @endcomponent
 

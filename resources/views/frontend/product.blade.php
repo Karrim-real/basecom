@@ -76,7 +76,7 @@
                                     <li><a href="#"><i class="fa fa-star"></i></a></li>
                                     <li><a href="#"><i class="fa fa-star"></i></a></li>
                                     <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li class="review"><a href="#"> (250 reviews) </a></li>
+                                    <li class="review"><a href="#"> ({{ rand(20, 50)}} reviews) </a></li>
                                 </ul>
 
                             </div>
@@ -87,7 +87,8 @@
                             </div>
                             <div class="product_desc">
                                 <ul>
-                                    @if ($products->prod_qty < 1)
+                                    {{-- {{ dd($products->status)}} --}}
+                                    @if ($products->status == '0')
                                     <li style="color:red">Out Stock</li>
                                     @else
                                     <li>In Stock</li>
@@ -115,7 +116,11 @@
                             <div class="product_variant quantity">
                                 <label>quantity</label>
                                 <input min="1" max="10" name="prod_qty" id="prod_qty" value="1" type="number">
+                                @if ($products->status == '0')
+                                @else
                                 <button class="button" type="submit" id="Add-To-Cart">add to cart</button>
+
+                                @endif
 
                             </div>
                             {{-- <div class=" product_d_action">

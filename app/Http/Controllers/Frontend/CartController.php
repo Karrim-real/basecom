@@ -18,7 +18,7 @@ class CartController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
         $cartProds = $this->cartServices->AllCartProducts();
         return view('frontend.cart', compact('cartProds'));
