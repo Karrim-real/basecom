@@ -128,27 +128,54 @@ $(document).ready(function () {
         }else{
             console.log('btc choose');
         let ref = 'lazerpay'+Math.floor((Math.random() * 10000000000) + 1);
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                ),
+            },
+        });
+        $.ajax({
+            type: "POST",
+            url: "/payment",
+            // data: referenceid,
+            dataType: 'json',
+            success: function (responsel) {
+                console.log(responsel.data);
+                // if(responsei.status === 'success'){
+                //     Swal.fire({
+                //         icon: responsei.status,
+                //         title: responsei.status,
+                //         text: responsei.message,
+                //         showConfirmButton: true,
+                //         timer: 2000,
+                //     }).then(result=>{
+                //         window.location = responsei.url
+                //     })
+                // }
+            }
+        });
+            // LazerCheckout({
+            //     reference: ref,
+            //     name: name,
+            //     email: email,
+            //     amount: amounInt,
+            //     key: "pk_test_y48NtxNZiHPvA4rST60Km5huvIKnrDy4m0Jy3HbxpS7dOta29U",
+            //     currency: "USD",
+            //     coin: 'USDT',
+            //     acceptPartialPayment: false, // By default it's false
+            //     onClose: (data)=>{
+            //         alert('Payment Cancel');
+            //         console.log('You have cancel your payment');
+            //     },
+            //     onSuccess: (data)=>{
+            //         console.log('Payment was made successfull');
+            //     },
+            //     onError: (data)=>{
+            //         console.log('An Error Occur while initialize your payment');
 
-            LazerCheckout({
-                reference: ref,
-                name: name,
-                email: email,
-                amount: amounInt,
-                key: "pk_test_y48NtxNZiHPvA4rST60Km5huvIKnrDy4m0Jy3HbxpS7dOta29U",
-                currency: "USD",
-                acceptPartialPayment: false, // By default it's false
-                onClose: (data)=>{
-                    alert('Payment Cancel');
-                    console.log('You have cancel your payment');
-                },
-                onSuccess: (data)=>{
-                    console.log('Payment was made successfull');
-                },
-                onError: (data)=>{
-                    console.log('An Error Occur while initialize your payment');
-
-                }
-             })
+            //     }
+            //  })
         }
     });
 });

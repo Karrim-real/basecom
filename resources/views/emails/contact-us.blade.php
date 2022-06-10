@@ -8,7 +8,7 @@ Message of the Contact
 Meesage : {{$messages['message']}}
 
 
-@component('mail::button', ['url' => ''])
+@component('mail::button', ['url' => config('app.url')])
 From Drophut
 @endcomponent
 

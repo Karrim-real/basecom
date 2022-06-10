@@ -63,7 +63,7 @@ class UserAuthController extends Controller
         $insert = $this->authService->register($datas);
 
         $verifyInfo['email'] = $datas['email'];
-        $verifyInfo['token'] = bcrypt($datas['email']);
+        $verifyInfo['token'] = hash('md5',$datas['email']);
         $this->authService->createVerifyToken($verifyInfo);
         // dd($insert->id);
         if($insert){
@@ -186,7 +186,7 @@ class UserAuthController extends Controller
                 ->with('message', 'We have Sent a Verification link to your Email, Kindly check and change your password');
             }else{
                 $verifyInfo['email'] = $userInfo['email'];
-                $verifyInfo['token'] = bcrypt($userInfo['email'].time());
+                $verifyInfo['token'] = hash('md5',$userInfo['email']);
                 $this->authService->updatePassToken($checkToken['id'],$verifyInfo);
                 Mail::to($userInfo['email'])->send(new VerifyPassword($verifyInfo));
                 return redirect()->back()

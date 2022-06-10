@@ -10,6 +10,7 @@ use App\Services\CartServices;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class CheckoutController extends Controller
 {
@@ -73,27 +74,10 @@ class CheckoutController extends Controller
             return back()->with('error', 'Your reference key is empty, Please try again later');
         }else{
 
-            $curl = curl_init();
-            curl_setopt_array($curl, array(
-              CURLOPT_URL => "https://api.paystack.co/transaction/verify/$reference",
-              CURLOPT_RETURNTRANSFER => true,
-              CURLOPT_ENCODING => "",
-              CURLOPT_MAXREDIRS => 10,
-              CURLOPT_TIMEOUT => 30,
-              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-              CURLOPT_CUSTOMREQUEST => "GET",
-              CURLOPT_HTTPHEADER => array(
-                "Authorization: Bearer ".config('paystack.secret_key'),
-                "Cache-Control: no-cache",
-              ),
-            ));
+         $response = Http::withToken(config('paystack.secret_key'),
+            )->get("https://api.paystack.co/transaction/verify/$reference");
 
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
-            curl_close($curl);
-
-            if ($err) {
-            //   return "cURL Error #:" . $err;
+            if ($response['status'] == '0') {
             return response()->json([
                 'status' => 'error',
                 'message' => 'An Error occur while proccesing your payment, Please try again later',
@@ -102,6 +86,7 @@ class CheckoutController extends Controller
 
             } else {
                 $decode_response = json_decode($response);
+
                 if($decode_response->status){
                     $orderDetails = session('datas');
                     $orderDetails['payment_type'] = 'paystack';
@@ -157,7 +142,6 @@ class CheckoutController extends Controller
         }else{
             return redirect()->route('home')->with('error', 'An Error Occurs while processing your order, Pease try again later');
         }
-
     }
 
 }

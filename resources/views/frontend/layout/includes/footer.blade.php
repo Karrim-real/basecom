@@ -105,6 +105,7 @@
 <!-- Addons JS -->
 
 <script src="https://cdn.jsdelivr.net/gh/LazerPay-Finance/checkout-build@main/checkout@1.0.1/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/LazerPay-Finance/checkout-build@main/checkout%401.0.1/dist/index.js"></script>
 
 
 <script src="{{ asset('assets/js/addons.js') }}"></script>

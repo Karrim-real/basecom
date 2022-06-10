@@ -92,8 +92,15 @@ Route::controller(CheckoutController::class)->group(function(){
     Route::get('/preview-order', 'previews')->name('preview-order')->middleware('auth');
     Route::get('/order-payment/{paymentref}', 'orderPayment')->name('order-payment')->middleware('auth');
     Route::get('/thanks-you/{reference}', 'thanks')->name('thanks-you/')->middleware('auth');
-
 });
+
+
+Route::get('/mypayment', [PaymentController::class, 'index']);
+Route::post('/payment', [PaymentController::class, 'payment']);
+Route::post('/payment/crypto/callback', [PaymentController::class, 'callback'])->withoutMiddleware(['web', 'auth']);
+Route::match(['get', 'post'], '/payments/crypto/pay', Victorybiz\LaravelCryptoPaymentGateway\Http\Controllers\CryptoPaymentController::class)
+                ->name('payments.crypto.pay')->middleware('auth');
+
 
 Route::group(['prefix' => 'admin'], function(){
     Route::controller(AdministraviceController::class)->group(function(){

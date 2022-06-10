@@ -188,7 +188,7 @@
     </section><!--/Testimonials-->
 
     <!--Blog-->
-    <section class="pt-60">
+    {{-- <section class="pt-60">
         <div class="container">
             <div class="row">
                 <div class="col text-center">
@@ -266,7 +266,7 @@
                 </div>
             </div>
         </div>
-    </section><!--/Blog-->
+    </section><!--/Blog--> --}}
 
     <!--shipping area start-->
     <section class="shipping_area">

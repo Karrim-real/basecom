@@ -171,7 +171,7 @@
                                 <input type="hidden" name="name" value="{{Auth::user()->name}}">
                                 <input type="hidden" name="phone" value="{{Auth::user()->phone}}">
 
-                                <input type="hidden" name="amount" value="{{$total_price * 100}}">
+                                <input type="hidden" name="amount" value="{{$total_price}}">
                                 <input type="hidden" name="total_qty" value=" {{$total_qty }}">
 
 
