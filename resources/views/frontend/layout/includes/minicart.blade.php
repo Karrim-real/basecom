@@ -118,7 +118,6 @@
                                 <li class="menu-item-has-children">
                                     <a href="#">blog</a>
                                     <ul class="sub-menu">
-                                        <li><a href="{{ url('checkout') }}">blog</a></li>
                                         <li><a href="{{ url('checkout') }}">blog details</a></li>
                                     </ul>
                                 </li>
