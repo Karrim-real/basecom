@@ -110,7 +110,21 @@ class FrontendController extends Controller
         return view('frontend.about');
     }
 
+    /**
+     * terms
+     *
+     * @return void
+     */
+    public function terms()
+    {
+        return view('frontend.terms');
+    }
 
+    public function deliverys()
+    {
+        return view('frontend.deliverys');
+
+    }
 
 
     /**

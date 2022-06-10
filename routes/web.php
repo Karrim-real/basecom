@@ -37,10 +37,13 @@ Route::controller(FrontendController::class)->group(function(){
     Route::post('/add-to-cart/{product}', 'addToCart')->name('add-to-cart');
     Route::post('/add-to-cart', 'addToCartAjax')->name('add-to-cartajax');
     Route::get('/about', 'about')->name('about');
+    Route::get('/delivery', 'deliverys')->name('deliverys');
 
     Route::get('/privacy', 'privacy')->name('privacy-policy');
     Route::get('/error', 'myerror')->name('error-page');
     Route::get('/faq', 'faq')->name('faq-page');
+    Route::get('/terms', 'terms')->name('terms');
+
     Route::get('/tracking', 'tracking')->name('tracking-page');
     Route::post('/tracking', 'trackingCreate')->name('tracking-create');
     Route::get('/categorys', 'allCates')->name('categorys');
