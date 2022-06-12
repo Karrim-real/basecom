@@ -35,7 +35,7 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class="account-content">
-                                    <form action="{{ route('login-post') }}" method="POST" >
+                                    <form action="{{ route('login-post') }}" method="POST" autocomplete="on">
                                         {{ @csrf_field() }}
                                         @include('frontend.layout.errors')
                                         @error('email')
@@ -43,7 +43,7 @@
                                     @enderror
                                         <div class="single-acc-field">
                                             <label for="email">Email</label>
-                                            <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your Email" >
+                                            <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your Email"  >
                                         </div>
 
                                         <div class="single-acc-field">

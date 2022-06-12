@@ -11,7 +11,6 @@ use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\FrontendController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -97,7 +96,7 @@ Route::controller(CheckoutController::class)->group(function(){
     Route::get('/thanks-you/{reference}', 'thanks')->name('thanks-you/')->middleware('auth');
 });
 
-
+Route::webhooks('charge/webhookhandler');
 Route::get('/mypayment', [PaymentController::class, 'index']);
 Route::post('/payment', [PaymentController::class, 'payment']);
 Route::post('/payment/crypto/callback', [PaymentController::class, 'callback'])->withoutMiddleware(['web', 'auth']);

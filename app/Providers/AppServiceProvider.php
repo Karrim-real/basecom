@@ -29,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
     {
         if(config('app.env') === 'production') {
             \URL::forceScheme('https');
+        }else{
+            \URL::forceScheme('https');
         }
 
         $categorys = Category::latest()->take(3)->get();

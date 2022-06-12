@@ -233,7 +233,7 @@ class UserAuthController extends Controller
     public function destroySession()
     {
         $this->authService->logout();
-        return redirect()->home();
+        return redirect()->route('home');
     }
 
 

@@ -141,18 +141,18 @@ $(document).ready(function () {
             // data: referenceid,
             dataType: 'json',
             success: function (responsel) {
-                console.log(responsel.data);
-                // if(responsei.status === 'success'){
-                //     Swal.fire({
-                //         icon: responsei.status,
-                //         title: responsei.status,
-                //         text: responsei.message,
-                //         showConfirmButton: true,
-                //         timer: 2000,
-                //     }).then(result=>{
-                //         window.location = responsei.url
-                //     })
-                // }
+                // console.log(responsel.data);
+                if(responsel.data){
+                    Swal.fire({
+                        icon: 'info',
+                        title: responsel.title,
+                        text: responsel.message,
+                        showConfirmButton: false,
+                        timer: 2000,
+                    }).then(result=>{
+                        window.location = responsel.data.data['hosted_url']
+                    })
+                }
             }
         });
             // LazerCheckout({
