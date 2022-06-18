@@ -50,9 +50,10 @@
         </tbody>
 
         </table>
+        <center>{{ $categorys->render()}}</center>
+
       </div>
       <br>
       <br>
-      <center>{{ $categorys->render()}} </center>
 
  @include('admin.layout.footer')

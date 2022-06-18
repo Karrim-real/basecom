@@ -18,13 +18,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'phone' => '0902000030',
-            'role_as' => 1,
-            'email_verified_at' => now(),
-            'password' => bcrypt('1234567890'), // password
-            'remember_token' => Str::random(10),
+           //
         ];
     }
 

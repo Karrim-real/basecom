@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class VerifyAccount extends Mailable
+class VerifyAccount extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
     public array $message;

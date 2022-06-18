@@ -4,7 +4,7 @@ namespace App\Services;
 use App\Models\User;
 use App\Interfaces\UserAuthInterface;
 use App\Models\Verification;
-use App\Models\VerifyAcc;
+
 
 class AuthService implements UserAuthInterface{
 

@@ -3,10 +3,8 @@
 namespace App\Services;
 use App\Interfaces\ProductInterface;
 use App\Models\Product;
-use Faker\Core\File;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File as FacadesFile;
-use Illuminate\Support\Facades\Storage;
+
 
 class ProductService implements ProductInterface {
 

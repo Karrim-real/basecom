@@ -7,7 +7,7 @@
     <!--Tranding product-->
     @if (!count($categorys))
     <div class="alert alert-warning">
-        <h1 class="h2">No Product Available</h1>
+        <h1 class="h2">No Category Available</h1>
     </div>
 
     @endif
@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col text-center">
                     <div class="section-title">
-                        <h2>Tranding Products</h2>
+                        <h2>Categorys</h2>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                 @foreach ($categorys as $category)
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="single-tranding">
-                        <a href="{{ url('category/'.$category->id.'/'.$category->slug) }}">
+                        <a href="{{ url('category/'.$category->id) }}">
                             <div class="tranding-pro-img">
                                 <img src="{{asset('uploads/categorys/images/'.$category->images) }}" alt="{{$category->title}}">
                             </div>

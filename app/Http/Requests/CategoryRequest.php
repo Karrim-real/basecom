@@ -29,6 +29,7 @@ class CategoryRequest extends FormRequest
             'slug' => 'required',
             'images' => 'required|image|mimes:png,jpg,jpeg|max:2028',
             'status' => 'nullable',
+            'maincate_id' => 'required'
             ];
     }
 
@@ -38,6 +39,7 @@ class CategoryRequest extends FormRequest
             'title.required' => 'Please enter your category name',
             'desc.required' => 'Please enter your categor Description name',
             'images.required' => 'Please upload categor image',
+            'maincate_id.required' => 'Please choose Main Catgory',
         ];
     }
 }

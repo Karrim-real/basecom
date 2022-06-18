@@ -100,6 +100,20 @@ class FrontendController extends Controller
        return view('frontend.categproducts', compact('category'));
    }
 
+   public function discordCates()
+   {
+    $recentProds = $this->ProductService->prodFilter(6);
+    $categorys = $this->categoryServices->getAllcategorys();
+     return view('frontend.categorys', compact('categorys', 'recentProds'));
+   }
+
+   public function freelaneCates()
+   {
+    $recentProds = $this->ProductService->prodFilter(6);
+    $categorys = $this->categoryServices->getAllcategorys();
+     return view('frontend.categorys', compact('categorys', 'recentProds'));
+   }
+
     /**
      * about
      *

@@ -81,7 +81,7 @@
 
                             </div>
                             <div class="price_box">
-                                <span class="current_price">${{$products->selling_price}}</span>
+                                <span class="current_price">${{$products->discount_price}}</span>
                                 <span class="old_price">${{$products->selling_price}}</span>
 
                             </div>

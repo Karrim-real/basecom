@@ -30,7 +30,7 @@
                     <div class="error_form">
                         <img src="assets/img/404.jpg" alt=""/>
                         <h2>Opps! PAGE NOT BE FOUND</h2>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random <br/> text. It has roots in a piece of classical</p>
+                        <p>You have enter incorrect page <br/> Please check address and try again, you can click below to go back home</p>
                         <a href="{{ url('/') }}">Back to home page</a>
                     </div>
                 </div>

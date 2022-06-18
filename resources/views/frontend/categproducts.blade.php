@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col text-center">
                     <div class="section-title">
-                        <h2>Categorys</h2>
+                        <h2>Category: {{$category->title}}</h2>
                     </div>
                 </div>
             </div>

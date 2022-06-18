@@ -47,8 +47,8 @@ Route::controller(FrontendController::class)->group(function(){
     Route::post('/tracking', 'trackingCreate')->name('tracking-create');
     Route::get('/categorys', 'allCates')->name('categorys');
     Route::get('/category/{category}', 'cateProds')->name('category.id');
-
-
+    Route::get('/discord', 'discordCates')->name('discord-server');
+    Route::get('/freelance', 'freelaneCates')->name('freelance-service');
 });
 
 Route::controller(ContactController::class)->group(function(){
@@ -92,16 +92,18 @@ Route::controller(CheckoutController::class)->group(function(){
     Route::post('/checkout', 'show')->name('checkout-post')->middleware('auth');
     Route::post('/place-order', 'create')->name('place-order')->middleware('auth');
     Route::get('/preview-order', 'previews')->name('preview-order')->middleware('auth');
-    Route::get('/order-payment/{paymentref}', 'orderPayment')->name('order-payment')->middleware('auth');
     Route::get('/thanks-you/{reference}', 'thanks')->name('thanks-you/')->middleware('auth');
 });
 
 Route::webhooks('charge/webhookhandler');
-Route::get('/mypayment', [PaymentController::class, 'index']);
-Route::post('/payment', [PaymentController::class, 'payment']);
-Route::post('/payment/crypto/callback', [PaymentController::class, 'callback'])->withoutMiddleware(['web', 'auth']);
-Route::match(['get', 'post'], '/payments/crypto/pay', Victorybiz\LaravelCryptoPaymentGateway\Http\Controllers\CryptoPaymentController::class)
-                ->name('payments.crypto.pay')->middleware('auth');
+
+Route::controller(PaymentController::class)->group(function(){
+    Route::get('/mypayment', 'index');
+    Route::post('/payment',  'payment');
+    Route::get('/order-payment/{paymentref}', 'orderPayment')->name('order-payment')->middleware('auth');
+    Route::get('/thank-btc', 'thankbtc')->name('thanks-btc')->middleware('auth');
+});
+
 
 
 Route::group(['prefix' => 'admin'], function(){

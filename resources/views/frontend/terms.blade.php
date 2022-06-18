@@ -12,7 +12,7 @@
                     <div class="breadcrumb_content">
                         <ul>
                             <li><a href="{{url('/')}}">home</a></li>
-                            <li>Terms and Conditions</li>
+                            <li>Terms Of Service</li>
                         </ul>
                     </div>
                 </div>
@@ -27,40 +27,42 @@
             <div class="row">
                 <div class="col-12">
                     <div class="privacy_policy_header">
-                        <h1>Privacy Policy</h1>
+                        <h1>Terms Of Service</h1>
                     </div>
                     <div class="privacy_content section_1">
-                        <h2>Who we are</h2>
-                        <p>Our website address is: <a href="#">drophut.com</a></p>
+                        <p>Our website address is: <a href="http://www.fitdiscordservice.com" target="_blank">fitdiscordservice.com</a></p>
                     </div>
                     <div class="privacy_content section_2">
-                        <h2>What personal data we collect and why we collect it</h2>
-                        <h3>Comments</h3>
-                        <p>When visitors leave comments on the site we collect the data shown in the comments form, and also the visitor’s IP address and browser user agent string to help spam detection.</p>
-                        <p>An anonymized string created from your email address (also called a hash) may be provided to the Gravatar service to see if you are using it. The Gravatar service privacy policy is available here: https://automattic.com/privacy/. After approval of your comment, your profile picture is visible to the public in the context of your comment.</p>
-                        <h3>Media</h3>
-                        <p>If you upload images to the website, you should avoid uploading images with embedded location data (EXIF GPS) included. Visitors to the website can download and extract any location data from images on the website.</p>
-                        <h3>Cookies</h3>
-                        <p>If you leave a comment on our site you may opt-in to saving your name, email address and website in cookies. These are for your convenience so that you do not have to fill in your details again when you leave another comment. These cookies will last for one year.</p>
-                        <p>If you have an account and you log in to this site, we will set a temporary cookie to determine if your browser accepts cookies. This cookie contains no personal data and is discarded when you close your browser.</p>
-                        <p>When you log in, we will also set up several cookies to save your login information and your screen display choices. Login cookies last for two days, and screen options cookies last for a year. If you select “Remember Me”, your login will persist for two weeks. If you log out of your account, the login cookies will be removed.</p>
-                        <p>If you edit or publish an article, an additional cookie will be saved in your browser. This cookie includes no personal data and simply indicates the post ID of the article you just edited. It expires after 1 day.</p>
-                        <h3>Embedded content from other websites</h3>
-                        <p>Articles on this site may include embedded content (e.g. videos, images, articles, etc.). Embedded content from other websites behaves in the exact same way as if the visitor has visited the other website.</p>
-                        <p>These websites may collect data about you, use cookies, embed additional third-party tracking, and monitor your interaction with that embedded content, including tracking your interaction with the embedded content if you have an account and are logged in to that website.</p>
+                        <h2>Terms of Service</h2>
+                        <h3>Updated on: Apr 16, 2020 11:00 PM (GMT+5:30)</h3>
+                        <p>Thank you for patronizing <a href="http://www.fitdiscordservice.com" target="_blank">fitdiscordservice.com.</a> These Terms of Service (the “Agreement”) is a binding contract between you and fitdiscordservice.com. By accessing or making any purchase from this platform, you agree to be bound by this Agreement in full and you indicate your acceptance of this Agreement and its terms and conditions.</p>
+
                     </div>
                     <div class="privacy_content section_3">
-                        <h2>How long we retain your data</h2>
-                        <p>If you leave a comment, the comment and its metadata are retained indefinitely. This is so we can recognize and approve any follow-up comments automatically instead of holding them in a moderation queue.</p>
-                        <p>For users that register on our website (if any), we also store the personal information they provide in their user profile. All users can see, edit, or delete their personal information at any time (except they cannot change their username). Website administrators can also see and edit that information.</p>
+                        <h2>Deductions</h2>
+                        <p>If any transaction  failed and amount deducted on your bank account we are not going to be  responsible for that, So please contact us we will check and reply within few hours. If we get your funds we resolve your issue, If your funds can’t received please contact to your bank branch.</p>
+                        <h2>Replacement Guarantee</h2>
+                        <p>Your satisfaction is our priority. Get free replacement if part of your order is dropped within 24hrs.</p>
+                        <p> In case we’re unable to process your replacement request then we give you a refund, these funds goes to your pay balance, Refunding your money to PayPal or BTC  will take longer process, So you must use these funds within our store.</p>
+                        <h2>Website Use</h2>
+                        <p> fitdiscordservice.com provides only discord services, including discord server set-up, discord server promotion, discord chat and discord manager/moderator. The Services may be purchased online through our platform. By purchasing any Services, you agree to pay the indicated purchase price and further agree that  you have the authority make such a purchase, and  you will not use the Services for any fraudulent or illegal purpose no matter what.</p>
+                        <p>You acknowledge and agree that all sales are final and that refunds will only be offered in accordance with the terms of this Agreement. Refunds will only be granted in the sole discretion of the Company.</p>
+                    </div>
+
+                    <div class="privacy_content section_3">
+                        <h2>Copyright</h2>
+                        <p> All content, use on this platform including text, images, and code  found throughout discordservice.com is the property of this platform  and is protected by applicable U.S. and foreign copyright, trademark, and patent laws.</p>
+                        <h2>Security Of the Website</h2>
+                        <p> You agree to solely use the website for lawful purposes, and not to compromise the security of the website, render it inaccessible to others or cause damage to the content, service or website. As a user you agree to refrain from any action that may add, subtract or modify the content of the site. You agree to refrain from accessing content without permission and will not use the website in any way other than the way it is intended.</p>
                     </div>
                     <div class="privacy_content section_3">
-                        <h2>What rights you have over your data</h2>
-                        <p>If you have an account on this site, or have left comments, you can request to receive an exported file of the personal data we hold about you, including any data you have provided to us. You can also request that we erase any personal data we hold about you. This does not include any data we are obliged to keep for administrative, legal, or security purposes.</p>
-                    </div>
-                    <div class="privacy_content section_3">
-                        <h2>Where we send your data</h2>
-                        <p>Visitor comments may be checked through an automated spam detection service.</p>
+                        <h2> Confidential Information</h2>
+                        <p> The company shall keep confidential any information you submit to the Company as it relates to the processing of any order for Services. Any other material or information sent to the website will be considered non-confidential. You hereby grant the Company the royalty free irrevocable permission to use, display and distribute in whole or in part, the submission in any manner it sees fit.</p>
+                        <h2>Termination of Service</h2>
+                        <p>The term of this Agreement will begin upon Baddhi Shop’s acceptance of your job order and will end when terminated by either party. If Baddhi Shop determines, in its sole discretion, that you are abusing the system, the company (without limiting any other rights or remedies available to it) withdraw your participation and withhold any amount to you.</p>
+                        <p>In case of you want to cancel order before start or terminate an order in progress, we offer to transfer the undelivered order value to other services we offer. There will be no full refund of payment, fees and charges for whatever reason including but not limited to change of mind, invalid link and canceling before order start. However, we may offer refund as complementary when available. We may refund with a charge of 10% of the undelivered part of order value or $5 USD (whichever is higher) as refund processing fee. When refund option is available, it is open up to 3 months from the date of order placed. After 3 months, we will only offer transfer of the undelivered part of order value.</p>
+                        <h2>Campaign Duration</h2>
+                       <p> The Duration of your project depends on the package you choose. This platform will not exceed the delivery time frame on the package you purchase</p>
                     </div>
                 </div>
             </div>

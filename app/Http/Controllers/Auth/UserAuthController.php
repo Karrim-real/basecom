@@ -11,10 +11,8 @@ use App\Mail\VerifyAccount;
 use App\Mail\VerifyPassword;
 use App\Models\User;
 use App\Models\Verification;
-use App\Models\VerifyAcc;
 use App\Services\AuthService;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -72,6 +70,7 @@ class UserAuthController extends Controller
         $message['email'] = $user->email;
         $message['token'] = $verifyInfo['token'];
             Mail::to($user->email)->send(new VerifyAccount($message));
+            // Auth::login($datas);
             return redirect()->route('home')
             ->with('message', 'You have Register Successfully');
         }

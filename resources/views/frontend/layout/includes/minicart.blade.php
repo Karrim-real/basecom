@@ -24,108 +24,33 @@
                                <li><a href="{{ url('checkout') }}"> Checkout </a></li>
                             </ul>
                         </div>
-                        <div class="search_container">
-                           <form action="#">
-                                <div class="search_box">
-                                    <input placeholder="Search product..." type="text">
-                                    <button type="submit">Search</button>
-                                </div>
-                            </form>
-                        </div>
 
-                        <div class="middel_right_info">
-                            <div class="header_wishlist">
-                                <a href="wishlist.html"><img src="{{asset('assets/img/user.png')}}" alt=""></a>
-                            </div>
-                            <div class="mini_cart_wrapper">
-                                <a href="javascript:void(0)"><img src="{{asset('assets/img/shopping-bag.png')}}" alt=""></a>
-                                <span class="cart_quantity">2</span>
-                                <!--mini cart-->
-                                 <div class="mini_cart">
-                                    <div class="cart_item">
-                                       <div class="cart_img">
-                                           <a href="#"><img src="{{asset('assets/img/s-product/product.jpg')}}" alt=""></a>
-                                       </div>
-                                        <div class="cart_info">
-                                            <a href="#">Sit voluptatemrhoncus sem lectus</a>
-                                            <p>Qty: 1 X <span> $600.00 </span></p>
-                                        </div>
-                                        <div class="cart_remove">
-                                            <a href="#"><i class="ion-android-close"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="cart_item">
-                                       <div class="cart_img">
-                                           <a href="#"><img src="{{asset('assets/img/s-product/product2.jpg')}}" alt=""></a>
-                                       </div>
-                                        <div class="cart_info">
-                                            <a href="#">Natus erro at congue massa commodo</a>
-                                            <p>Qty: 1 X <span> $60.00 </span></p>
-                                        </div>
-                                        <div class="cart_remove">
-                                            <a href="#"><i class="ion-android-close"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="mini_cart_table">
-                                        <div class="cart_total">
-                                            <span>Sub total:</span>
-                                            <span class="price">$138.00</span>
-                                        </div>
-                                        <div class="cart_total mt-10">
-                                            <span>total:</span>
-                                            <span class="price">$138.00</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="mini_cart_footer">
-                                       <div class="cart_button">
-                                            <a href="{{ url('cart') }}">View cart</a>
-                                        </div>
-                                        <div class="cart_button">
-                                            <a href="{{ url('checkout') }}">Checkout</a>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                                <!--mini cart end-->
-                            </div>
-                        </div>
                         <div id="menu" class="text-left ">
                             <ul class="offcanvas_main_menu">
                                 <li class="menu-item-has-children active">
                                     <a href="{{ url('/') }}">Home</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="{{ url('products') }}">product</a>
+                                    <a href="{{ url('products') }}">Services</a>
+                                </li>
+
+                                <li class="menu-item-has-children">
+                                    <a href="{{ url('category/4') }}">Discord Service promotion</a>
+                                </li>
+
+                                <li class="menu-item-has-children">
+                                    <a href="{{ url('categorys') }}">Discord Freelancing Services</a>
+                                </li>
+
+
+                                <li class="menu-item-has-children">
+                                    <a href="{{ url('register') }}">Sign up</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="#">pages </a>
-                                    <ul class="sub-menu">
-                                        <li><a href="{{ url('about') }}">About Us</a></li>
-										<li><a href="{{ url('contact') }}">contact</a></li>
-										<li><a href="{{ url('privacy-policy') }}">privacy policy</a></li>
-										<li><a href="{{ url('faq') }}">Frequently Questions</a></li>
-										<li><a href="{{ url('login') }}">login</a></li>
-										<li><a href="{{ url('register') }}">register</a></li>
-										<li><a href="{{ url('forget-password') }}">Forget Password</a></li>
-										<li><a href="{{ url('404') }}">Error 404</a></li>
-										<li><a href="{{ url('cart') }}">cart</a></li>
-										<li><a href="{{ url('tracking') }}">tracking</a></li>
-										<li><a href="{{ url('checkout') }}">checkout</a></li>
-                                    </ul>
+                                    <a href="{{ url('login') }}">Login</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="#">blog</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="{{ url('checkout') }}">blog details</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="{{ url('contact') }}">my account</a>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="{{ url('contact') }}"> Contact Us</a>
+                                    <a href="{{ url('about') }}"> About us</a>
                                 </li>
                             </ul>
                         </div>

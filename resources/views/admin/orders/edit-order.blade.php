@@ -14,7 +14,7 @@
 
       </div>
     </div>
-    <h4>Edit Category</h4>
+    <h4>View Order : {{$Orders->products->title}}</h4>
     {{-- @include('layouts.error') --}}
     <div class="col-md-6">
       <form   method="POST" action="{{ route('admin.updateorder', $Orders->id) }}" enctype="multipart/form-data">
@@ -47,7 +47,7 @@
             </div>
 
           <div class="mb-3">
-            <img class="product-img" src="{{ asset('uploads/orders/images/'.$Orders->image)}}" alt="{{ $Orders->image}}" srcset="">
+            <img class="product-img"  src="{{ asset('uploads/orders/images/'.$Orders->image)}}" alt="{{ $Orders->image}}" srcset="">
         </div>
 
           <div class=" text-center">

@@ -62,9 +62,10 @@ $(document).ready(function () {
             url: "load-nav-prods",
             dataType: 'json',
             success: function (response) {
+                console.log(response.cartprods.image);
                 $('#prodname').html(response.cartprods.title);
                 $('#prodprice').html(response.cartprods.discount_price);
-                $('#prodimage').attr('src','assets/img/shopping-bag.png');
+                $('#prodimage').attr('src','uploads/products/images/'+response.cartprods.image);
                 $('#prodlink').attr('href','product/'+response.cartprods.id+'/'+response.cartprods.slug);
                 $('#prodqty').html(response.prod_qty);
 

@@ -6,7 +6,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6">
                         <div class="support_info">
-                            <p>Email: <a href="mailto:">support@drophunt.com</a></p>
+                            <p>Email: <a href="mailto:">support@fitdiscordservice.com</a></p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
@@ -35,7 +35,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-6">
                         <div class="logo">
-                            <a href="{{ url('/') }}"><img src="{{asset('assets/img/logo/logo.png')}}" alt=""></a>
+                            <a href="{{ url('/') }}"><img src="{{asset('assets/img/logo/logo22.png')}}" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-6">
@@ -64,14 +64,14 @@
                                      <div class="mini_cart">
                                         <div class="cart_item">
                                            <div class="cart_img">
-                                               <a href="localjjo" id="" ><img id="prodimage" src="myimgades" alt=""></a>
+                                               <a href="localjjo" id="" ><img id="prodimage"  alt=""></a>
                                            </div>
                                             <div class="cart_info">
                                                 <a href="product" id="prodlink"><span id="prodname"></span></a>
                                                 <p>Qty: <span id="prodqty"></span> X $<span id="prodprice">  </span></p>
                                             </div>
                                             <div class="cart_remove">
-                                                <a href="product"><i class="ion-android-close"></i></a>
+                                                <a href="products"><i class="ion-android-close"></i></a>
                                             </div>
                                         </div>
 
@@ -110,38 +110,26 @@
                             <nav>
                                 <ul>
                                     <li><a href="{{ url('/') }}">home</a></li>
-                                    <li><a href="{{ url('products') }}">Products</a></li>
+                                    <li><a href="{{ url('products') }}">Services</a></li>
 
-                                    <li><a class="active" href="#">pages <i class="fa fa-angle-down"></i></a>
+                                    <li><a href="#">Discord Server Promotion<i class="fa fa-angle-down"></i></a>
                                         <ul class="sub_menu pages">
-                                            <li><a href="{{ url('about') }}">About Us</a></li>
-                                            <li><a href="{{ route('contact-us') }}">contact</a></li>
-                                            <li><a href="{{ url('privacy') }}">privacy policy</a></li>
-                                            <li><a href="{{ url('faq') }}">Frequently Questions</a></li>
-                                            <li><a href="{{ url('login') }}">login</a></li>
-                                            <li><a href="{{ url('register') }}">register</a></li>
-                                            <li><a href="{{ url('forget-password') }}">Forget Password</a></li>
-                                            <li><a href="{{ url('404') }}">Error 404</a></li>
-                                            <li><a href="{{ url('cart') }}">cart</a></li>
-                                            <li><a href="{{ url('tracking') }}">tracking</a></li>
-                                            <li><a href="{{ url('checkout') }}">checkout</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="{{route('categorys')}}">Categorys<i class="fa fa-angle-down"></i></a>
-                                        <ul class="sub_menu pages">
-                                            @if ($categorys)
-                                            @foreach ($categorys as $category)
-                                            <li><a href="{{ route('category.id', $category->id)}}">{{ $category->title}} </a></li>
+                                            @if ($discords)
+                                            @foreach ($discords as $discord)
+                                            <li><a href="{{ route('category.id', $discord->id)}}">{{ $discord->title}} </a></li>
                                             @endforeach
                                             @endif
 
-                                            {{-- <li><a href="blog-details.html"></a></li> --}}
                                         </ul>
                                     </li>
-                                    <li><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
+                                    <li><a href="#">Discord Frelancing Services<i class="fa fa-angle-down"></i></a>
                                         <ul class="sub_menu pages">
-                                            <li><a href="blog.html">blog</a></li>
-                                            <li><a href="blog-details.html">blog details</a></li>
+                                            @if ($freelances)
+                                            @foreach ($freelances as $freelance)
+                                            <li><a href="{{ route('category.id', $freelance->id)}}">{{ $freelance->title}} </a></li>
+                                            @endforeach
+                                            @endif
+
                                         </ul>
                                     </li>
                                     <li><a href="{{ url('about') }}"> About Us</a></li>

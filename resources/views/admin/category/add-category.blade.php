@@ -24,9 +24,18 @@
             <label for="name" class="form-label">Category name</label>
             <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp">
           </div>
-
             <input type="hidden" name="user_id" value="{{ Auth::user()->id}}" id="user_id">
 
+
+            <label for="maincate_id" class="form-label">Main Category</label>
+            <div class="mb-3">
+                <select class="form-control" name="maincate_id" id="maincate_id">
+                    @foreach ($maincate as $catItems )
+                    <option value=" {{ $catItems->id }} ">{{ $catItems->title }}</option>
+                    @endforeach
+
+                </select>
+            </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control" id="desc" name="desc" rows="2"></textarea>
@@ -38,12 +47,12 @@
             </div>
 
           <div class="mb-6">
-              <label for="status" class="form-label">Status</label>
+              <label for="status" class="form-label">Category status</label>
               <input type="checkbox" class="form-check-input" name="status" id="status" >
           </div>
 
           <div class="mb-3">
-              <label for="images" class="form-label">Product Image</label>
+              <label for="images" class="form-label">Category Image</label>
               <input type="file" class="form-control" name="images" id="images"  accept="image/*" id="image" >
           </div>
           <br>

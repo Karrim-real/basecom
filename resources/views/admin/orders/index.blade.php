@@ -28,7 +28,7 @@
               <th scope="col">User Name</th>
               <th scope="col">Products Name</th>
               <th scope="col">Message</th>
-              <th scope="col">Reference No</th>
+              <th scope="col">Payment Ref</th>
               <th scope="col">Ordered At</th>
               <th scope="col">Status</th>
               <th scope="col">Check</th>
@@ -43,7 +43,7 @@
             <td>{{ $orders->users->name}}</td>
             <td>{{ $orders->Products->title}}</td>
             <td>{{ $orders->message}}</td>
-            <td>{{ $orders->reference_id}}</td>
+            <td>{{ $orders->payment_ref}}</td>
             <td>{{ $orders->created_at->diffForHumans()}}</td>
             <td> <button class="btn {{ ($orders->status === 1 ? 'btn-success': 'btn-warning')}} btn-md">{{ ($orders->status === 1 ? 'Success': 'Pending')}}</button></td>
             <td> <a class="btn btn-primary btn-md" href="{{ url('admin/edit-order/'.$orders->id) }}"> Check </a></td>

@@ -7,7 +7,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="widgets_container contact_us">
                         <div class="footer_logo">
-                            <a href="#"><img src="{{asset('assets/img/logo/logo.png')}}" alt=""></a>
+                            <a href="#"><img src="{{asset('assets/img/logo/logo22.png')}}" alt=""></a>
                         </div>
                         <div class="footer_contact">
                             <p>John draw real poor on call my from. May she mrs furnished discourse extremely. Ask doubt noisy shade guest Lose away off why half led have near bed. At engage simple father of period others except</p>
@@ -22,7 +22,7 @@
                             <ul>
                                 <li><a href=" {{url('about')}} ">About Us</a></li>
                                 <li><a href="{{url('delivery')}}">Delivery Information</a></li>
-                                <li><a href="{{url('privacy')}}">Privacy Policy</a></li>
+                                <li><a href="{{url('privacy')}}">Refund And Cancellation Policy</a></li>
                                 <li><a href="{{url('terms')}}">Terms & Conditions</a></li>
                                 <li><a href="{{url('return')}}">Returns</a></li>
                                 <li><a href="{{url('giftcert')}}">Gift Certificates</a></li>

@@ -16,13 +16,12 @@ class CheckoutController extends Controller
 {
 
     protected $cartServices;
-    protected $orderServices;
 
 
-    public function __construct(CartServices $cartServices, OrderService $orderService)
+    public function __construct(CartServices $cartServices)
     {
         $this->cartServices = $cartServices;
-        $this->orderServices = $orderService;
+
     }
     /**
      * Display a listing of the resource.
@@ -51,79 +50,16 @@ class CheckoutController extends Controller
         // dd($datas);
         return redirect()->route('preview-order');
 
-
 }
 
     public function previews()
     {
         $cartProds = $this->cartServices->AllCartProducts();
         // dd(config('paystack.secret_key'));
+        session(['cartProds' => $cartProds]);
         return view('frontend.previewcheckout', compact('cartProds'));
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function orderPayment($reference)
-    {
-        if(!$reference){
-            return back()->with('error', 'Your reference key is empty, Please try again later');
-        }else{
-
-         $response = Http::withToken(config('paystack.secret_key'),
-            )->get("https://api.paystack.co/transaction/verify/$reference");
-
-            if ($response['status'] == '0') {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'An Error occur while proccesing your payment, Please try again later',
-                'url' => '/'
-            ]);
-
-            } else {
-                $decode_response = json_decode($response);
-
-                if($decode_response->status){
-                    $orderDetails = session('datas');
-                    $orderDetails['payment_type'] = 'paystack';
-                    $orderDetails['payment_ref'] = $decode_response->data->reference;
-                $orderDetails['reference_id'] = 'drop'.time().rand(100, 999);
-                 $cartProds = $this->cartServices->AllCartProducts();
-                foreach ($cartProds as $cart) {
-                    $orderDetails['user_id']= $cart['user_id'];
-                    $orderDetails['prod_id'] = $cart['prod_id'];
-                    $orderDetails['prod_qty'] = $cart['prod_qty'];
-                    $this->orderServices->createOrder($orderDetails);
-                }
-                 $cart = Cart::where('user_id', Auth::user()->id)->get();
-                foreach($cart as $carts){
-                    $removeCart = Cart::where('user_id', Auth::user()->id)
-                    ->where('prod_id', $carts->prod_id)->first();
-                    $removeCart->delete();
-                }
-                return response()->json([
-                    'status' => 'success',
-                    'title' => 'Congratulation, You just order a Service',
-                    'message' => 'You order was successfull, Please take a chill while proccess your order, Thanks',
-                    'url' => 'thanks-you/'.$orderDetails['reference_id'],
-                ]);
-                }else{
-                return response()->json([
-                    'status' => 'error',
-                    'message' => 'An Error occur while proccesing your payment, Please try again later',
-                    'url' => '/'
-                ]);
-
-                }
-            }
-        }
-
-
-    }
 
 
     /**

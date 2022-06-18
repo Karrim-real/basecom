@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\MainCategory;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.add-category');
+        $maincate = MainCategory::all();
+        return view('admin.category.add-category', compact('maincate'));
     }
 
     /**
@@ -47,6 +49,8 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $cat_details = $request->validated();
+        // dd($cat_details);
+
         $cat_details['status'] = $request->status == TRUE ? 1 : 0;
         $categorys = $this->categoryService->createcategorys($cat_details);
         return redirect()->route('admin.categorys')->with([
@@ -72,30 +76,14 @@ class CategoryController extends Controller
         }
         return view('admin.category.edit-category', compact('category'));
     }
-    public function search(Request $request)
-    {
-        $searchText = $request->get('searchname');
-        // dd($search);
-         return $this->categoryService->liveSearch($searchText);
-    }
+
 
     /**
-     * Show the form for editing the specified resource.
+     * update
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  mixed $request
+     * @param  mixed $catID
+     * @return void
      */
     public function update(UpdateCategoryRequest $request, $catID)
     {
@@ -115,6 +103,20 @@ class CategoryController extends Controller
         ]);
         }
     }
+
+    /**
+     * search
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function search(Request $request)
+    {
+        $searchText = $request->get('searchname');
+        // dd($search);
+         return $this->categoryService->liveSearch($searchText);
+    }
+
 
     /**
      * Remove the specified resource from storage.

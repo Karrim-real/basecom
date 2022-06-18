@@ -14,7 +14,9 @@ class Category extends Model
         'desc',
         'images',
         'slug',
+        'maincate_id',
         'status'
+
     ];
 
     public function products()
