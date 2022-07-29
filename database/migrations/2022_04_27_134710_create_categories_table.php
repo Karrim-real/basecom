@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('images');
             $table->string('slug');
             $table->bigInteger('status')->default('0');
-            $table->bigInteger('maincate_id');
+            $table->foreignId('maincategories_id');
             // $table->softDeletes();
             $table->timestamps();
         });

@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         if(config('app.env') === 'production') {
-            \URL::forceScheme('https');
+            \URL::forceScheme('http');
         }else if(config('app.env') === 'local'){
             \URL::forceScheme('http');
         }else{
@@ -39,11 +39,11 @@ class AppServiceProvider extends ServiceProvider
         // $categorys = Category::latest()->take(3)->get();
         // view()->share('categorys', $categorys);
 
-        $discords = Category::where('maincate_id', 1)->get();
-        // dd($discords);
+        $discords = Category::where('maincategories_id', 1)->get();
+
         view()->share('discords', $discords);
 
-        $freelances = Category::where('maincate_id', 2)->get();
+        $freelances = Category::where('maincategories_id', 2)->get();
         view()->share('freelances', $freelances);
 
         // $products = Cart::all();

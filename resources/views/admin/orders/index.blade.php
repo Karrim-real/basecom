@@ -24,8 +24,8 @@
           <thead>
             <tr>
               <th scope="col">No</th>
-              <th scope="col">User Email</th>
-              <th scope="col">User Name</th>
+              <th scope="col">Billing Email</th>
+              <th scope="col">Billing Name</th>
               <th scope="col">Products Name</th>
               <th scope="col">Message</th>
               <th scope="col">Payment Ref</th>
@@ -45,9 +45,9 @@
             <td>{{ $orders->message}}</td>
             <td>{{ $orders->payment_ref}}</td>
             <td>{{ $orders->created_at->diffForHumans()}}</td>
-            <td> <button class="btn {{ ($orders->status === 1 ? 'btn-success': 'btn-warning')}} btn-md">{{ ($orders->status === 1 ? 'Success': 'Pending')}}</button></td>
-            <td> <a class="btn btn-primary btn-md" href="{{ url('admin/edit-order/'.$orders->id) }}"> Check </a></td>
-            <td><a class="btn btn-danger btn-md" href="{{ url('admin/delete-order/'.$orders->id) }}"> Remove </a></td>
+            <td> <button class="btn {{ ($orders->status === 1 ? 'btn-success': 'btn-warning')}} btn-sm">{{ ($orders->status === 1 ? 'success': 'pending')}}</button></td>
+            <td> <a class="btn btn-primary btn-sm" href="{{ url('admin/edit-order/'.$orders->id) }}"> check </a></td>
+            <td><a class="btn btn-danger btn-sm" href="{{ url('admin/delete-order/'.$orders->id) }}"> Remove </a></td>
             </tr>
             @endforeach
           </tbody>

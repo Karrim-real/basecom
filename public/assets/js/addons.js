@@ -128,7 +128,7 @@ $(document).ready(function () {
           handler.openIframe();
         }else{
             // console.log('btc choose');
-        let ref = 'lazerpay'+Math.floor((Math.random() * 10000000000) + 1);
+
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(

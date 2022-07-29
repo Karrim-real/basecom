@@ -134,7 +134,7 @@ class ProductController extends Controller
     {
         $prods = $this->productService->deletProduct($ProdID);
         return redirect()->route('admin.dashboard')->with([
-            'error' => 'Product Deleted Successfully',
+            'message' => 'Product Deleted Successfully',
             'prods' => $prods
         ]);
     }

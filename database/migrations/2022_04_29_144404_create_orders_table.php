@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('prod_id');
-            $table->foreignId('prod_qty');
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('prod_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->bigInteger('prod_qty');
             $table->string('twitter');
             $table->string('discord');
             $table->string('instagram')->nullable();

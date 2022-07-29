@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('prod_id');
-            $table->foreignId('prod_qty');
             $table->longText('message');
             $table->timestamps();
         });

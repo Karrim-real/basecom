@@ -22,6 +22,12 @@ class UserAuthController extends Controller
 
     private AuthService $authService;
 
+    /**
+     * __construct
+     *
+     * @param  mixed $authService
+     * @return void
+     */
     public function __construct(AuthService $authService)
     {
          $this->authService = $authService;
@@ -49,7 +55,8 @@ class UserAuthController extends Controller
     {
         $datas = $request->validated();
         //check Users email
-        $check = User::where('email', $datas['email'])->first();
+        $check = User::where('email', $datas['email'])
+        ->first();
         // dd($datas);
         if($check){
             return redirect()->back()
@@ -135,7 +142,7 @@ class UserAuthController extends Controller
         $checkrole =  User::where('email', $userInfo['email'])->first();
         // dd($checkrole);
         $loginAttempt = $this->authService->login($userInfo);
-        if($loginAttempt && $checkrole->role_as  === 1){
+        if($loginAttempt && $checkrole->role_as == 1){
             return redirect()->route('admin.dashboard')
             ->with('message', 'You have Login as Admin Successfully');
         }elseif($loginAttempt){

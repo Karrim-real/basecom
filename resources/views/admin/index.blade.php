@@ -50,8 +50,8 @@
               <td>{{ $prod->desc }}</td>
               <td>{{ $prod->selling_price }}</td>
               <td>{{ $prod->Categorys->title }}</td>
-              <td><a href="{{ url('admin/edit-product/'. $prod->id) }}"><button class="btn btn-primary btn-md">Edit</button> </a></td>
-              <td><a href="{{ url('admin/deleteproduct/'.$prod->id) }}" ><button class="btn btn-danger btn-md" id="delete">Delete</button> </a></td>
+              <td><a href="{{ url('admin/edit-product/'. $prod->id) }}"><button class="btn btn-primary btn-sm">Edit</button> </a></td>
+              <td><a href="{{ url('admin/deleteproduct/'.$prod->id) }}" ><button class="btn btn-danger btn-sm" id="delete">Delete</button> </a></td>
             </tr>
             @endforeach
             <tbody id="content">

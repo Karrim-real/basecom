@@ -107,45 +107,47 @@ Route::controller(PaymentController::class)->group(function(){
 
 
 Route::group(['prefix' => 'admin'], function(){
-    Route::controller(AdministraviceController::class)->group(function(){
-        Route::get('/users', 'index')->name('users');
-        Route::get('/users/create', 'create')->name('users.createuser');
-        Route::post('/user',  'store')->name('admin.storeuser');
-        Route::get('/useredit/{user}',  'edit')->name('admin.edituser');
-        Route::put('/userupdate/{user}',  'update')->name('admin.updateuser');
-        Route::get('/deleteuser/{user}',  'destroy')->name('admin.destroyuser');
-        Route::get('/searchuser',  'searchuser')->name('admin.search.user');
-
-    });
-
 
     Route::controller(ProductController::class)->group(function(){
-        Route::get('/dashboard',  'index')->name('admin.dashboard')->middleware('auth');
-        Route::get('/add-product',  'create')->name('admin.addproduct')->middleware('auth');
-        Route::post('/add-product',  'store')->name('admin.addproduct')->middleware('auth');
-        Route::get('/edit-product/{product}',  'show')->name('admin.editproduct')->middleware('auth');
-        Route::put('/edit-product/{product}',  'update')->name('admin.updateproduct')->middleware('auth');
-        Route::get('/deleteproduct/{product}',  'destroy')->name('admin.producdelete')->middleware('auth');
+        Route::get('/dashboard',  'index')->name('admin.dashboard')->middleware(['auth' => 'isAdmin']);
+        Route::get('/add-product',  'create')->name('admin.addproduct')->middleware(['auth' => 'isAdmin']);
+        Route::post('/add-product',  'store')->name('admin.addproduct')->middleware(['auth' => 'isAdmin']);
+        Route::get('/edit-product/{product}',  'show')->name('admin.editproduct')->middleware(['auth' => 'isAdmin']);
+        Route::put('/edit-product/{product}',  'update')->name('admin.updateproduct')->middleware(['auth' => 'isAdmin']);
+        Route::get('/deleteproduct/{product}',  'destroy')->name('admin.producdelete')->middleware(['auth' => 'isAdmin']);
         Route::get('/searchproduct',  'search')->name('admin.search.product');
     });
 
+
+    Route::controller(AdministraviceController::class)->group(function(){
+        Route::get('/users', 'index')->name('users')->middleware(['auth' => 'isAdmin']);
+        Route::get('/users/create', 'create')->name('users.createuser')->middleware(['auth' => 'isAdmin']);
+        Route::post('/user',  'store')->name('admin.storeuser')->middleware(['auth' => 'isAdmin']);
+        Route::get('/useredit/{user}',  'edit')->name('admin.edituser')->middleware(['auth' => 'isAdmin']);
+        Route::put('/userupdate/{user}',  'update')->name('admin.updateuser')->middleware(['auth' => 'isAdmin']);
+        Route::get('/deleteuser/{user}',  'destroy')->name('admin.destroyuser')->middleware(['auth' => 'isAdmin']);
+        Route::get('/searchuser',  'searchuser')->name('admin.search.user')->middleware(['auth' => 'isAdmin']);
+
+    });
+
+
     Route::controller(CategoryController::class)->group(function(){
 
-        Route::get('/categorys',  'index')->name('admin.categorys')->middleware('auth');
-        Route::get('/add-category',  'create')->name('admin.addcategory')->middleware('auth');
-        Route::post('/add-category',  'store')->name('admin.addcategory')->middleware('auth');
-        Route::get('/edit-category/{category}',  'show')->name('admin.editcategory')->middleware('auth');
-        Route::put('/edit-category/{category}',  'update')->name('admin.updatecategory')->middleware('auth');
-        Route::get('/delete-category/{category}',  'destroy')->name('admin.deletecategory')->middleware('auth');
+        Route::get('/categorys',  'index')->name('admin.categorys')->middleware(['auth' => 'isAdmin']);
+        Route::get('/add-category',  'create')->name('admin.addcategory')->middleware(['auth' => 'isAdmin']);
+        Route::post('/add-category',  'store')->name('admin.addcategory')->middleware(['auth' => 'isAdmin']);
+        Route::get('/edit-category/{category}',  'show')->name('admin.editcategory')->middleware(['auth' => 'isAdmin']);
+        Route::put('/edit-category/{category}',  'update')->name('admin.updatecategory')->middleware(['auth' => 'isAdmin']);
+        Route::get('/delete-category/{category}',  'destroy')->name('admin.deletecategory')->middleware(['auth' => 'isAdmin']);
         Route::get('/searchcategory',  'search')->name('admin.search.category');
     });
 
     Route::controller(BackendOrderController::class)->group(function(){
 
-        Route::get('/orders',  'index')->name('orders')->middleware('auth');
-        Route::get('/edit-order/{order}',  'edit')->name('admin.showorder')->middleware('auth');
-        Route::put('/edit-order/{order}',  'update')->name('admin.updateorder')->middleware('auth');
-        Route::get('/delete-order/{order}',  'destroy')->name('admin.deleteorder')->middleware('auth');
+        Route::get('/orders',  'index')->name('orders')->middleware(['auth' => 'isAdmin']);
+        Route::get('/edit-order/{order}',  'edit')->name('admin.showorder')->middleware(['auth' => 'isAdmin']);
+        Route::put('/edit-order/{order}',  'update')->name('admin.updateorder')->middleware(['auth' => 'isAdmin']);
+        Route::get('/delete-order/{order}',  'destroy')->name('admin.deleteorder')->middleware(['auth' => 'isAdmin']);
         Route::get('/searchorders',  'search')->name('admin.search.order');
 
 

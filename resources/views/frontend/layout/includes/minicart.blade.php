@@ -43,12 +43,21 @@
                                 </li>
 
 
+                                @if (Auth::user())
+                                {{-- {{ dd(Auth::user()) }} --}}
+                                <li class="menu-item-has-children"><a href="{{ url('my-account/'.Auth::user()->id.'/'.Auth::user()->name) }}">Account</a></li>
+                                <li class="menu-item-has-children"><a href="{{ url('cart') }}">Cart</a></li>
+                                <li class="menu-item-has-children"><a href="{{ url('checkout') }}">Checkout</a></li>
+                                <li class="menu-item-has-children"><a href="{{ url('logout') }}">Logout</a></li>
+                                @else
                                 <li class="menu-item-has-children">
                                     <a href="{{ url('register') }}">Sign up</a>
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a href="{{ url('login') }}">Login</a>
                                 </li>
+                                @endif
+
                                 <li class="menu-item-has-children">
                                     <a href="{{ url('about') }}"> About us</a>
                                 </li>

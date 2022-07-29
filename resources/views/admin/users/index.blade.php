@@ -40,10 +40,10 @@
               <td>{{ $users->name }}</td>
               <td>{{ $users->email }}</td>
               <td>{{ $users->phone }}</td>
-            <td> <button class="btn {{ ($users->role_as === 1 ? 'btn-success': 'btn-warning')}} btn-md">{{ ($users->role_as === 1 ? 'Admin': 'User')}}</button></td>
+            <td> <button class="btn {{ ($users->role_as === 1 ? 'btn-success': 'btn-warning')}} btn-sm">{{ ($users->role_as === 1 ? 'Admin': 'User')}}</button></td>
               <td>{{ $users->created_at->diffForHumans() }}</td>
               {{-- <td>{{ $category->category_id }}</td> --}}
-              <td><a href="{{ url('admin/useredit/'. $users->id) }}"><button class="btn btn-primary btn-md">Edit</button> </a></td>
+              <td><a href="{{ url('admin/useredit/'. $users->id) }}"><button class="btn btn-primary btn-sm">Edit</button> </a></td>
             </tr>
             @endforeach
           </tbody>

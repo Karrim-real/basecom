@@ -29,7 +29,7 @@
 
             <label for="maincate_id" class="form-label">Main Category</label>
             <div class="mb-3">
-                <select class="form-control" name="maincate_id" id="maincate_id">
+                <select class="form-control" name="maincategories_id" id="maincategories_id">
                     @foreach ($maincate as $catItems )
                     <option value=" {{ $catItems->id }} ">{{ $catItems->title }}</option>
                     @endforeach

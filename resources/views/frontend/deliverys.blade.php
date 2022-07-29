@@ -31,7 +31,7 @@
                     </div>
                     <div class="privacy_content section_1">
                         <h2>Who we are</h2>
-                        <p>Our website address is: <a href="#">drophut.com</a></p>
+                        <p>Our website address is: <a href="https://fitdiscordservice.com/">Fitdiscordservice.com</a></p>
                     </div>
                     <div class="privacy_content section_2">
                         <h2>What personal data we collect and why we collect it</h2>

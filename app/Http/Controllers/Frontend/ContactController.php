@@ -34,6 +34,7 @@ class ContactController extends Controller
     public function store(ContactRequest $request)
     {
         $messages = $request->validated();
+        dd($messages);
         // $this->contactServices->createMessage($messages);
         // $messageBody = $message['']
         Mail::to('example@mailtrap.io')->send(new ContactUs($messages));

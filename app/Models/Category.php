@@ -14,7 +14,7 @@ class Category extends Model
         'desc',
         'images',
         'slug',
-        'maincate_id',
+        'maincategories_id',
         'status'
 
     ];

@@ -66,22 +66,28 @@
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="single-features">
                         <img src="assets/img/icon/1.png" alt="">
-                        <h3>Impressive Delivery</h3>
-                        <p>consectetur adipisicing elit. Ut praesentium earum, blanditiis, voluptatem repellendus rerum voluptatibus dignissimos</p>
+                        <h3>Discord Chat</h3>
+                        <p>We will give you awesome hype on nfts project, so your project can attract the investors or nfts buyers.</p>
+
+                            <h5>Kindly chat this contact</h5>
+                            <h4>+2349036134063</h4>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="single-features">
                         <img src="assets/img/icon/2.png" alt="">
                         <h3>100% security guarantee</h3>
-                        <p>consectetur adipisicing elit. Ut praesentium earum, blanditiis, voluptatem repellendus rerum voluptatibus dignissimos</p>
+                        <p>We give you 100% security guarantee on your orders and 100% refund if you don't like the service.</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="single-features">
                         <img src="assets/img/icon/3.png" alt="">
                         <h3>Awesome Support</h3>
-                        <p>consectetur adipisicing elit. Ut praesentium earum, blanditiis, voluptatem repellendus rerum voluptatibus dignissimos</p>
+                        <p>We will give you awesome support on your orders, so be rest assured on our service.</p>
+                            <h4>Kindly chat this contact</h4>
+                            <h6>+2349036134063 </h6>
+
                     </div>
                 </div>
 
@@ -150,7 +156,7 @@
                                         <a href="#"><img src="assets/img/about/team-3.jpg" alt=""></a>
                                     </div>
                                     <figcaption class="testimonial_content">
-                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45</p>
+                                        <p>Amazing Service! My discord server grew significantly with quality users and engagement, I am so pleased with the work. Can only be recommended! You are the best for organic discord growth</p>
                                         <h3><a href="#">Kathy Young</a><span> - CEO of SunPark</span></h3>
                                     </figcaption>
 
@@ -162,7 +168,7 @@
                                         <a href="#"><img src="assets/img/about/team-1.jpg" alt=""></a>
                                     </div>
                                     <figcaption class="testimonial_content">
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even</p>
+                                        <p>They delivered an excellent and exceeded my expectation.  First choice for all new NFTS project who want to build a larger community.  They were able  to get more members and all are real not a single bot. I would love work with them more, best service.</p>
                                         <h3><a href="#">John Sullivan</a><span> - Customer</span></h3>
                                     </figcaption>
 
@@ -174,7 +180,7 @@
                                         <a href="#"><img src="assets/img/about/team-2.jpg" alt=""></a>
                                     </div>
                                     <figcaption class="testimonial_content">
-                                        <p>College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites</p>
+                                        <p>\Excellent promotion, Good to see the members interacting with each other. It was easy to work with. Thanks you so much, I will definitely be placing more orders</p>
                                         <h3><a href="#">Jenifer Brown</a><span> - Manager of AZ</span></h3>
                                     </figcaption>
 
@@ -278,8 +284,8 @@
                             <img src="assets/img/about/shipping1.png" alt="">
                         </div>
                         <div class="shipping_content">
-                            <h2>Free Shipping</h2>
-                            <p>Free shipping on all US order</p>
+                            <h2>Instant Delivery</h2>
+                            <p>Instant delivery to our customers</p>
                         </div>
                     </div>
                 </div>

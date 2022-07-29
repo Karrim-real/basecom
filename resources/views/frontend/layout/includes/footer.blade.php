@@ -10,8 +10,7 @@
                             <a href="#"><img src="{{asset('assets/img/logo/logo22.png')}}" alt=""></a>
                         </div>
                         <div class="footer_contact">
-                            <p>John draw real poor on call my from. May she mrs furnished discourse extremely. Ask doubt noisy shade guest Lose away off why half led have near bed. At engage simple father of period others except</p>
-                            <p>Ask doubt noisy shade guest Lose away off why half led have near bed. At engage simple father of period others except</p>
+                            <p>Fitdiscordservice will assist you in promoting your discord server, nft discord server, crypto server, gaming server to get organic members and also engaged members</p>
                         </div>
                     </div>
                 </div>
@@ -80,7 +79,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6">
                         <div class="copyright_area">
-                            <p> <a href="karrim4real@gmail.com">Fityo Strore</a></p>
+                            <p> <a href="{{url('/')}}">Fitdiscordservice Copyright 2022</a></p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
